@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1A5BB3DA-1D2C-4092-A331-E7B1AAC946F6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Bmse</RootNamespace>
+    <AssemblyName>BMSEcs</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Bmse.App</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CommonConst.cs" />
+    <Compile Include="Common\DataSource.cs" />
+    <Compile Include="Common\Ds.cs" />
+    <Compile Include="Forms\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowAbout.Designer.cs">
+      <DependentUpon>FormWindowAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowConvert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowConvert.Designer.cs">
+      <DependentUpon>FormWindowConvert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowFind.Designer.cs">
+      <DependentUpon>FormWindowFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowInput.Designer.cs">
+      <DependentUpon>FormWindowInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowPreview.Designer.cs">
+      <DependentUpon>FormWindowPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowTips.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowTips.Designer.cs">
+      <DependentUpon>FormWindowTips.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormWindowViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormWindowViewer.Designer.cs">
+      <DependentUpon>FormWindowViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Log.cs" />
+    <Compile Include="modDraw.cs" />
+    <Compile Include="modEasterEgg.cs" />
+    <Compile Include="modInput.cs" />
+    <Compile Include="modMain.cs" />
+    <Compile Include="modMessage.cs" />
+    <Compile Include="modOutput.cs" />
+    <Compile Include="App.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ConfigManager.cs" />
+    <Compile Include="Util\EnvUtil.cs" />
+    <Compile Include="Util\FileUtil.cs" />
+    <Compile Include="Util\FormUtil.cs" />
+    <Compile Include="Util\StringUtil.cs" />
+    <EmbeddedResource Include="Forms\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowAbout.resx">
+      <DependentUpon>FormWindowAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowConvert.resx">
+      <DependentUpon>FormWindowConvert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowFind.resx">
+      <DependentUpon>FormWindowFind.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowInput.resx">
+      <DependentUpon>FormWindowInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowPreview.resx">
+      <DependentUpon>FormWindowPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowTips.resx">
+      <DependentUpon>FormWindowTips.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormWindowViewer.resx">
+      <DependentUpon>FormWindowViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows インストーラー 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\01_new_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\02_open_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\03_reload_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\04_save_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\05_save_as_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\06_arrow_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\07_pencil_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\08_ear_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\09_s_play_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\10_play_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\11_stop_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ear.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old_04_save_as_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\old_09_s_play_16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pencil.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\s_play.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save_as.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\stop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bmse_title.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bmse_title_24.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\siroani.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\siromaru.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tips.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icon.ico" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Memo\Win32API移植.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

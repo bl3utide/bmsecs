@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lang>
+  <item name="Main">
+    <Key>BMSE</Key>
+    <Language>English</Language>
+    <Font>MS Shell Dlg</Font>
+    <FixedFont>Courier New</FixedFont>
+  </item>
+  <item name="Menu">
+    <FILE>&amp;File</FILE>
+    <FILE_NEW>&amp;New</FILE_NEW>
+    <FILE_OPEN>&amp;Open</FILE_OPEN>
+    <FILE_SAVE>&amp;Save</FILE_SAVE>
+    <FILE_SAVE_AS>Save &amp;As</FILE_SAVE_AS>
+    <FILE_OPEN_DIRECTORY>Open &amp;Directory</FILE_OPEN_DIRECTORY>
+    <FILE_EXIT>&amp;Exit</FILE_EXIT>
+    <EDIT>&amp;Edit</EDIT>
+    <EDIT_UNDO>&amp;Undo</EDIT_UNDO>
+    <EDIT_REDO>&amp;Redo</EDIT_REDO>
+    <EDIT_CUT>Cu&amp;t</EDIT_CUT>
+    <EDIT_COPY>&amp;Copy</EDIT_COPY>
+    <EDIT_PASTE>&amp;Paste</EDIT_PASTE>
+    <EDIT_DELETE>&amp;Delete</EDIT_DELETE>
+    <EDIT_SELECT_ALL>&amp;Select All</EDIT_SELECT_ALL>
+    <EDIT_FIND>&amp;Find/Delete/Replace</EDIT_FIND>
+    <EDIT_MODE_EDIT>Edit &amp;Mode</EDIT_MODE_EDIT>
+    <EDIT_MODE_WRITE>Write &amp;Mode</EDIT_MODE_WRITE>
+    <EDIT_MODE_DELETE>Delete &amp;Mode</EDIT_MODE_DELETE>
+    <VIEW>&amp;View</VIEW>
+    <VIEW_TOOL_BAR>&amp;Tool Bar</VIEW_TOOL_BAR>
+    <VIEW_DIRECT_INPUT>&amp;Direct Input</VIEW_DIRECT_INPUT>
+    <VIEW_STATUS_BAR>&amp;Status Bar</VIEW_STATUS_BAR>
+    <OPTIONS>&amp;Options</OPTIONS>
+    <OPTIONS_IGNORE_ACTIVE>&amp;Control Unavailable When Active</OPTIONS_IGNORE_ACTIVE>
+    <OPTIONS_FILE_NAME_ONLY>Display &amp;File Name Only</OPTIONS_FILE_NAME_ONLY>
+    <OPTIONS_VERTICAL>&amp;Vertical Grid Info</OPTIONS_VERTICAL>
+    <OPTIONS_LANE_BG>&amp;Background Color</OPTIONS_LANE_BG>
+    <OPTIONS_SINGLE_SELECT_PREVIEW>&amp;Preview Upon Object Selection</OPTIONS_SINGLE_SELECT_PREVIEW>
+    <OPTIONS_OBJECT_FILE_NAME>Show &amp;Objects&apos; File Names</OPTIONS_OBJECT_FILE_NAME>
+    <OPTIONS_MOVE_ON_GRID>Restrict Objects&apos; &amp;Movement Onto Grid</OPTIONS_MOVE_ON_GRID>
+    <OPTIONS_USE_OLD_FORMAT>&amp;Use Old Format [01-FF]</OPTIONS_USE_OLD_FORMAT>
+    <OPTIONS_RIGHT_CLICK_DELETE>&amp;Right Click To Delete Objects</OPTIONS_RIGHT_CLICK_DELETE>
+    <TOOLS>&amp;Tools</TOOLS>
+    <TOOLS_PLAY_FIRST>Play &amp;All</TOOLS_PLAY_FIRST>
+    <TOOLS_PLAY>&amp;Play From Current Position</TOOLS_PLAY>
+    <TOOLS_STOP>&amp;Stop</TOOLS_STOP>
+    <TOOLS_SETTING>&amp;Viewer Settings</TOOLS_SETTING>
+    <HELP>&amp;Help</HELP>
+    <HELP_OPEN>Help</HELP_OPEN>
+    <HELP_WEB>Open &amp;Website</HELP_WEB>
+    <HELP_ABOUT>&amp;About BMSE</HELP_ABOUT>
+    <CONTEXT_MEASURE_INSERT>&amp;Insert Measure</CONTEXT_MEASURE_INSERT>
+    <CONTEXT_MEASURE_DELETE>Delete &amp;Measure</CONTEXT_MEASURE_DELETE>
+    <CONTEXT_LIST_LOAD>&amp;Load</CONTEXT_LIST_LOAD>
+    <CONTEXT_LIST_DELETE>&amp;Delete</CONTEXT_LIST_DELETE>
+    <CONTEXT_LIST_RENAME>&amp;Rename</CONTEXT_LIST_RENAME>
+  </item>
+  <item name="ToolBar">
+    <TOOLTIP_NEW>New</TOOLTIP_NEW>
+    <TOOLTIP_OPEN>Open</TOOLTIP_OPEN>
+    <TOOLTIP_SAVE>Save</TOOLTIP_SAVE>
+    <TOOLTIP_SAVE_AS>Save As</TOOLTIP_SAVE_AS>
+    <TOOLTIP_MODE_EDIT>Edit Mode</TOOLTIP_MODE_EDIT>
+    <TOOLTIP_MODE_WRITE>Write Mode</TOOLTIP_MODE_WRITE>
+    <TOOLTIP_MODE_DELETE>Delete Mode</TOOLTIP_MODE_DELETE>
+    <TOOLTIP_PLAY_FIRST>Play All</TOOLTIP_PLAY_FIRST>
+    <TOOLTIP_PLAY>Play From Current Position</TOOLTIP_PLAY>
+    <TOOLTIP_STOP>Stop</TOOLTIP_STOP>
+    <GRID_MAIN>Grid</GRID_MAIN>
+    <GRID_SUB>Sub</GRID_SUB>
+    <DISP_HEIGHT>Height</DISP_HEIGHT>
+    <DISP_WIDTH>Width</DISP_WIDTH>
+  </item>
+  <item name="Header">
+    <TAB_BASIC>Basic</TAB_BASIC>
+    <TAB_EXPAND>Expand</TAB_EXPAND>
+    <TAB_CONFIG>Config</TAB_CONFIG>
+    <BASIC_PLAYER>#PLAYER</BASIC_PLAYER>
+    <BASIC_PLAYER_1P>1 Player</BASIC_PLAYER_1P>
+    <BASIC_PLAYER_2P>2 Player</BASIC_PLAYER_2P>
+    <BASIC_PLAYER_DP>Double Play</BASIC_PLAYER_DP>
+    <BASIC_PLAYER_PMS>9 Keys (PMS)</BASIC_PLAYER_PMS>
+    <BASIC_PLAYER_OCT>13 Keys (oct/fp)</BASIC_PLAYER_OCT>
+    <BASIC_GENRE>#GENRE</BASIC_GENRE>
+    <BASIC_TITLE>#TITLE</BASIC_TITLE>
+    <BASIC_ARTIST>#ARTIST</BASIC_ARTIST>
+    <BASIC_PLAYLEVEL>#PLAYLEVEL</BASIC_PLAYLEVEL>
+    <BASIC_BPM>#BPM</BASIC_BPM>
+    <EXPAND_RANK>#RANK</EXPAND_RANK>
+    <EXPAND_RANK_EASY>Easy</EXPAND_RANK_EASY>
+    <EXPAND_RANK_NORMAL>Normal</EXPAND_RANK_NORMAL>
+    <EXPAND_RANK_HARD>Hard</EXPAND_RANK_HARD>
+    <EXPAND_RANK_VERY_HARD>Very Hard</EXPAND_RANK_VERY_HARD>
+    <EXPAND_TOTAL>#TOTAL</EXPAND_TOTAL>
+    <EXPAND_VOLWAV>#VOLWAV</EXPAND_VOLWAV>
+    <EXPAND_STAGEFILE>#STAGEFILE</EXPAND_STAGEFILE>
+    <EXPAND_BMP_MISS>#BMP00</EXPAND_BMP_MISS>
+    <EXPAND_SET_FILE>...</EXPAND_SET_FILE>
+    <CONFIG_KEY_FRAME>Key Frame</CONFIG_KEY_FRAME>
+    <CONFIG_KEY_HALF>Half</CONFIG_KEY_HALF>
+    <CONFIG_KEY_SEPARATE>Separate</CONFIG_KEY_SEPARATE>
+    <CONFIG_KEY_POSITION>Key Position</CONFIG_KEY_POSITION>
+    <CONFIG_KEY_5KEYS>5Keys/10Keys</CONFIG_KEY_5KEYS>
+    <CONFIG_KEY_7KEYS>7Keys/14Keys</CONFIG_KEY_7KEYS>
+    <CONFIG_KEY_SCRATCH_1P>Scratch 1P</CONFIG_KEY_SCRATCH_1P>
+    <CONFIG_KEY_SCRATCH_2P>2P</CONFIG_KEY_SCRATCH_2P>
+    <CONFIG_KEY_SCRATCH_LEFT>L</CONFIG_KEY_SCRATCH_LEFT>
+    <CONFIG_KEY_SCRATCH_RIGHT>R</CONFIG_KEY_SCRATCH_RIGHT>
+  </item>
+  <item name="Material">
+    <TAB_WAV>#WAV</TAB_WAV>
+    <TAB_BMP>#BMP</TAB_BMP>
+    <TAB_BGA>#BGA</TAB_BGA>
+    <TAB_BEAT>Beat</TAB_BEAT>
+    <TAB_EXPAND>Expand</TAB_EXPAND>
+    <MATERIAL_STOP>Stop</MATERIAL_STOP>
+    <MATERIAL_DELETE>Del</MATERIAL_DELETE>
+    <MATERIAL_SET_FILE>...</MATERIAL_SET_FILE>
+    <MATERIAL_INPUT>Input</MATERIAL_INPUT>
+    <MATERIAL_PREVIEW>Preview</MATERIAL_PREVIEW>
+    <MATERIAL_SELECT_ALL>All</MATERIAL_SELECT_ALL>
+    <MATERIAL_EXCHANGE_UP>&lt;</MATERIAL_EXCHANGE_UP>
+    <MATERIAL_EXCHANGE_DOWN>&gt;</MATERIAL_EXCHANGE_DOWN>
+  </item>
+  <item name="StatusBar">
+    <MODE_EDIT>Edit Mode</MODE_EDIT>
+    <MODE_WRITE>Write Mode</MODE_WRITE>
+    <MODE_DELETE>Delete Mode</MODE_DELETE>
+    <MEASURE>Measure</MEASURE>
+    <CH_01>BGM</CH_01>
+    <CH_04>BGA</CH_04>
+    <CH_06>BGA Poor</CH_06>
+    <CH_07>BGA Layer</CH_07>
+    <CH_08>BGA Change</CH_08>
+    <CH_09>Stop Sequence</CH_09>
+    <CH_KEY_1P>1P Key</CH_KEY_1P>
+    <CH_KEY_2P>2P Key</CH_KEY_2P>
+    <CH_SCRATCH_1P>1P Scratch</CH_SCRATCH_1P>
+    <CH_SCRATCH_2P>2P Scratch</CH_SCRATCH_2P>
+    <CH_INVISIBLE>(Invisible)</CH_INVISIBLE>
+    <CH_LONGNOTE>(LongNote)</CH_LONGNOTE>
+  </item>
+  <item name="Message">
+    <ERROR_MESSAGE_01>Unexpected error has occured. Program will now shut down.\nPlease Refer to "error.txt" for the details.</ERROR_MESSAGE_01>
+    <ERROR_MESSAGE_02>Temporary file will be saved to...</ERROR_MESSAGE_02>
+    <ERROR_FILE_NOT_FOUND>File is not found.</ERROR_FILE_NOT_FOUND>
+    <ERROR_LOAD_CANCEL>Loading will be aborted.</ERROR_LOAD_CANCEL>
+    <ERROR_SAVE_ERROR>Error occured while saving.</ERROR_SAVE_ERROR>
+    <ERROR_SAVE_CANCEL>Saving will be aborted.</ERROR_SAVE_CANCEL>
+    <ERROR_OVERFLOW_LARGE>Error:\nValue is too large.</ERROR_OVERFLOW_LARGE>
+    <ERROR_OVERFLOW_SMALL>Error:\nValue is too small.</ERROR_OVERFLOW_SMALL>
+    <ERROR_OVERFLOW_BPM>You have used more than 1295 BPM change command.\nNumber of commands should be less than 1295.</ERROR_OVERFLOW_BPM>
+    <ERROR_OVERFLOW_STOP>You have used more than 1295 STOP command.\nNumber of commands should be less than 1295.</ERROR_OVERFLOW_STOP>
+    <ERROR_APP_NOT_FOUND> is not found.</ERROR_APP_NOT_FOUND>
+    <INFO_FILE_CHANGED>Do you want to save changes?</INFO_FILE_CHANGED>
+    <INFO_INI_CHANGED>ini format has changed.\n(All setting will be reset)</INFO_INI_CHANGED>
+    <INFO_ALIGN_LIST>Do you want the filelist to be rewrited into the old format [01 - FF]?\n(Attention: Some programs are compatible only with old format files.)</INFO_ALIGN_LIST>
+    <INFO_DELETE_FILE>They have been deleted:</INFO_DELETE_FILE>
+  </item>
+  <item name="Input">
+    <TITLE>Input Form</TITLE>
+    <INPUT_BPM>Enter the BPM you wish to change to.\n(Decimal number can be used. Enter 0 to cancel)</INPUT_BPM>
+    <INPUT_STOP>Enter the length of stoppage.\n1 corresponds to 1/192 of the measure.\n(Enter value under 0 to cancel)</INPUT_STOP>
+    <INPUT_RENAME>Enter the new filename.</INPUT_RENAME>
+    <INPUT_SIZE>Enter the amount of magnification.\n(16.00 is the maximum; enter value under 0 to cancel)</INPUT_SIZE>
+  </item>
+  <item name="Find">
+    <TITLE>Find/Delete/Replace</TITLE>
+    <FRAME_SEARCH>Range</FRAME_SEARCH>
+    <FRAME_MEASURE>Range of measure</FRAME_MEASURE>
+    <FRAME_OBJ_NUM>Range of object number</FRAME_OBJ_NUM>
+    <FRAME_GRID>Lane</FRAME_GRID>
+    <FRAME_PROCESS>Method</FRAME_PROCESS>
+    <OPT_OBJ_ALL>All object</OPT_OBJ_ALL>
+    <OPT_OBJ_SELECT>Selected object</OPT_OBJ_SELECT>
+    <OPT_PROCESS_SELECT>Select</OPT_PROCESS_SELECT>
+    <OPT_PROCESS_DELETE>Delete</OPT_PROCESS_DELETE>
+    <OPT_PROCESS_REPLACE>Replace to</OPT_PROCESS_REPLACE>
+    <CMD_INVERT>Invert</CMD_INVERT>
+    <CMD_RESET>Reset</CMD_RESET>
+    <CMD_SELECT>Select All</CMD_SELECT>
+    <CMD_CLOSE>Close</CMD_CLOSE>
+    <CMD_DECIDE>Run</CMD_DECIDE>
+    <LBL_NOTICE>This item does not influence BPM/STOP object</LBL_NOTICE>
+    <LBL_DASH>to</LBL_DASH>
+  </item>
+  <item name="Viewer">
+    <TITLE>Viewer Setting</TITLE>
+    <CMD_SET>...</CMD_SET>
+    <CMD_ADD>Add</CMD_ADD>
+    <CMD_DELETE>Delete</CMD_DELETE>
+    <CMD_OK>OK</CMD_OK>
+    <CMD_CANCEL>Cancel</CMD_CANCEL>
+    <LBL_APP_NAME>Player name</LBL_APP_NAME>
+    <LBL_APP_PATH>Path</LBL_APP_PATH>
+    <LBL_ARG_PLAY_ALL>Argument of &quot;Play All&quot;</LBL_ARG_PLAY_ALL>
+    <LBL_ARG_PLAY>Argument of &quot;Play&quot;</LBL_ARG_PLAY>
+    <LBL_ARG_STOP>Argument of &quot;Stop&quot;</LBL_ARG_STOP>
+    <LBL_ARG_INFO>Syntax reference:\n&lt;filename&gt; File name\n&lt;measure&gt; Current measure</LBL_ARG_INFO>
+  </item>
+  <item name="Convert">
+    <TITLE>Conversion Wizard</TITLE>
+    <CHK_DELETE_LIST>Clear unused definition from a list</CHK_DELETE_LIST>
+    <CHK_DELETE_FILE>Delete unused files in this BMS folder (*)</CHK_DELETE_FILE>
+    <LBL_EXTENSION>Search extensions:</LBL_EXTENSION>
+    <CHK_RECYCLE>Delete without backing-up to the trash bin</CHK_RECYCLE>
+    <CHK_ALIGN_LIST>Sort definition list</CHK_ALIGN_LIST>
+    <CHK_USE_OLD_FORMAT>Use old Format [01 - FF] if possible</CHK_USE_OLD_FORMAT>
+    <CHK_SORT_BY_NAME>Sorting by filename</CHK_SORT_BY_NAME>
+    <CHK_CONVERT_FILENAME>Change filename to list number [01 - ZZ] (*)</CHK_CONVERT_FILENAME>
+    <LBL_NOTICE>(*) Cannot undo this command</LBL_NOTICE>
+    <CMD_DECIDE>Run</CMD_DECIDE>
+    <CMD_CANCEL>Cancel</CMD_CANCEL>
+  </item>
+</lang>

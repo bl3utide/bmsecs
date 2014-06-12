@@ -1,0 +1,6 @@
+﻿// 文字列の大きさを取得する
+GetTextExtentPoint32(hdc, str, len, size)
+size = graphics.MeasureString(str, font)
+// lenは気にしなくていい
+// sizeはSizeF型
+// graphicsはhdcの取得元のグラフィクス
