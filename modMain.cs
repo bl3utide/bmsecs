@@ -497,7 +497,7 @@ namespace Bmse
 			frmMain.dlgMainSave.InitialDirectory = gAppDir;
 			frmMain.dlgMainOpen.CheckFileExists = true;
 			frmMain.dlgMainOpen.CheckPathExists = true;
-			frmMain.dlgMainSave.CheckFileExists = true;
+			//frmMain.dlgMainSave.CheckFileExists = true;
 			frmMain.dlgMainSave.CheckPathExists = true;
 			frmMain.dlgMainSave.OverwritePrompt = true;
 
@@ -691,8 +691,7 @@ namespace Bmse
 			ChangeMaxMeasure(15);
 			ChangeResolution();
 
-			// コマンドラインから読み込む機能は実装しない
-			// GetCmdLine();
+			GetCmdLine();
 
 			gBms.saveFlag = true;
 
@@ -794,6 +793,83 @@ namespace Bmse
 			}
 		}
 
+		public int SaveCheck()
+		{
+			//int lngRet;
+			//string[] array;
+
+			try
+			{
+				if (frmMain.cboPlayer.SelectedIndex + 1 != gBms.playerType
+					|| !frmMain.txtGenre.Text.Equals(gBms.genre)
+					|| !frmMain.txtTitle.Text.Equals(gBms.title)
+					|| !frmMain.txtArtist.Text.Equals(gBms.artist)
+					|| int.Parse(frmMain.cboPlayLevel.Text) != gBms.playLevel
+					|| double.Parse(frmMain.txtBPM.Text) != gBms.bpm
+					|| frmMain.cboPlayRank.SelectedIndex != gBms.playRank
+					|| double.Parse(frmMain.txtTotal.Text) != gBms.total
+					|| int.Parse(frmMain.txtVolume.Text) != gBms.volume
+					|| !frmMain.txtStageFile.Text.Equals(gBms.stageFile))
+				{
+					gBms.saveFlag = false;
+				}
+
+				if (gBms.saveFlag)
+				{
+					return 0;
+				}
+
+				frmMain.Show();
+
+				DialogResult res
+					= MessageBox.Show(gMessage[(int)Message.MSG_FILE_CHANGED],
+										gAppTitle,
+										MessageBoxButtons.YesNoCancel,
+										MessageBoxIcon.Exclamation);
+
+				if(res == DialogResult.Yes)
+				{
+					if (( gBms.dir != null && !"".Equals(gBms.dir) )
+						&& ( gBms.fileName != null && !"".Equals(gBms.fileName) ))
+					{
+						//TODO: CreateBMS(gBms.dir + gBms.fileName);
+					}
+					else
+					{
+						frmMain.dlgMainSave.Filter
+							= "BMS files (*.bms,*.bme,*.bml,*.pms)|*.bms;*.bme;*.bml;*.pms|All files (*.*)|*.*";
+						frmMain.dlgMainSave.FileName = gBms.fileName;
+
+						frmMain.dlgMainSave.ShowDialog();
+
+						gBms.dir = System.IO.Path.GetDirectoryName(frmMain.dlgMainSave.FileName) + "\\";
+						gBms.fileName = Path.GetFileName(frmMain.dlgMainSave.FileName);
+
+						// TODO: CreateBMS(gBms.dir + gBms.fileName);
+						
+						// TODO: RecentFileRotation(gBms.dir + gBms.fileName);
+
+						frmMain.dlgMainOpen.InitialDirectory = gBms.dir;
+						frmMain.dlgMainSave.InitialDirectory = gBms.dir;
+					}
+
+					return 0;
+				}
+				else if(res == DialogResult.No)
+				{
+					return 0;
+				}
+				else 
+				{
+					return 1;
+				}
+			}
+			catch (Exception e)
+			{
+				return 1;
+			}
+		}
+
 		private void GetCmdLine()
 		{
 			string retStr;
@@ -802,6 +878,34 @@ namespace Bmse
 			bool readLock = false;
 			bool readFlag = false;
 
+			cmdArray = System.Environment.GetCommandLineArgs();
+
+			if (cmdArray.Length == 1)
+			{
+				return;
+			}
+
+			for (int i = 1; i < cmdArray.Length; i++)
+			{
+				if(".BMS".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper())
+					|| ".BME".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper())
+					|| ".BML".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper())
+					|| ".PMS".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper()))
+				{
+					gBms.fileName = Path.GetFileName(cmdArray[i]);
+					gBms.dir = System.IO.Path.GetDirectoryName(cmdArray[i]) + "\\";
+					frmMain.dlgMainOpen.InitialDirectory = gBms.dir;
+					frmMain.dlgMainSave.InitialDirectory = gBms.dir;
+
+					Console.WriteLine(gBms.fileName);
+					Console.WriteLine(gBms.dir);
+
+					// TODO: LoadBms();
+					// TODO: RecentFilesRotation(gBms.dir + gBms.fileName);
+				}
+			}
+
+			/* 消す予定
 			retStr = EnvUtil.GetCommand().Trim();
 
 			if ("".Equals(retStr))
@@ -836,7 +940,7 @@ namespace Bmse
 
 			for (int i = 0; i < cmdArray.Length; i++)
 			{
-				if ("".Equals(cmdArray[i]))
+				if (!"".Equals(cmdArray[i]))
 				{
 					if (cmdArray[i].IndexOf(":\\") != -1
 					&& ".BMS".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper())
@@ -863,6 +967,7 @@ namespace Bmse
 					}
 				}
 			}
+			*/
 		}
 
 		public void LoadThemeFile(string fileName)

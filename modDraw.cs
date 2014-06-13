@@ -1142,7 +1142,7 @@ namespace Bmse
 
 				SetObjData(ref retObj, x, y);
 
-				if (frmMain.tlbMenuWrite.Pressed)
+				if (frmMain.tlbMenuWrite.Checked)
 				{
 					if (retObj.ch >= 11 && retObj.ch <= 29)
 					{
@@ -1164,7 +1164,7 @@ namespace Bmse
 					}
 				}
 
-				if (!frmMain.tlbMenuWrite.Pressed)
+				if (!frmMain.tlbMenuWrite.Checked)
 				{
 					lngRet = gMeasure[retObj.measure].y + retObj.position;
 
@@ -1176,11 +1176,11 @@ namespace Bmse
 							if (gMeasure[gObj[i].measure].y + gObj[i].position + OBJ_HEIGHT / gDisp.height >= lngRet
 								&& gMeasure[gObj[i].measure].y + gObj[i].position <= lngRet)
 							{
-								if (frmMain.tlbMenuEdit.Pressed)
+								if (frmMain.tlbMenuEdit.Checked)
 								{
 									retObj.select = 2;
 								}
-								else if (frmMain.tlbMenuDelete.Pressed)
+								else if (frmMain.tlbMenuDelete.Checked)
 								{
 									retObj.select = 3;
 								}
@@ -1203,7 +1203,7 @@ namespace Bmse
 
 				DrawStatusBar(ref retObj);
 
-				if (frmMain.tlbMenuWrite.Pressed)
+				if (frmMain.tlbMenuWrite.Checked)
 				{
 					if (retObj.ch != gObj[gObj.Length - 1].ch
 						|| retObj.att != gObj[gObj.Length - 1].att
@@ -1243,6 +1243,8 @@ namespace Bmse
 						return;
 					}
 				}
+
+				frmMain.picMain.Refresh();
 
 				if (gObj[gObj.Length - 1].ch != 0)
 				{

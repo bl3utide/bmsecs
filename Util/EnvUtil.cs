@@ -7,6 +7,7 @@ namespace Bmse.Util
 {
 	class EnvUtil
 	{
+		/* 消す予定
 		public static string GetCommand()
 		{
 			int cmd_num = System.Environment.GetCommandLineArgs().Length;
@@ -17,7 +18,7 @@ namespace Bmse.Util
 			string[] cmds = new string[cmd_num];
 			Array.Copy(System.Environment.GetCommandLineArgs(), 1, cmds, 0, cmd_num - 1);
 			return string.Join(" ", cmds);
-		}
+		}*/
 
 		public static bool Shift
 		{

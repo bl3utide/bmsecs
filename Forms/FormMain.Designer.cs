@@ -297,6 +297,7 @@
 			this.mnuFileNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
 			this.mnuFileNew.Size = new System.Drawing.Size(243, 22);
 			this.mnuFileNew.Text = "新規作成(&N)";
+			this.mnuFileNew.Click += mnuFileNew_Click;
 			// 
 			// mnuFileOpen
 			// 
@@ -844,6 +845,7 @@
 			// tlbMenuEdit
 			// 
 			this.tlbMenuEdit.AutoSize = false;
+			this.tlbMenuEdit.Checked = true;
 			this.tlbMenuEdit.CheckOnClick = true;
 			this.tlbMenuEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
 			this.tlbMenuEdit.Image = ((System.Drawing.Image)(resources.GetObject("tlbMenuEdit.Image")));
@@ -2262,9 +2264,9 @@
 		private System.Windows.Forms.ComboBox cboDirectInput;
 		private System.Windows.Forms.Label lblDirectInput;
 		public System.Windows.Forms.ComboBox cboPlayer;
-		private System.Windows.Forms.TextBox txtGenre;
-		private System.Windows.Forms.TextBox txtArtist;
-		private System.Windows.Forms.TextBox txtTitle;
+		public System.Windows.Forms.TextBox txtGenre;
+		public System.Windows.Forms.TextBox txtArtist;
+		public System.Windows.Forms.TextBox txtTitle;
 		public System.Windows.Forms.TextBox txtBPM;
 		public System.Windows.Forms.ComboBox cboPlayLevel;
 		public System.Windows.Forms.Label lblPlayMode;
@@ -2301,12 +2303,12 @@
 		private System.Windows.Forms.TextBox txtExInfo;
 		public System.Windows.Forms.ComboBox cboPlayRank;
 		public System.Windows.Forms.Label lblMissBMP;
-		private System.Windows.Forms.TextBox txtTotal;
-		private System.Windows.Forms.TextBox txtVolume;
+		public System.Windows.Forms.TextBox txtTotal;
+		public System.Windows.Forms.TextBox txtVolume;
 		public System.Windows.Forms.Label lblStageFile;
 		public System.Windows.Forms.Button cmdLoadStageFile;
 		private System.Windows.Forms.TextBox txtMissBMP;
-		private System.Windows.Forms.TextBox txtStageFile;
+		public System.Windows.Forms.TextBox txtStageFile;
 		public System.Windows.Forms.Label lblPlayRank;
 		public System.Windows.Forms.Label lblVolume;
 		public System.Windows.Forms.Label lblTotal;

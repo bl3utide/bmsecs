@@ -435,6 +435,14 @@ namespace Bmse.Forms
 			picMain.Refresh();
 		}
 
+		private void mnuFileNew_Click(Object sender, EventArgs e)
+		{
+			if (App.module.SaveCheck() != 0)
+			{
+				return;
+			}
+		}
+
 		private void mnuViewToolBar_Click(Object sender, EventArgs e)
 		{
 			Form_Resize(null, null);
@@ -464,7 +472,6 @@ namespace Bmse.Forms
 
 			try
 			{
-
 				if (e.Button == System.Windows.Forms.MouseButtons.Left)
 				{
 					// TODO: 6830行目
@@ -479,12 +486,12 @@ namespace Bmse.Forms
 					// 選択範囲なし
 
 					if (e.Button == System.Windows.Forms.MouseButtons.Left
-						&& tlbMenuEdit.Pressed
+						&& tlbMenuEdit.Checked
 						&& Module.gObj[Module.gObj.Length - 1].ch != 0)
 					{
 						// オブジェ移動中
 
-						// TODO: MoveObj(e.X, e.Y);
+						MoveObj(e.X, e.Y);
 
 						if (EnvUtil.Shift)
 						{
