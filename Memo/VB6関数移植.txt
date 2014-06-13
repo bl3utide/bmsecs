@@ -1,0 +1,4 @@
+﻿// Val関数
+// 文字列で16進数を表現してるのを10進数の整数型に代入する
+int a = Val("&H" + str);			// VB6
+int a = Convert.ToInt32(str, 16);	// C#

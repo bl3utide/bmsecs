@@ -286,6 +286,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Memo\VB6関数移植.txt" />
     <Content Include="Memo\Win32API移植.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,11 +1,273 @@
 ﻿using System;
 using System.Windows.Forms;
 using Bmse.Common;
+using Bmse.Util;
 
 namespace Bmse.Forms
 {
 	public partial class FormMain : Form
 	{
+		private int mScrollDir;
+		private Obj[] mObj;
+		private bool mMouseDown;
+		private bool mPreview;
+
+		public int lngFromString(string str)
+		{
+			if (mnuOptionsNumFF.Checked)
+			{
+				return Convert.ToInt32(str, 16);
+			}
+			else
+			{
+				return App.module.lngNumConv(str);
+			}
+		}
+
+		public int lngFromLong(int value)
+		{
+			if (mnuOptionsNumFF.Checked)
+			{
+				return App.module.lngNumConv(strFromLong(value));
+			}
+			else
+			{
+				return value;
+			}
+		}
+
+		public string strFromLong(int value)
+		{
+			if (mnuOptionsNumFF.Checked)
+			{
+				return StringUtil.Right("0" + Convert.ToString(value), 2);
+			}
+			else
+			{
+				return App.module.strNumConv(value);
+			}
+		}
+
+		private void MoveObj(int x, int y)
+		{
+			int _j;
+			int lngRet;
+			bool blRet;
+			Obj oldObj = new Obj();
+			Obj newObj = new Obj();
+
+			try
+			{
+
+				App.module.SetObjData(ref newObj, x, y);
+
+				newObj.ch = Module.gVGridNum[newObj.ch];
+
+				if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
+				{
+					lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
+
+					newObj.position = (newObj.position / lngRet) * lngRet;
+
+					if (mnuOptionsMoveOnGrid.Checked)
+					{
+						lngRet = Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position - (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position / lngRet) * lngRet;
+
+						newObj.position = newObj.position - lngRet;
+					}
+				}
+
+				newObj.position = newObj.position + Module.gMeasure[newObj.measure].y;
+
+				App.module.CopyObj(ref oldObj, ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+
+				oldObj.ch = Module.gVGridNum[oldObj.ch];
+
+				if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
+				{
+					lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
+
+					oldObj.position = (oldObj.position / lngRet) * lngRet;
+				}
+
+				oldObj.position = oldObj.position + Module.gMeasure[oldObj.measure].y;
+
+				// Y軸固定移動
+				if (EnvUtil.Shift)
+				{
+					newObj.position = oldObj.position;
+				}
+
+				if (newObj.ch != oldObj.ch || newObj.position != oldObj.position)
+				{
+					if (newObj.ch > oldObj.ch)
+					{
+						for (int j = oldObj.ch; j < newObj.ch; j++)
+						{
+							if (Module.gVGrid[j].draw && Module.gVGrid[j].ch != 0)
+							{
+								newObj.att++;
+							}
+						}
+					}
+					else if (newObj.ch < oldObj.ch)
+					{
+						for (int j = oldObj.ch; j >= newObj.ch + 1; j--)
+						{
+							if (Module.gVGrid[j].visible && Module.gVGrid[j].ch != 0)
+							{
+								newObj.att++;
+							}
+						}
+					}
+
+					blRet = newObj.ch != oldObj.ch
+						&& newObj.ch != 0
+						&& oldObj.ch != 0
+						&& newObj.ch != Module.gVGrid.Length - 1
+						&& oldObj.ch != Module.gVGrid.Length - 1;
+
+					for (int i = 0; i < Module.gObj.Length - 1; i++)
+					{
+						if (Module.gObj[i].select == 1)
+						{
+							Module.gObj[i].position += newObj.position - oldObj.position;
+
+							while (Module.gObj[i].position >= Module.gMeasure[Module.gObj[i].measure].len)
+							{
+								if (Module.gObj[i].measure < 999)
+								{
+									Module.gObj[i].position -= Module.gMeasure[Module.gObj[i].measure].len;
+									Module.gObj[i].measure++;
+								}
+								else
+								{
+									Module.gObj[i].measure = 999;
+									break;
+								}
+							}
+
+							while (Module.gObj[i].position < 0)
+							{
+								if (Module.gObj[i].measure > 0)
+								{
+									Module.gObj[i].position = Module.gMeasure[Module.gObj[i].measure - 1].len + Module.gObj[i].position;
+									Module.gObj[i].measure--;
+								}
+								else
+								{
+									Module.gObj[i].measure = 0;
+									break;
+								}
+							}
+
+							if (blRet)
+							{
+								if (Module.gObj[i].ch < 0)
+								{
+									_j = Module.gObj[i].ch;
+								}
+								else if (Module.gObj[i].ch > 1000)
+								{
+									_j = Module.gObj[i].ch - 1000;
+								}
+								else
+								{
+									_j = Module.gVGridNum[Module.gObj[i].ch];
+								}
+
+								if (newObj.ch > oldObj.ch)
+								{
+									for (int k = 1; k <= newObj.att; k++)
+									{
+										while (true)
+										{
+											_j++;
+
+											if (_j < 0 || _j > Module.gVGrid.Length - 1)
+											{
+												break;
+											}
+
+											if (Module.gVGrid[_j].visible && Module.gVGrid[_j].ch != 0)
+											{
+												break;
+											}
+										}
+									}
+								}
+								else
+								{
+									for (int k = 1; k <= newObj.att; k++)
+									{
+										while (true)
+										{
+											_j--;
+
+											if (_j < 0 || _j > Module.gVGrid.Length - 1)
+											{
+												break;
+											}
+
+											if (Module.gVGrid[_j].visible && Module.gVGrid[_j].ch != 0)
+											{
+												break;
+											}
+										}
+									}
+								}
+
+								if (_j < 0)
+								{
+									Module.gObj[i].ch = _j;
+								}
+								else if (_j > Module.gVGrid.Length - 1)
+								{
+									Module.gObj[i].ch = 1000 + _j;
+								}
+								else
+								{
+									Module.gObj[i].ch = Module.gVGrid[_j].ch;
+								}
+
+								switch (Module.gObj[i].ch)
+								{
+									case 8:
+										break;
+
+									case 9:
+										if (Module.gObj[i].value < 0)
+										{
+											Module.gObj[i].value = 1;
+										}
+
+										break;
+
+									default:
+										if (Module.gObj[i].value < 0)
+										{
+											Module.gObj[i].value = 1;
+										}
+										else if (Module.gObj[i].value > 1295)
+										{
+											Module.gObj[i].value = 1295;
+										}
+
+										break;
+								}
+							}
+						}
+					}
+
+					App.module.DrawStatusBar(ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+				}
+			}
+			catch (Exception e)
+			{
+				App.module.CleanUp(e.Message, "MoveObj");
+			}
+		}
+
 		public FormMain()
 		{
 			InitializeComponent();
@@ -195,13 +457,189 @@ namespace Bmse.Forms
 
 		private void picMain_MouseMove(Object sender, MouseEventArgs e)
 		{
-			/* テスト描画
-			using (System.Drawing.Graphics g = picMain.CreateGraphics())
+			int lngRet = 0;
+			RECT retRect;
+			bool[] select;
+			bool YAxisFixed = false; ;
+
+			try
 			{
-				picMain.Refresh();
-				g.DrawRectangle(System.Drawing.Pens.Red, e.X - 20, e.Y - 10, 20, 10);
-				g.DrawRectangle(System.Drawing.Pens.Green, e.X, e.Y - 10, 20, 10);
-			}*/
+
+				if (e.Button == System.Windows.Forms.MouseButtons.Left)
+				{
+					// TODO: 6830行目
+					if (!mMouseDown)
+					{
+						return;
+					}
+				}
+
+				if (!Module.gSelectArea.flag)
+				{
+					// 選択範囲なし
+
+					if (e.Button == System.Windows.Forms.MouseButtons.Left
+						&& tlbMenuEdit.Pressed
+						&& Module.gObj[Module.gObj.Length - 1].ch != 0)
+					{
+						// オブジェ移動中
+
+						// TODO: MoveObj(e.X, e.Y);
+
+						if (EnvUtil.Shift)
+						{
+							YAxisFixed = true;
+						}
+					}
+					else
+					{
+						// それ以外
+
+						App.module.DrawObjMax(e.X, e.Y);
+					}
+				}
+				else
+				{
+					// 選択範囲あり
+
+					Module.gMouse.x = e.X;
+					Module.gMouse.y = e.Y;
+
+					Module.gSelectArea.x2 = e.X / (int)Module.gDisp.width + Module.gDisp.x;
+					Module.gSelectArea.y2 = (picMain.Height - e.Y) / (int)Module.gDisp.height + Module.gDisp.y;
+
+					if (Module.gSelectArea.x1 > Module.gSelectArea.x2)
+					{
+						retRect.left = Module.gSelectArea.x2;
+						retRect.right = Module.gSelectArea.x1;
+					}
+					else
+					{
+						retRect.left = Module.gSelectArea.x1;
+						retRect.right = Module.gSelectArea.x2;
+					}
+
+					if (Module.gSelectArea.y1 > Module.gSelectArea.y2)
+					{
+						retRect.top = Module.gSelectArea.y2;
+						retRect.bottom = Module.gSelectArea.y1;
+					}
+					else
+					{
+						retRect.top = Module.gSelectArea.y1;
+						retRect.bottom = Module.gSelectArea.y2;
+					}
+
+					select = new bool[Module.gVGrid.Length];
+
+					for (int i = 0; i < Module.gVGrid.Length; i++)
+					{
+						select[i] = false;
+						if (Module.gVGrid[i].visible)
+						{
+							if (Module.gVGrid[i].ch != 0)
+							{
+								if (Module.gVGrid[i].left + Module.gVGrid[i].width > retRect.left
+									&& Module.gVGrid[i].left < retRect.right)
+								{
+									select[i] = true;
+								}
+							}
+						}
+					}
+
+					for (int i = 0; i < Module.gObj.Length - 1; i++)
+					{
+						if (select[Module.gVGridNum[Module.gObj[i].ch]])
+						{
+							lngRet = Module.gMeasure[Module.gObj[i].measure].y + Module.gObj[i].position;
+
+							if (lngRet + Module.OBJ_HEIGHT / Module.gDisp.height >= retRect.top && lngRet <= retRect.bottom)
+							{
+								if (Module.gObj[i].select < 5)
+								{
+									Module.gObj[i].select = 4;
+								}
+								else
+								{
+									Module.gObj[i].select = 6;
+								}
+							}
+							else
+							{
+								if (Module.gObj[i].select < 5)
+								{
+									Module.gObj[i].select = 0;
+								}
+								else
+								{
+									Module.gObj[i].select = 5;
+								}
+							}
+						}
+						else
+						{
+							if (Module.gObj[i].select < 5)
+							{
+								Module.gObj[i].select = 0;
+							}
+							else
+							{
+								Module.gObj[i].select = 5;
+							}
+						}
+					}
+
+					App.module.DrawSelectArea();
+
+					if (Module.gDisp.effect != 0)
+					{
+						// TODO: DrawEffect();
+					}
+
+					Module.gMouse.x = e.X;
+					if (YAxisFixed)
+					{
+						Module.gMouse.y = e.Y;
+					}
+
+					mScrollDir = 0;
+
+					if (e.X < 0)
+					{
+						mScrollDir = 20;
+					}
+					else if (e.X > picMain.Width)
+					{
+						mScrollDir = 10;
+					}
+
+					if (!YAxisFixed)
+					{
+						if (e.Y < 0)
+						{
+							mScrollDir += 1;
+						}
+						else if (e.Y > picMain.Height)
+						{
+							mScrollDir += 2;
+						}
+					}
+
+					if (mScrollDir != 0)
+					{
+						tmrMain.Enabled = true;
+					}
+					else
+					{
+						tmrMain.Enabled = false;
+					}
+				}
+			}
+			catch (Exception exception)
+			{
+				App.module.CleanUp(exception.Message, "picMain_MouseMove");
+			}
 		}
 	}
 }

@@ -528,7 +528,7 @@ namespace Bmse
 			{
 				for (int i = 1; i <= 1295; i++)
 				{
-					retStr = NumConv(i);
+					retStr = strNumConv(i);
 					frmMain.lstWAV.Items.Insert(i - 1, "#WAV" + retStr + ":");
 					frmMain.lstBMP.Items.Insert(i - 1, "#BMP" + retStr + ":");
 					frmMain.lstBGA.Items.Insert(i - 1, "#BGA" + retStr + ":");
@@ -1139,7 +1139,7 @@ namespace Bmse
 			gStatusBar[3] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_04", "BGA");
 			gStatusBar[5] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_06", "BGA Poor");
 			gStatusBar[6] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_07", "BGA Layer");
-			gStatusBar[7] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_08", "BGA Change");
+			gStatusBar[7] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_08", "BPM Change");
 			gStatusBar[8] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_09", "Stop Sequence");
 			gStatusBar[10] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_1P", "1P Key");
 			gStatusBar[11] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_2P", "2P Key");

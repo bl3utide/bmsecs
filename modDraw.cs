@@ -915,7 +915,7 @@ namespace Bmse
 						}
 						else
 						{
-							text = NumConv(retObj.value);
+							text = strNumConv(retObj.value);
 						}
 						break;
 
@@ -929,7 +929,7 @@ namespace Bmse
 						}
 						else
 						{
-							text = NumConv(retObj.value);
+							text = strNumConv(retObj.value);
 						}
 
 						if (retObj.att == 2 || (retObj.ch >= 51 && retObj.ch < 69))
@@ -1357,7 +1357,7 @@ namespace Bmse
 			int lngRet;
 			string[] array;
 
-			strRet = "Position:  " + retObj.measure + gStatusBar[23] + "  ";
+			strRet = "Position:  " + retObj.measure + gStatusBar[22] + "  ";
 
 			int _cboData = DataSource.DsListDispGridMain[frmMain.cboDispGridMain.SelectedIndex].Value;
 			lngRet = _cboData;
@@ -1389,75 +1389,75 @@ namespace Bmse
 
 			if (retObj.ch > 100)
 			{
-				strRet = strRet + gStatusBar[1] + " " + (retObj.ch - 100).ToString("00");
+				strRet = strRet + gStatusBar[0] + " " + (retObj.ch - 100).ToString("00");
 			}
 			else if (retObj.ch < 10)
 			{
-				strRet = strRet + gStatusBar[retObj.ch];
+				strRet = strRet + gStatusBar[retObj.ch - 1];
 			}
 			else if (11 <= retObj.ch && retObj.ch <= 15)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 10).ToString();
+				strRet = strRet + gStatusBar[10] + (retObj.ch - 10).ToString();
 			}
 			else if (retObj.ch == 16)
 			{
-				strRet = strRet + gStatusBar[13];
+				strRet = strRet + gStatusBar[12];
 			}
 			else if (retObj.ch == 18 || retObj.ch == 19)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 12).ToString();
+				strRet = strRet + gStatusBar[10] + (retObj.ch - 12).ToString();
 			}
 			else if (21 <= retObj.ch && retObj.ch <= 25)
 			{
-				strRet = strRet + gStatusBar[12].Length + (retObj.ch - 20).ToString();
+				strRet = strRet + gStatusBar[11].Length + (retObj.ch - 20).ToString();
 			}
 			else if (retObj.ch == 26)
 			{
-				strRet = strRet + gStatusBar[14];
+				strRet = strRet + gStatusBar[13];
 			}
 			else if (retObj.ch == 28 || retObj.ch == 29)
 			{
-				strRet = strRet + gStatusBar[12] + (retObj.ch - 22).ToString();
+				strRet = strRet + gStatusBar[11] + (retObj.ch - 22).ToString();
 			}
 			else if (51 <= retObj.ch && retObj.ch <= 55)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 50).ToString();
+				strRet = strRet + gStatusBar[10] + (retObj.ch - 50).ToString();
 			}
 			else if (retObj.ch == 56)
 			{
-				strRet = strRet + gStatusBar[13];
+				strRet = strRet + gStatusBar[12];
 			}
 			else if (retObj.ch == 58 || retObj.ch == 59)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 52).ToString();
+				strRet = strRet + gStatusBar[10] + (retObj.ch - 52).ToString();
 			}
 			else if (61 <= retObj.ch && retObj.ch <= 65)
 			{
-				strRet = strRet + gStatusBar[12] + (retObj.ch - 60).ToString();
+				strRet = strRet + gStatusBar[11] + (retObj.ch - 60).ToString();
 			}
 			else if(retObj.ch == 66)
 			{
-				strRet = strRet + gStatusBar[14];
+				strRet = strRet + gStatusBar[13];
 			}
 			else if(retObj.ch == 68 || retObj.ch == 69)
 			{
-				strRet = strRet + gStatusBar[12] + (retObj.ch - 62).ToString();
+				strRet = strRet + gStatusBar[11] + (retObj.ch - 62).ToString();
 			}
 
 			if (retObj.ch >= 11 && retObj.ch <= 29)
 			{
 				if (retObj.att == 1)
 				{
-					strRet = strRet + " " + gStatusBar[15];
+					strRet = strRet + " " + gStatusBar[14];
 				}
 				else if (retObj.att == 2)
 				{
-					strRet = strRet + " " + gStatusBar[16];
+					strRet = strRet + " " + gStatusBar[15];
 				}
 			}
 			else if (retObj.ch >= 51 && retObj.ch <= 69)
 			{
-				strRet = strRet + " " + gStatusBar[16];
+				strRet = strRet + " " + gStatusBar[15];
 			}
 
 			frmMain.staMainPosition.Text = strRet;

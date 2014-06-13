@@ -1,12 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Bmse.Util;
 
 namespace Bmse
 {
 	partial class Module
 	{
-		public string NumConv(int lngNum, int Length)
+		public int lngNumConv(string strNum)
+		{
+			int lngRet = 0;
+
+			for (int i = 0; i < strNum.Length; i++)
+			{
+				lngRet += lngSubNumConv(StringUtil.Mid(strNum, i + 1, 1)) * (int)Math.Pow(36, strNum.Length);
+			}
+
+			return lngRet;
+		}
+
+		public int lngSubNumConv(string b)
+		{
+			int r;
+
+			r = Math.Abs((int)(b.ToUpper()[0]));
+
+			if (r >= 65 && r <= 90)	// A-Z
+			{
+				return r - 55;
+			}
+			else
+			{
+				return (r - 48) % 36;
+			}
+		}
+
+		public string strNumConv(int lngNum, int Length)
 		{
 			string _ret;
 
@@ -14,7 +43,7 @@ namespace Bmse
 
 			while (lngNum != 0)
 			{
-				strRet = SubNumConv(lngNum % 36) + strRet;
+				strRet = strSubNumConv(lngNum % 36) + strRet;
 				lngNum = lngNum / 36;
 			}
 
@@ -28,12 +57,12 @@ namespace Bmse
 			return _ret;
 		}
 
-		public string NumConv(int lngNum)
+		public string strNumConv(int lngNum)
 		{
-			return NumConv(lngNum, 2);
+			return strNumConv(lngNum, 2);
 		}
 
-		public string SubNumConv(int b)
+		public string strSubNumConv(int b)
 		{
 			if (0 <= b && b <= 9)
 			{
