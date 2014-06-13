@@ -940,7 +940,7 @@ namespace Bmse
 
 						if (retObj.att == 2 && retObj.ch >= 11 && retObj.ch <= 29)
 						{
-							// TODO: CopyObj(mRetObj[mRetObj.Length - 1], retObj);
+							CopyObj(ref mRetObj[mRetObj.Length - 1], ref retObj);
 							mRetObj[mRetObj.Length - 1].ch = retObj.ch + 40;
 
 							Array.Resize(ref mRetObj, mRetObj.Length + 1);
