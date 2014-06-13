@@ -1166,11 +1166,104 @@ namespace Bmse
 
 				if (!frmMain.tlbMenuWrite.Pressed)
 				{
-					// TODO: 1490行目から
+					lngRet = gMeasure[retObj.measure].y + retObj.position;
+
+					for (int i = gObj.Length - 1; i >= 0; i--)
+					{
+						if (gObj[i].ch == retObj.ch || (retObj.att == 2
+							&& gObj[i].ch + 40 == retObj.ch))
+						{
+							if (gMeasure[gObj[i].measure].y + gObj[i].position + OBJ_HEIGHT / gDisp.height >= lngRet
+								&& gMeasure[gObj[i].measure].y + gObj[i].position <= lngRet)
+							{
+								if (frmMain.tlbMenuEdit.Pressed)
+								{
+									retObj.select = 2;
+								}
+								else if (frmMain.tlbMenuDelete.Pressed)
+								{
+									retObj.select = 3;
+								}
+
+								retObj.att = gObj[i].att;
+
+								if (retObj.att == 2)
+								{
+									retObj.ch += 40;
+								}
+
+								retObj.value = gObj[i].value;
+								retObj.position = gObj[i].position;
+								retObj.measure = gObj[i].measure;
+								retObj.height = i;
+							}
+						}
+					}
+				}
+
+				DrawStatusBar(ref retObj);
+
+				if (frmMain.tlbMenuWrite.Pressed)
+				{
+					if (retObj.ch != gObj[gObj.Length - 1].ch
+						|| retObj.att != gObj[gObj.Length - 1].att
+						|| retObj.measure != gObj[gObj.Length - 1].measure
+						|| retObj.position != gObj[gObj.Length - 1].position
+						|| retObj.value != gObj[gObj.Length - 1].value)
+					{
+						CopyObj(ref gObj[gObj.Length - 1], ref retObj);
+						gObjID[gObj[gObj.Length - 1].id] = gObj.Length - 1;
+					}
+					else
+					{
+						gObj[gObj.Length - 1].height = retObj.height;
+						return;
+					}
+				}
+				else
+				{
+					if (retObj.select != 2 && retObj.select != 3)
+					{
+						retObj.ch = 0;
+						gObj[gObj.Length - 1].ch = 0;
+					}
+
+					if (retObj.height != gObj[gObj.Length - 1].height)
+					{
+						if (gObj[retObj.height].ch != 0)
+						{
+							retObj.position = gObj[retObj.height].position;
+						}
+
+						CopyObj(ref gObj[gObj.Length - 1], ref retObj);
+						gObjID[gObj[gObj.Length - 1].id] = gObj.Length - 1;
+					}
+					else
+					{
+						return;
+					}
+				}
+
+				if (gObj[gObj.Length - 1].ch != 0)
+				{
+					InitPen();
+
+					using(Graphics gPicmain = frmMain.picMain.CreateGraphics())
+					{
+						DrawObj(ref gObj[gObj.Length - 1], gPicmain);
+					}
+
+					DeletePen();
+				}
+
+				if (gDisp.effect != 0)
+				{
+					//TODO: DrawEffect();
 				}
 			}
 			catch (Exception e)
 			{
+				CleanUp(e.Message, "DrawObjMax");
 			}
 		}
 
