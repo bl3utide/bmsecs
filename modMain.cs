@@ -183,7 +183,7 @@ namespace Bmse
 
 		public const double PI = 3.14159265358979;
 
-		private static string gAppTitle;
+		public static string gAppTitle;
 		public static Mouse gMouse;
 		public static Display gDisp;
 		public static Bms gBms;

@@ -2300,14 +2300,14 @@
 		private System.Windows.Forms.Label lblFraction;
 		public System.Windows.Forms.ComboBox cboNumerator;
 		public System.Windows.Forms.ComboBox cboDenominator;
-		private System.Windows.Forms.TextBox txtExInfo;
+		public System.Windows.Forms.TextBox txtExInfo;
 		public System.Windows.Forms.ComboBox cboPlayRank;
 		public System.Windows.Forms.Label lblMissBMP;
 		public System.Windows.Forms.TextBox txtTotal;
 		public System.Windows.Forms.TextBox txtVolume;
 		public System.Windows.Forms.Label lblStageFile;
 		public System.Windows.Forms.Button cmdLoadStageFile;
-		private System.Windows.Forms.TextBox txtMissBMP;
+		public System.Windows.Forms.TextBox txtMissBMP;
 		public System.Windows.Forms.TextBox txtStageFile;
 		public System.Windows.Forms.Label lblPlayRank;
 		public System.Windows.Forms.Label lblVolume;

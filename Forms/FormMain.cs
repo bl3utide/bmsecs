@@ -441,6 +441,16 @@ namespace Bmse.Forms
 			{
 				return;
 			}
+
+			this.Text = Module.gAppTitle + " - Now Initializing";
+
+			App.module.DeleteFile(Module.gBms.dir + "___bmse_temp.bms");
+
+			Module.gBms.dir = "";
+			Module.gBms.fileName = "";
+
+			//TODO: App.module.LoadBMSStart();
+			//TODO: App.module.LoadBMSEnd();
 		}
 
 		private void mnuViewToolBar_Click(Object sender, EventArgs e)
@@ -474,7 +484,6 @@ namespace Bmse.Forms
 			{
 				if (e.Button == System.Windows.Forms.MouseButtons.Left)
 				{
-					// TODO: 6830行目
 					if (!mMouseDown)
 					{
 						return;

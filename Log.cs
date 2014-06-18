@@ -12,6 +12,11 @@ namespace Bmse
 
 		public Log()
 		{
+			this.Clear();
+		}
+
+		public void Clear()
+		{
 			array = new string[1];
 			pos = 0;
 			max = 0;
@@ -33,7 +38,7 @@ namespace Bmse
 				Array.Resize<string>(ref array, array.Length * 2);
 			}
 
-			// TODO: frmMain.SaveChanges
+			//TODO: Module.frmMain.SaveChanges();
 		}
 
 		/// <summary>
