@@ -646,7 +646,7 @@ namespace Bmse
 						{
 							if (gVGrid[i].ch != 0)
 							{
-								g.FillRectangle(brush,
+								g.FillRectangle(brush,	// 座標修正済み
 									(gVGrid[i].left - gDisp.x) * (int)gDisp.width,
 									0,
 									((gVGrid[i].left + gVGrid[i].width + 1 - gDisp.x) * (int)gDisp.width) - (gVGrid[i].left - gDisp.x) * (int)gDisp.width,
@@ -1051,14 +1051,14 @@ namespace Bmse
 
 						brushNum = hBrush.Length - 1;
 
-						g.FillRectangle(hBrush[brushNum], x - 1, y - OBJ_HEIGHT - 1, x + width + 1, y + 2);
-						g.DrawRectangle(hPen[lightNum], x - 1, y - OBJ_HEIGHT - 1, x + width + 1, y + 2);
+						g.FillRectangle(hBrush[brushNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);	// 座標修正済み
+						g.DrawRectangle(hPen[lightNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);		// 座標修正済み
 
 						return;
 				}
 
-				g.FillRectangle(hBrush[brushNum], x, y - OBJ_HEIGHT, x + width, y + 1);
-				g.DrawRectangle(hPen[lightNum], x, y - OBJ_HEIGHT, x + width, y + 1);
+				g.FillRectangle(hBrush[brushNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);	// 座標修正済み
+				g.DrawRectangle(hPen[lightNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);		// 座標修正済み
 
 				g.DrawLine(hPen[shadowNum], x, y, x + width - 1, y);
 				g.DrawLine(hPen[shadowNum], x + width - 1, y, x + width - 1, y - OBJ_HEIGHT);
@@ -1118,7 +1118,7 @@ namespace Bmse
 				{
 					using(Pen pen = new Pen(gPenColor[(int)PEN_NUM.EDIT_FRAME]))
 					{
-						gPicMain.DrawRectangle(pen, x - 1, y - OBJ_HEIGHT - 1, x + width + 1, y + 2);
+						gPicMain.DrawRectangle(pen, x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3 );		// 座標修正済み
 					}
 				}
 			}
@@ -1483,7 +1483,7 @@ namespace Bmse
 			{
 				using(Pen pen = new Pen(gPenColor[(int)PEN_NUM.EDIT_FRAME]))
 				{
-					gPicMain.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);
+					gPicMain.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);		// 座標修正済み
 				}
 			}
 
