@@ -421,7 +421,7 @@ namespace Bmse
 
 		private void LoadBMSObject(string strRet)
 		{
-			int intRet;
+			int intRet = 0;
 			int intMeasure;
 			int intCh;
 			string strParam;
@@ -429,7 +429,173 @@ namespace Bmse
 
 			try
 			{
-				// TODO: 481行目から
+				intMeasure = int.Parse(StringUtil.Mid(strRet, 2, 3));
+				intCh = int.Parse(StringUtil.Mid(strRet, 5, 2));
+				strParam = GetParam(strRet).Trim().ToUpper();
+
+				lngSepaNum = strParam.Length / 2;
+
+				if (intCh == 2)
+				{
+					if (int.Parse(strParam) == 0 || int.Parse(strParam) == 1)
+					{
+						return;
+					}
+
+					intRet = GCD(192 * int.Parse(strParam), 192);
+
+					if (intRet <= 2)
+					{
+						intRet = 3;
+					}
+
+					if (intRet >= 48)
+					{
+						intRet = 48;
+					}
+
+					gMeasure[intMeasure].len = 192 * int.Parse(strParam);
+
+					if (gMeasure[intMeasure].len < 3)
+					{
+						gMeasure[intMeasure].len = 3;
+					}
+
+					while (gMeasure[intMeasure].len / intRet > 64)
+					{
+						if (intRet >= 48)
+						{
+							gMeasure[intMeasure].len = 3072;
+							break;
+						}
+
+						intRet = intRet * 2;
+					}
+
+					frmMain.lstMeasureLen.Items[intMeasure]
+						= "#" + intMeasure.ToString("000")
+						+ ":" + (gMeasure[intMeasure].len / intRet).ToString()
+						+ "/" + (192 / intRet).ToString();
+
+					return;
+				}
+
+				if (intCh == 1)
+				{
+					for (int j = 0; j < 32; j++)
+					{
+						if (!mBGM[intMeasure * 32 + j])
+						{
+							mBGM[intMeasure * 32 + j] = true;
+							intRet = 101 + j;
+							break;
+						}
+					}
+				}
+
+				for (int i = 1; i <= lngSepaNum; i++)
+				{
+					if (!"00".Equals(StringUtil.Mid(strParam, i * 2 - 1, 2)))
+					{
+						gObj[gObj.Length - 1].id = gIDNum;
+						gObjID[gIDNum] = gIDNum;
+						gObj[gObj.Length - 1].position = i - 1;
+						gObj[gObj.Length - 1].height = lngSepaNum;
+						gObj[gObj.Length - 1].measure = intMeasure;
+						gObj[gObj.Length - 1].ch = intCh;
+
+						ChangeMaxMeasure(gObj[gObj.Length - 1].measure);
+
+						switch (intCh)
+						{
+							case 1:	// BGM
+								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								gObj[gObj.Length - 1].ch = intRet;
+								break;
+
+							case 4:	// BGA
+							case 6:	// Poor
+							case 7:	// Layer
+							case 8:	// 拡張BPM
+							case 9:	// ストップシーケンス
+								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								break;
+
+							case 3:	// BPM
+								gObj[gObj.Length - 1].value = Convert.ToInt32(StringUtil.Mid(strParam, i * 2 - 1, 2), 16);
+								break;
+
+							case 11:	// キー音
+							case 12:
+							case 13:
+							case 14:
+							case 15:
+							case 16:
+							case 18:
+							case 19:
+							case 21:
+							case 22:
+							case 23:
+							case 24:
+							case 25:
+							case 26:
+							case 28:
+							case 29:
+								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								break;
+
+							case 31:	// キー音
+							case 32:
+							case 33:
+							case 34:
+							case 35:
+							case 36:
+							case 38:
+							case 39:
+							case 41:
+							case 42:
+							case 43:
+							case 44:
+							case 45:
+							case 46:
+							case 48:
+							case 49:
+								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								gObj[gObj.Length - 1].ch = gObj[gObj.Length - 1].ch - 20;
+								gObj[gObj.Length - 1].att = 1;
+								break;
+
+							case 51:	// キー音
+							case 52:
+							case 53:
+							case 54:
+							case 55:
+							case 56:
+							case 58:
+							case 59:
+							case 61:
+							case 62:
+							case 63:
+							case 64:
+							case 65:
+							case 66:
+							case 68:
+							case 69:
+								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								gObj[gObj.Length - 1].ch -= 40;
+								gObj[gObj.Length - 1].att = 2;
+								break;
+								
+							default:
+								return;
+						}
+
+						Array.Resize(ref gObj, gObj.Length + 1);
+
+						gIDNum++;
+						Array.Resize(ref gObjID, gIDNum + 1);
+					}
+				}
 			}
 			catch (Exception e)
 			{
@@ -504,5 +670,37 @@ namespace Bmse
 			}
 		}
 
+		private string GetParam(string strRet)
+		{
+			string[] array;
+
+			array = strRet.Split(':');
+
+			if (array.Length - 1 > 0)
+			{
+				return array[array.Length - 1];
+			}
+			else
+			{
+				return "";
+			}
+		}
+
+		public int GCD(int m, int n)
+		{
+			if (m <= 0 || n <= 0)
+			{
+				return 0;
+			}
+
+			if (m % n == 0)
+			{
+				return n;
+			}
+			else
+			{
+				return GCD(n, m % n);
+			}
+		}
 	}
 }
