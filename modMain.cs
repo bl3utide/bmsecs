@@ -1070,7 +1070,8 @@ namespace Bmse
 					case (int)BRUSH_NUM.KEY07:
 						retInt = (i - (int)BRUSH_NUM.KEY01) + 1;
 
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
+						//gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
+						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "Background", "32,32,32").Split(',');
 						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
@@ -1092,7 +1093,8 @@ namespace Bmse
 					case (int)BRUSH_NUM.KEY06:
 						retInt = (i - (int)BRUSH_NUM.KEY01) + 1;
 
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
+						//gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
+						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "Background", "0,0,40").Split(',');
 						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
@@ -1135,7 +1137,8 @@ namespace Bmse
 					case (int)BRUSH_NUM.KEY17:
 						retInt = (i - (int)BRUSH_NUM.KEY11) + 1;
 
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
+						//gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
+						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "Background", "32,32,32").Split(',');
 						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
@@ -1152,7 +1155,8 @@ namespace Bmse
 
 						if (i == (int)BRUSH_NUM.KEY11)
 						{
-							gVGrid[(int)GRID.NUM_FOOTPEDAL].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt).ToString();
+							//gVGrid[(int)GRID.NUM_FOOTPEDAL].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt).ToString();
+							gVGrid[(int)GRID.NUM_FOOTPEDAL].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt.ToString());
 							array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Background", "32,32,32").Split(',');
 							gVGrid[(int)GRID.NUM_FOOTPEDAL].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 							array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectLight", "192,192,192").Split(',');
@@ -1166,7 +1170,8 @@ namespace Bmse
 					case (int)BRUSH_NUM.KEY16:
 						retInt = (i - (int)BRUSH_NUM.KEY11) + 1;
 
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
+						//gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
+						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "Background", "0,0,40").Split(',');
 						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
