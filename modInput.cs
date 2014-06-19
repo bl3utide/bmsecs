@@ -239,7 +239,6 @@ namespace Bmse
 
 			try
 			{
-				// TODO: 280行目から
 				array = StringUtil.StringReplace(lineData, " ", ":", 1).Split(':');
 
 				if (array.Length - 1 > 0)
