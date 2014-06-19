@@ -95,5 +95,133 @@ namespace Bmse.Util
 
 			return stTarget;
 		}
+
+		/// <summary>
+		/// 指定した文字列内の指定した文字列を別の文字列に置換する。
+		/// </summary>
+		/// <param name="input">置換する文字列のある文字列。</param>
+		/// <param name="oldValue">検索文字列。</param>
+		/// <param name="newValue">置換文字列。</param>
+		/// <param name="count">置換する回数。負の数が指定されたときは、すべて置換する。</param>
+		/// <param name="compInfo">文字列の検索に使用するCompareInfo。</param>
+		/// <param name="compOptions">文字列の検索に使用するCompareOptions。</param>
+		/// <returns>置換された結果の文字列。</returns>
+		private static string StringReplace(
+			string input, string oldValue, string newValue, int count,
+			System.Globalization.CompareInfo compInfo,
+			System.Globalization.CompareOptions compOptions)
+		{
+			if (input == null || input.Length == 0 ||
+				oldValue == null || oldValue.Length == 0 ||
+				count == 0)
+			{
+				return input;
+			}
+
+			if (compInfo == null)
+			{
+				compInfo = System.Globalization.CultureInfo.InvariantCulture.CompareInfo;
+				compOptions = System.Globalization.CompareOptions.Ordinal;
+			}
+
+			int inputLen = input.Length;
+			int oldValueLen = oldValue.Length;
+			System.Text.StringBuilder buf = new System.Text.StringBuilder(inputLen);
+
+			int currentPoint = 0;
+			int foundPoint = -1;
+			int currentCount = 0;
+
+			do
+			{
+				//文字列を検索する
+				foundPoint = compInfo.IndexOf(input, oldValue, currentPoint, compOptions);
+				if (foundPoint < 0)
+				{
+					buf.Append(input.Substring(currentPoint));
+					break;
+				}
+
+				//見つかった文字列を新しい文字列に換える
+				buf.Append(input.Substring(currentPoint, foundPoint - currentPoint));
+				buf.Append(newValue);
+
+				//次の検索開始位置を取得
+				currentPoint = foundPoint + oldValueLen;
+
+				//指定回数置換したか調べる
+				currentCount++;
+				if (currentCount == count)
+				{
+					buf.Append(input.Substring(currentPoint));
+					break;
+				}
+			}
+			while (currentPoint < inputLen);
+
+			return buf.ToString();
+		}
+
+		/// <summary>
+		/// 指定した文字列内の指定した文字列を別の文字列に置換する。
+		/// </summary>
+		/// <param name="input">置換する文字列のある文字列。</param>
+		/// <param name="oldValue">検索文字列。</param>
+		/// <param name="newValue">置換文字列。</param>
+		/// <param name="count">置換する回数。負の数が指定されたときは、すべて置換する。</param>
+		/// <param name="ignoreCase">大文字と小文字を区別しない時はTrue。</param>
+		/// <returns>置換された結果の文字列。</returns>
+		public static string StringReplace(
+			string input, string oldValue, string newValue, int count, bool ignoreCase)
+		{
+			if (ignoreCase)
+			{
+				return StringReplace(input, oldValue, newValue, count,
+					System.Globalization.CultureInfo.InvariantCulture.CompareInfo,
+					System.Globalization.CompareOptions.OrdinalIgnoreCase);
+			}
+			else
+			{
+				return StringReplace(input, oldValue, newValue, count,
+					System.Globalization.CultureInfo.InvariantCulture.CompareInfo,
+					System.Globalization.CompareOptions.Ordinal);
+			}
+		}
+
+		/// <summary>
+		/// 指定した文字列内の指定した文字列を別の文字列に置換する。
+		/// </summary>
+		/// <param name="input">置換する文字列のある文字列。</param>
+		/// <param name="oldValue">検索文字列。</param>
+		/// <param name="newValue">置換文字列。</param>
+		/// <param name="count">置換する回数。負の数が指定されたときは、すべて置換する。</param>
+		/// <returns>置換された結果の文字列。</returns>
+		public static string StringReplace(
+			string input, string oldValue, string newValue, int count)
+		{
+			return StringReplace(input, oldValue, newValue, count,
+				System.Globalization.CultureInfo.InvariantCulture.CompareInfo,
+				System.Globalization.CompareOptions.Ordinal);
+		}
+
+		/// -----------------------------------------------------------------------------
+		/// <summary>
+		///     文字列が数値であるかどうかを返します。</summary>
+		/// <param name="stTarget">
+		///     検査対象となる文字列。<param>
+		/// <returns>
+		///     指定した文字列が数値であれば true。それ以外は false。</returns>
+		/// -----------------------------------------------------------------------------
+		public static bool IsNumeric(string stTarget)
+		{
+			double dNullable;
+
+			return double.TryParse(
+				stTarget,
+				System.Globalization.NumberStyles.Any,
+				null,
+				out dNullable
+			);
+		}
 	}
 }

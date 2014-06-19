@@ -231,7 +231,7 @@ namespace Bmse
 			}
 		}
 
-		public void LoadBMSDataSub(string lineData)
+		public void LoadBMSDataSub(string lineData, bool directInput)
 		{
 			string[] array;
 			string strRet;
@@ -240,10 +240,201 @@ namespace Bmse
 			try
 			{
 				// TODO: 280行目から
+				array = StringUtil.StringReplace(lineData, " ", ":", 1).Split(':');
+
+				if (array.Length - 1 > 0)
+				{
+					strParam = StringUtil.Right(lineData, lineData.Length - (array[0].Length + 1));
+
+					switch (array[0])
+					{
+						case "#PLAYER":
+							gBms.playerType = int.Parse(strParam);
+							frmMain.cboPlayer.SelectedIndex = int.Parse(strParam) - 1;
+							break;
+
+						case "#GENRE":
+							gBms.genre = strParam;
+							frmMain.txtGenre.Text = strParam;
+							break;
+
+						case "#TITLE":
+							gBms.title = strParam;
+							frmMain.txtTitle.Text = strParam;
+							break;
+
+						case "#ARTIST":
+							gBms.artist = strParam;
+							frmMain.txtArtist.Text = strParam;
+							break;
+
+						case "#BPM":
+							gBms.bpm = double.Parse(strParam);
+							frmMain.txtBPM.Text = strParam;
+							break;
+
+						case "#PLAYLEVEL":
+							gBms.playLevel = int.Parse(strParam);
+							frmMain.cboPlayLevel.Text = strParam;
+							break;
+
+						case "#RANK":
+							gBms.playRank = int.Parse(strParam);
+							if (gBms.playRank < 0)
+							{
+								gBms.playRank = 0;
+							}
+							if (gBms.playRank > 3)
+							{
+								gBms.playRank = 3;
+							}
+							frmMain.cboPlayRank.SelectedIndex = gBms.playRank;
+							break;
+
+						case "#TOTAL":
+							gBms.total = double.Parse(strParam);
+							frmMain.txtTotal.Text = strParam;
+							break;
+
+						case "#VOLWAV":
+							gBms.volume = int.Parse(strParam);
+							frmMain.txtVolume.Text = strParam;
+							break;
+
+						case "#STAGEFILE":
+							gBms.stageFile = strParam;
+							frmMain.txtStageFile.Text = strParam;
+							break;
+
+						case "#IF":
+						case "#RANDOM":
+						case "#RONDAM":
+						case "#ENDIF":
+							if (!directInput)
+							{
+								mReadFlag = false;
+								mExInfo = mExInfo + lineData + "\r\n";
+							}
+							break;
+
+						default:
+							strRet = StringUtil.Right(array[0], 2).ToUpper();
+							switch (StringUtil.Left(array[0], 4).ToUpper())
+							{
+								case "#WAV":
+									if (!"00".Equals(strRet) && !directInput)
+									{
+										gWAV[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+
+										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
+											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
+										{
+											frmMain.mnuOptionsNumFF.Checked = false;
+										}
+									}
+									break;
+
+								case "#BMP":
+									if (!"00".Equals(strRet) && !directInput)
+									{
+										gBMP[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+
+										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
+											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
+										{
+											frmMain.mnuOptionsNumFF.Checked = false;
+										}
+									}
+									else
+									{
+										frmMain.txtMissBMP.Text = StringUtil.Right(lineData, lineData.Length - 7);
+									}
+									break;
+
+								case "#BGA":
+									if (!"00".Equals(strRet) && !directInput)
+									{
+										gBGA[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+
+										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
+											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
+										{
+											frmMain.mnuOptionsNumFF.Checked = false;
+										}
+									}
+									break;
+
+								case "#BPM":
+									if ("00".Equals(strRet) && !directInput)
+									{
+										gBPM[lngNumConv(strRet)] = double.Parse(StringUtil.Right(lineData, lineData.Length - 7));
+									}
+									break;
+
+								default:
+									if ("#STOP".Equals(StringUtil.Left(array[0], 5).ToUpper()))
+									{
+										if ("00".Equals(strRet) && !directInput)
+										{
+											gSTOP[lngNumConv(strRet)] = int.Parse(StringUtil.Right(lineData, lineData.Length - 8));
+										}
+									}
+									else if (StringUtil.IsNumeric(StringUtil.Mid(array[0], 2)))
+									{
+										if (mReadFlag)
+										{
+											LoadBMSObject(lineData);
+										}
+										else
+										{
+											mExInfo = mExInfo + lineData + "\r\n";
+										}
+									}
+									else
+									{
+										mExInfo = mExInfo + lineData + "\r\n";
+									}
+									break;
+							}
+							break;
+					}
+				}
+				else if ("#ENDIF".Equals(StringUtil.Left(lineData, 6).ToUpper()))
+				{
+					mReadFlag = true;
+					mExInfo = mExInfo + lineData + "\r\n";
+				}
+				else
+				{
+					mExInfo = mExInfo + lineData + "\r\n";
+				}
 			}
 			catch (Exception e)
 			{
 				CleanUp(e.Message, "LoadBMSDataSub");
+			}
+		}
+
+		public void LoadBMSDataSub(string lineData)
+		{
+			LoadBMSDataSub(lineData, false);
+		}
+
+		private void LoadBMSObject(string strRet)
+		{
+			int intRet;
+			int intMeasure;
+			int intCh;
+			string strParam;
+			int lngSepaNum;
+
+			try
+			{
+				// TODO: 481行目から
+			}
+			catch (Exception e)
+			{
+				CleanUp(e.Message, "LoadBMSObject");
 			}
 		}
 
