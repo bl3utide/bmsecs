@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="Shift_JIS"?>
+<lang>
+  <item name="Main">
+    <Key>BMSE</Key>
+    <Language>Japanese</Language>
+    <Font>MS UI Gothic</Font>
+    <FixedFont>ＭＳ ゴシック</FixedFont>
+  </item>
+  <item name="Menu">
+    <FILE>ファイル(&amp;F)</FILE>
+    <FILE_NEW>新規作成(&amp;N)</FILE_NEW>
+    <FILE_OPEN>開く(&amp;O)</FILE_OPEN>
+    <FILE_SAVE>上書き保存(&amp;S)</FILE_SAVE>
+    <FILE_SAVE_AS>名前を付けて保存(&amp;A)</FILE_SAVE_AS>
+    <FILE_OPEN_DIRECTORY>編集中のディレクトリを開く(&amp;D)</FILE_OPEN_DIRECTORY>
+    <FILE_CONVERT_WIZARD>変換ウィザードを表示(&amp;C)</FILE_CONVERT_WIZARD>
+    <FILE_EXIT>終了(&amp;X)</FILE_EXIT>
+    <EDIT>編集(&amp;E)</EDIT>
+    <EDIT_UNDO>元に戻す(&amp;U)</EDIT_UNDO>
+    <EDIT_REDO>やり直し(&amp;R)</EDIT_REDO>
+    <EDIT_CUT>切り取り(&amp;X)</EDIT_CUT>
+    <EDIT_COPY>コピー(&amp;C)</EDIT_COPY>
+    <EDIT_PASTE>貼り付け(&amp;V)</EDIT_PASTE>
+    <EDIT_DELETE>削除(&amp;D)</EDIT_DELETE>
+    <EDIT_SELECT_ALL>すべて選択(&amp;S)</EDIT_SELECT_ALL>
+    <EDIT_FIND>検索・削除・置換(&amp;F)</EDIT_FIND>
+    <EDIT_MODE_EDIT>編集モード(&amp;M)</EDIT_MODE_EDIT>
+    <EDIT_MODE_WRITE>書込モード(&amp;M)</EDIT_MODE_WRITE>
+    <EDIT_MODE_DELETE>消去モード(&amp;M)</EDIT_MODE_DELETE>
+    <VIEW>表示(&amp;V)</VIEW>
+    <VIEW_TOOL_BAR>ツールバー(&amp;T)</VIEW_TOOL_BAR>
+    <VIEW_DIRECT_INPUT>ダイレクト入力枠(&amp;D)</VIEW_DIRECT_INPUT>
+    <VIEW_STATUS_BAR>ステータスバー(&amp;S)</VIEW_STATUS_BAR>
+    <OPTIONS>設定(&amp;O)</OPTIONS>
+    <OPTIONS_IGNORE_ACTIVE>アクティブになった瞬間は操作を無効にする(&amp;A)</OPTIONS_IGNORE_ACTIVE>
+    <OPTIONS_FILE_NAME_ONLY>タイトルバーにファイル名のみ表示する(&amp;F)</OPTIONS_FILE_NAME_ONLY>
+    <OPTIONS_VERTICAL>レーン情報を縦書きにする(&amp;V)</OPTIONS_VERTICAL>
+    <OPTIONS_LANE_BG>レーン背景に色をつける(&amp;B)</OPTIONS_LANE_BG>
+    <OPTIONS_SINGLE_SELECT_PREVIEW>オブジェ単体選択時にプレビューする(&amp;P)</OPTIONS_SINGLE_SELECT_PREVIEW>
+    <OPTIONS_OBJECT_FILE_NAME>オブジェにファイル名を表示する(&amp;O)</OPTIONS_OBJECT_FILE_NAME>
+    <OPTIONS_MOVE_ON_GRID>オブジェの移動はグリッドにあわせる(&amp;M)</OPTIONS_MOVE_ON_GRID>
+    <OPTIONS_USE_OLD_FORMAT>#WAV・#BMP・#BGA の拡張定義を使用しない(&amp;U)</OPTIONS_USE_OLD_FORMAT>
+    <OPTIONS_RIGHT_CLICK_DELETE>右クリックでオブジェを削除する(&amp;R)</OPTIONS_RIGHT_CLICK_DELETE>
+    <TOOLS>外部ビューワ(&amp;T)</TOOLS>
+    <TOOLS_PLAY_FIRST>最初から再生(&amp;A)</TOOLS_PLAY_FIRST>
+    <TOOLS_PLAY>現在位置から再生(&amp;P)</TOOLS_PLAY>
+    <TOOLS_STOP>再生を停止(&amp;S)</TOOLS_STOP>
+    <TOOLS_SETTING>ビューワの設定(&amp;V)</TOOLS_SETTING>
+    <HELP>ヘルプ(&amp;H)</HELP>
+    <HELP_OPEN>ヘルプ(&amp;H)</HELP_OPEN>
+    <HELP_WEB>作者のウェブページを開く(&amp;W)</HELP_WEB>
+    <HELP_ABOUT>バージョン情報(&amp;A)</HELP_ABOUT>
+    <CONTEXT_MEASURE_INSERT>ここに1小節挿入(&amp;I)</CONTEXT_MEASURE_INSERT>
+    <CONTEXT_MEASURE_DELETE>この小節を削除(&amp;M)</CONTEXT_MEASURE_DELETE>
+    <CONTEXT_LIST_LOAD>ファイルのロード(&amp;L)</CONTEXT_LIST_LOAD>
+    <CONTEXT_LIST_DELETE>選択ファイルをキャンセル(&amp;D)</CONTEXT_LIST_DELETE>
+    <CONTEXT_LIST_RENAME>選択ファイルをリネーム(&amp;R)</CONTEXT_LIST_RENAME>
+  </item>
+  <item name="ToolBar">
+    <TOOLTIP_NEW>新規作成</TOOLTIP_NEW>
+    <TOOLTIP_OPEN>開く</TOOLTIP_OPEN>
+    <TOOLTIP_SAVE>上書き保存</TOOLTIP_SAVE>
+    <TOOLTIP_SAVE_AS>名前を付けて保存</TOOLTIP_SAVE_AS>
+    <TOOLTIP_MODE_EDIT>編集モード</TOOLTIP_MODE_EDIT>
+    <TOOLTIP_MODE_WRITE>書込モード</TOOLTIP_MODE_WRITE>
+    <TOOLTIP_MODE_DELETE>消去モード</TOOLTIP_MODE_DELETE>
+    <TOOLTIP_PLAY_FIRST>最初から再生</TOOLTIP_PLAY_FIRST>
+    <TOOLTIP_PLAY>現在位置から再生</TOOLTIP_PLAY>
+    <TOOLTIP_STOP>再生を停止</TOOLTIP_STOP>
+    <GRID_MAIN>Grid</GRID_MAIN>
+    <GRID_SUB>補助</GRID_SUB>
+    <DISP_HEIGHT>表示高さ</DISP_HEIGHT>
+    <DISP_WIDTH>表示幅</DISP_WIDTH>
+  </item>
+  <item name="Header">
+    <TAB_BASIC>基本</TAB_BASIC>
+    <TAB_EXPAND>拡張</TAB_EXPAND>
+    <TAB_CONFIG>環境</TAB_CONFIG>
+    <BASIC_PLAYER>プレイモード</BASIC_PLAYER>
+    <BASIC_PLAYER_1P>1 Player</BASIC_PLAYER_1P>
+    <BASIC_PLAYER_2P>2 Player</BASIC_PLAYER_2P>
+    <BASIC_PLAYER_DP>Double Play</BASIC_PLAYER_DP>
+    <BASIC_PLAYER_PMS>9 Keys (PMS)</BASIC_PLAYER_PMS>
+    <BASIC_PLAYER_OCT>13 Keys (oct/fp)</BASIC_PLAYER_OCT>
+    <BASIC_GENRE>ジャンル</BASIC_GENRE>
+    <BASIC_TITLE>タイトル</BASIC_TITLE>
+    <BASIC_ARTIST>アーティスト</BASIC_ARTIST>
+    <BASIC_PLAYLEVEL>難易度表示</BASIC_PLAYLEVEL>
+    <BASIC_BPM>BPM</BASIC_BPM>
+    <EXPAND_RANK>#RANK</EXPAND_RANK>
+    <EXPAND_RANK_EASY>Easy</EXPAND_RANK_EASY>
+    <EXPAND_RANK_NORMAL>Normal</EXPAND_RANK_NORMAL>
+    <EXPAND_RANK_HARD>Hard</EXPAND_RANK_HARD>
+    <EXPAND_RANK_VERY_HARD>Very Hard</EXPAND_RANK_VERY_HARD>
+    <EXPAND_TOTAL>#TOTAL</EXPAND_TOTAL>
+    <EXPAND_VOLWAV>#VOLWAV</EXPAND_VOLWAV>
+    <EXPAND_STAGEFILE>#STAGEFILE</EXPAND_STAGEFILE>
+    <EXPAND_BMP_MISS>#BMP00</EXPAND_BMP_MISS>
+    <EXPAND_SET_FILE>参照</EXPAND_SET_FILE>
+    <CONFIG_KEY_FRAME>キー表示</CONFIG_KEY_FRAME>
+    <CONFIG_KEY_HALF>ハーフ</CONFIG_KEY_HALF>
+    <CONFIG_KEY_SEPARATE>セパレート</CONFIG_KEY_SEPARATE>
+    <CONFIG_KEY_POSITION>キー配置</CONFIG_KEY_POSITION>
+    <CONFIG_KEY_5KEYS>5Keys・10Keys</CONFIG_KEY_5KEYS>
+    <CONFIG_KEY_7KEYS>7Keys・14Keys</CONFIG_KEY_7KEYS>
+    <CONFIG_KEY_SCRATCH_1P>スクラッチ 1P</CONFIG_KEY_SCRATCH_1P>
+    <CONFIG_KEY_SCRATCH_2P>2P</CONFIG_KEY_SCRATCH_2P>
+    <CONFIG_KEY_SCRATCH_LEFT>左</CONFIG_KEY_SCRATCH_LEFT>
+    <CONFIG_KEY_SCRATCH_RIGHT>右</CONFIG_KEY_SCRATCH_RIGHT>
+  </item>
+  <item name="Material">
+    <TAB_WAV>#WAV</TAB_WAV>
+    <TAB_BMP>#BMP</TAB_BMP>
+    <TAB_BGA>#BGA</TAB_BGA>
+    <TAB_BEAT>拍子</TAB_BEAT>
+    <TAB_EXPAND>拡張命令</TAB_EXPAND>
+    <MATERIAL_STOP>停止</MATERIAL_STOP>
+    <MATERIAL_DELETE>消去</MATERIAL_DELETE>
+    <MATERIAL_SET_FILE>指定</MATERIAL_SET_FILE>
+    <MATERIAL_INPUT>入力</MATERIAL_INPUT>
+    <MATERIAL_PREVIEW>表示</MATERIAL_PREVIEW>
+    <MATERIAL_SELECT_ALL>全選択</MATERIAL_SELECT_ALL>
+    <MATERIAL_EXCHANGE_UP>▲</MATERIAL_EXCHANGE_UP>
+    <MATERIAL_EXCHANGE_DOWN>▼</MATERIAL_EXCHANGE_DOWN>
+  </item>
+  <item name="StatusBar">
+    <MODE_EDIT>編集モード</MODE_EDIT>
+    <MODE_WRITE>書込モード</MODE_WRITE>
+    <MODE_DELETE>消去モード</MODE_DELETE>
+    <MEASURE>小節</MEASURE>
+    <CH_01>BGM</CH_01>
+    <CH_04>BGA</CH_04>
+    <CH_06>BGA Poor</CH_06>
+    <CH_07>BGA Layer</CH_07>
+    <CH_08>BPM 変更</CH_08>
+    <CH_09>ストップシーケンス</CH_09>
+    <CH_KEY_1P>1P キー</CH_KEY_1P>
+    <CH_KEY_2P>2P キー</CH_KEY_2P>
+    <CH_SCRATCH_1P>1P スクラッチ</CH_SCRATCH_1P>
+    <CH_SCRATCH_2P>2P スクラッチ</CH_SCRATCH_2P>
+    <CH_INVISIBLE>(不可視)</CH_INVISIBLE>
+    <CH_LONGNOTE>(ロングノート)</CH_LONGNOTE>
+  </item>
+  <item name="Message">
+    <ERROR_MESSAGE_01>予期せぬエラーが発生したので強制終了します。\nエラーの詳細は error.txt を参照してください。</ERROR_MESSAGE_01>
+    <ERROR_MESSAGE_02>編集中の BMS は以下に保存しました。</ERROR_MESSAGE_02>
+    <ERROR_FILE_NOT_FOUND>ファイルが見つかりません。</ERROR_FILE_NOT_FOUND>
+    <ERROR_LOAD_CANCEL>読み込みを中止します。</ERROR_LOAD_CANCEL>
+    <ERROR_SAVE_ERROR>ファイルの保存中にエラーが発生しました。</ERROR_SAVE_ERROR>
+    <ERROR_SAVE_CANCEL>保存を中止します。</ERROR_SAVE_CANCEL>
+    <ERROR_OVERFLOW_LARGE>エラー:\n数が大きすぎます。</ERROR_OVERFLOW_LARGE>
+    <ERROR_OVERFLOW_SMALL>エラー:\n数が小さすぎます。</ERROR_OVERFLOW_SMALL>
+    <ERROR_OVERFLOW_BPM>1295個以上の拡張 BPM 変更を認識しました。\n拡張 BPM 変更は必ず1295個以内におさめてください。</ERROR_OVERFLOW_BPM>
+    <ERROR_OVERFLOW_STOP>1295個以上の STOP 命令を認識しました\nSTOP 命令は必ず1295個以内におさめてください。</ERROR_OVERFLOW_STOP>
+    <ERROR_APP_NOT_FOUND>が見つかりません</ERROR_APP_NOT_FOUND>
+    <INFO_FILE_CHANGED>データは変更されています。保存しますか？</INFO_FILE_CHANGED>
+    <INFO_INI_CHANGED>iniの書式に変更があったので初期化します。\n(設定は全てリセットされます)</INFO_INI_CHANGED>
+    <INFO_ALIGN_LIST>リストを古い形式 (01 - FF) で整列しますか？\n(注意: 古い形式でないと読み込めないソフトウェアもあります)</INFO_ALIGN_LIST>
+    <INFO_DELETE_FILE>以下のファイルを削除しました:</INFO_DELETE_FILE>
+  </item>
+  <item name="Input">
+    <TITLE>入力フォーム</TITLE>
+    <INPUT_BPM>変更する BPM の値を入力してください。\n(小数可、0 でキャンセルします)</INPUT_BPM>
+    <INPUT_STOP>停止させる時間を整数値で入力してください。\n単位は192分音符を 1 としてください。\n(0 以下でキャンセルします)</INPUT_STOP>
+    <INPUT_RENAME>変更するファイル名を入力してください。\n(実際のファイル名も変更されます)</INPUT_RENAME>
+    <INPUT_SIZE>表示倍率を入力してください。\n(0 以下でキャンセル、最大値は 16.00 です)</INPUT_SIZE>
+  </item>
+  <item name="Find">
+    <TITLE>検索・削除・置換</TITLE>
+    <FRAME_SEARCH>検索対象の指定</FRAME_SEARCH>
+    <FRAME_MEASURE>小節範囲の指定</FRAME_MEASURE>
+    <FRAME_OBJ_NUM>オブジェ番号の指定</FRAME_OBJ_NUM>
+    <FRAME_GRID>列の指定</FRAME_GRID>
+    <FRAME_PROCESS>処理</FRAME_PROCESS>
+    <OPT_OBJ_ALL>全てのオブジェ</OPT_OBJ_ALL>
+    <OPT_OBJ_SELECT>選択されているオブジェ</OPT_OBJ_SELECT>
+    <OPT_PROCESS_SELECT>選択</OPT_PROCESS_SELECT>
+    <OPT_PROCESS_DELETE>削除</OPT_PROCESS_DELETE>
+    <OPT_PROCESS_REPLACE>置換　番号:</OPT_PROCESS_REPLACE>
+    <CMD_INVERT>反転</CMD_INVERT>
+    <CMD_RESET>全解除</CMD_RESET>
+    <CMD_SELECT>全選択</CMD_SELECT>
+    <CMD_CLOSE>閉じる</CMD_CLOSE>
+    <CMD_DECIDE>実行</CMD_DECIDE>
+    <LBL_NOTICE>BPM・STOP オブジェはこの項目の影響を受けません</LBL_NOTICE>
+    <LBL_DASH>～</LBL_DASH>
+  </item>
+  <item name="Viewer">
+    <TITLE>ビューワの設定</TITLE>
+    <CMD_SET>参照</CMD_SET>
+    <CMD_ADD>追加</CMD_ADD>
+    <CMD_DELETE>削除</CMD_DELETE>
+    <CMD_OK>OK</CMD_OK>
+    <CMD_CANCEL>キャンセル</CMD_CANCEL>
+    <LBL_APP_NAME>表示する名前</LBL_APP_NAME>
+    <LBL_APP_PATH>実行ファイルのパス</LBL_APP_PATH>
+    <LBL_ARG_PLAY_ALL>「最初から再生」の引数</LBL_ARG_PLAY_ALL>
+    <LBL_ARG_PLAY>「現在位置から再生」の引数</LBL_ARG_PLAY>
+    <LBL_ARG_STOP>「停止」の引数</LBL_ARG_STOP>
+    <LBL_ARG_INFO>特殊引数\n&lt;filename&gt;・・・ファイル名\n&lt;measure&gt;・・・現在の小節番号</LBL_ARG_INFO>
+  </item>
+  <item name="Convert">
+    <TITLE>変換ウィザード</TITLE>
+    <CHK_DELETE_LIST>使用していない #WAV・#BMP・#BGA の定義を消去</CHK_DELETE_LIST>
+    <CHK_DELETE_FILE>フォルダ内の使用していないファイルを削除 (*)</CHK_DELETE_FILE>
+    <LBL_EXTENSION>検索する拡張子:</LBL_EXTENSION>
+    <CHK_RECYCLE>ごみ箱に移動しないですぐに削除する</CHK_RECYCLE>
+    <CHK_ALIGN_LIST>定義リストの整列</CHK_ALIGN_LIST>
+    <CHK_USE_OLD_FORMAT>可能なら古いフォーマット (01 - FF) を使う</CHK_USE_OLD_FORMAT>
+    <CHK_SORT_BY_NAME>ファイル名でソートする</CHK_SORT_BY_NAME>
+    <CHK_CONVERT_FILENAME>ファイル名を連番 (01 - ZZ) に変換 (*)</CHK_CONVERT_FILENAME>
+    <LBL_NOTICE>(*)・・・この操作はやり直しができません</LBL_NOTICE>
+    <CMD_DECIDE>実行</CMD_DECIDE>
+    <CMD_CANCEL>キャンセル</CMD_CANCEL>
+  </item>
+</lang>
