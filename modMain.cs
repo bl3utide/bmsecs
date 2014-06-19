@@ -900,7 +900,7 @@ namespace Bmse
 					Console.WriteLine(gBms.fileName);
 					Console.WriteLine(gBms.dir);
 
-					// TODO: LoadBms();
+					LoadBMS();
 					// TODO: RecentFilesRotation(gBms.dir + gBms.fileName);
 				}
 			}

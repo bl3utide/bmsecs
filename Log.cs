@@ -26,7 +26,7 @@ namespace Bmse
 		/// データの追加
 		/// </summary>
 		/// <param name="str"></param>
-		public void AddData(ref string str)
+		public void AddData(string str)
 		{
 			array[pos] = str;
 

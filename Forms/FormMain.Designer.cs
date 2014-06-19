@@ -1029,6 +1029,7 @@
 			this.picMain.Size = new System.Drawing.Size(687, 434);
 			this.picMain.TabIndex = 2;
 			this.picMain.TabStop = false;
+			this.picMain.MouseDown += picMain_MouseDown;
 			this.picMain.MouseMove += picMain_MouseMove;
 			this.picMain.Paint += App.module.Redraw;
 			// 

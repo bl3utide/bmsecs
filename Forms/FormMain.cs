@@ -449,8 +449,8 @@ namespace Bmse.Forms
 			Module.gBms.dir = "";
 			Module.gBms.fileName = "";
 
-			//TODO: App.module.LoadBMSStart();
-			//TODO: App.module.LoadBMSEnd();
+			App.module.LoadBMSStart();
+			App.module.LoadBMSEnd();
 		}
 
 		private void mnuViewToolBar_Click(Object sender, EventArgs e)
@@ -471,6 +471,155 @@ namespace Bmse.Forms
 		private void mnuOptionsVertical_Click(Object sender, EventArgs e)
 		{
 			picMain.Refresh();
+		}
+
+		private void picMain_MouseDown(Object sender, MouseEventArgs e)
+		{
+			string strRet;
+			int lngRet;
+			Obj retObj = new Obj();
+			string[] array;
+
+			try
+			{
+				if (Module.gIgnoreInput)
+				{
+					return;
+				}
+
+				mMouseDown = true;
+
+				if (e.Button == System.Windows.Forms.MouseButtons.Left)
+				{
+					if (tlbMenuDelete.Checked)
+					{
+						if (Module.gObj[Module.gObj.Length - 1].ch != 0)
+						{
+							Module.gInputLog.AddData(App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
+													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].id, 4)
+													+ StringUtil.Right("0" + string.Format("{0:X}", Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch), 2)
+													+ Module.gObj[Module.gObj[Module.gObj.Length - 1].height].att
+													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].measure)
+													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position, 3)
+													+ Module.gObj[Module.gObj[Module.gObj.Length - 1].height].value
+													+ ",");
+
+							App.module.RemoveObj(Module.gObj[Module.gObj.Length - 1].height);
+
+							App.module.ArrangeObj();
+
+							App.module.RemoveObj(Module.gObj.Length - 1);
+						}
+
+						App.module.ObjSelectCancel();
+
+						picMain.Refresh();
+					}
+					else if (tlbMenuEdit.Checked)
+					{
+						if (Module.gObj[Module.gObj.Length - 1].ch != 0)	// オブジェのあるところで押したっぽい
+						{
+							if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
+							{
+								lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
+								lngRet = Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position
+									- (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position / lngRet) * lngRet;
+							}
+
+							if (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].select != 0)	// 複数選択っぽい
+							{
+								if (EnvUtil.Control)
+								{
+									App.module.CopyObj(ref retObj, ref Module.gObj[Module.gObj.Length - 1]);
+
+									array = new string[1];
+
+									for (int i = 0; i < Module.gObj.Length - 1; i++)
+									{
+										if (Module.gObj[i].select != 0)
+										{
+
+											App.module.CopyObj(ref Module.gObj[Module.gObj.Length - 1], ref Module.gObj[i]);
+											Module.gObj[Module.gObj.Length - 1].id = Module.gIDNum;
+
+											array[array.Length - 1] = App.module.strNumConv((int)CMD_LOG.OBJ_ADD)
+																	+ App.module.strNumConv(Module.gIDNum, 4)
+																	+ StringUtil.Right("0" + string.Format("{0:X}", Module.gObj[i].ch), 2)
+																	+ Module.gObj[i].att
+																	+ App.module.strNumConv(Module.gObj[i].measure)
+																	+ App.module.strNumConv(Module.gObj[i].position, 3)
+																	+ Module.gObj[i].value;
+											Array.Resize(ref array, array.Length + 1);
+
+											Module.gObjID[Module.gIDNum] = Module.gObj.Length - 1;
+											Module.gIDNum++;
+											Array.Resize(ref Module.gObjID, Module.gIDNum + 1);
+
+											Module.gObj[i].select = 0;
+
+											if (i == retObj.height)
+											{
+												retObj.height = Module.gObj.Length - 1;
+											}
+
+											Array.Resize(ref Module.gObj, Module.gObj.Length + 1);
+										}
+									}
+
+									if (array.Length - 1 != 0)
+									{
+										Array.Resize(ref array, array.Length - 1);
+
+										Module.gInputLog.AddData(string.Join(",", array) + ",");
+
+										App.module.CopyObj(ref Module.gObj[Module.gObj.Length - 1], ref retObj);
+									}
+								}
+
+								mObj = new Obj[1];
+
+								for (int i = 0; i < Module.gObj.Length - 1; i++)
+								{
+									if (Module.gObj[i].select != 0)
+									{
+										App.module.CopyObj(ref mObj[mObj.Length - 1], ref Module.gObj[i]);
+
+										Module.gObj[i].height = mObj.Length - 1;
+
+										Array.Resize(ref mObj, mObj.Length + 1);
+									}
+								}
+
+								App.module.CopyObj(ref mObj[mObj.Length - 1], ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+
+								if(mnuOptionsSelectPreview.Checked
+									&& (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch >= 11 && Module.gObj[Module.gObj[Module.gObj.Length - 1].height]. <= 29)
+									|| Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch > 100)
+								{
+									strRet = Module.gWAV[Module.gObj[Module.gObj[Module.gObj.Length - 1].height].value];
+
+									if(!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.gBms.dir + strRet)))
+									{
+										//TODO: PreviewWAV(strRet);
+									}
+								}
+							}
+							else
+							{	// 単数選択っぽい
+								if(!EnvUtil.Control)
+								{
+									App.module.ObjSelectCancel();
+								}
+
+								// TODO: 6289行目から
+							}
+						}
+					}
+				}
+			}
+			catch (Exception exception)
+			{
+			}
 		}
 
 		private void picMain_MouseMove(Object sender, MouseEventArgs e)
