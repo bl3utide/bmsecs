@@ -2,7 +2,7 @@
 <theme>
   <item name="Main">
     <Key>BMSE</Key>
-    <Name>Default</Name>
+    <Name>Default (for oct/fp)</Name>
     <Background>0,0,0</Background>
     <MeasureNum>64,64,64</MeasureNum>
     <MeasureLine>255,255,255</MeasureLine>
@@ -69,63 +69,63 @@
     <ObjectColor>128,128,128</ObjectColor>
   </item>
   <item name="KEY_1P_SC">
-    <Text>SC</Text>
+    <Text>LSC</Text>
     <Background>48,0,0</Background>
     <ObjectLight>255,96,96</ObjectLight>
     <ObjectShadow>128,0,0</ObjectShadow>
     <ObjectColor>255,0,0</ObjectColor>
   </item>
   <item name="KEY_2P_01">
-    <Text>1</Text>
-    <Background>32,32,32</Background>
-    <ObjectLight>192,192,192</ObjectLight>
-    <ObjectShadow>96,96,96</ObjectShadow>
-    <ObjectColor>128,128,128</ObjectColor>
+    <Text>FOOT</Text>
+    <Background>0,24,0</Background>
+    <ObjectLight>0,255,0</ObjectLight>
+    <ObjectShadow>0,96,0</ObjectShadow>
+    <ObjectColor>0,128,0</ObjectColor>
   </item>
   <item name="KEY_2P_02">
-    <Text>2</Text>
+    <Text>8</Text>
     <Background>0,0,40</Background>
     <ObjectLight>96,96,255</ObjectLight>
     <ObjectShadow>0,0,128</ObjectShadow>
     <ObjectColor>0,0,255</ObjectColor>
   </item>
   <item name="KEY_2P_03">
-    <Text>3</Text>
+    <Text>9</Text>
     <Background>32,32,32</Background>
     <ObjectLight>192,192,192</ObjectLight>
     <ObjectShadow>96,96,96</ObjectShadow>
     <ObjectColor>128,128,128</ObjectColor>
   </item>
   <item name="KEY_2P_04">
-    <Text>4</Text>
+    <Text>10</Text>
     <Background>0,0,40</Background>
     <ObjectLight>96,96,255</ObjectLight>
     <ObjectShadow>0,0,128</ObjectShadow>
     <ObjectColor>0,0,255</ObjectColor>
   </item>
   <item name="KEY_2P_05">
-    <Text>5</Text>
+    <Text>11</Text>
     <Background>32,32,32</Background>
     <ObjectLight>192,192,192</ObjectLight>
     <ObjectShadow>96,96,96</ObjectShadow>
     <ObjectColor>128,128,128</ObjectColor>
   </item>
   <item name="KEY_2P_06">
-    <Text>6</Text>
+    <Text>12</Text>
     <Background>0,0,40</Background>
     <ObjectLight>96,96,255</ObjectLight>
     <ObjectShadow>0,0,128</ObjectShadow>
     <ObjectColor>0,0,255</ObjectColor>
   </item>
   <item name="KEY_2P_07">
-    <Text>7</Text>
+    <Text>13</Text>
     <Background>32,32,32</Background>
     <ObjectLight>192,192,192</ObjectLight>
     <ObjectShadow>96,96,96</ObjectShadow>
     <ObjectColor>128,128,128</ObjectColor>
   </item>
   <item name="KEY_2P_SC">
-    <Text>SC</Text>
+    <Text>RSC</Text>
     <Background>48,0,0</Background>
     <ObjectLight>255,96,96</ObjectLight>
     <ObjectShadow>128,0,0</ObjectShadow>
