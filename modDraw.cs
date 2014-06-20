@@ -461,60 +461,60 @@ namespace Bmse
 							g_intVGridNum[g_VGrid[i].intCh] = i;
 						}
 
-						g_VGrid[i].left = retInt;
+						g_VGrid[i].lngLeft = retInt;
 
 						if (g_VGrid[i].intCh == 15)
 						{
 							if (frmMain.cboDispKey.SelectedIndex == 1 || frmMain.cboPlayer.SelectedIndex > 2)
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + g_VGrid[i].intWidth - GRID_WIDTH;
 							}
 						}
 						else if (g_VGrid[i].intCh == 25)
 						{
 							if (frmMain.cboPlayer.SelectedIndex == 4)
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else if (frmMain.cboDispKey.SelectedIndex == 0 || frmMain.cboPlayer.SelectedIndex == 3)
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH);
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH);
 							}
 							else
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 						}
 						else if (g_VGrid[i].intCh == 19)
 						{
 							if (frmMain.cboPlayer.SelectedIndex > 2)
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else
 							{
-								g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + g_VGrid[i].intWidth - GRID_WIDTH;
 							}
 						}
 						else if (g_VGrid[i].intCh == 29)
 						{
-							g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
+							g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + g_VGrid[i].intWidth - GRID_WIDTH;
 						}
 						else if ((12 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 18)
 							|| 22 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 28)
 						{
-							g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
+							g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 						}
 						else
 						{
 							g_VGrid[i].lngObjLeft = retInt;
 						}
 
-						if (g_VGrid[i].left + g_VGrid[i].intWidth >= g_disp.x && frmMain.picMain.Width + (g_disp.x - g_VGrid[i].left) * g_disp.width >= 0)
+						if (g_VGrid[i].lngLeft + g_VGrid[i].intWidth >= g_disp.x && frmMain.picMain.Width + (g_disp.x - g_VGrid[i].lngLeft) * g_disp.width >= 0)
 						{
 							g_VGrid[i].blnDraw = true;
 						}
@@ -647,9 +647,9 @@ namespace Bmse
 							if (g_VGrid[i].intCh != 0)
 							{
 								g.FillRectangle(brush,	// 座標修正済み
-									(g_VGrid[i].left - g_disp.x) * (int)g_disp.width,
+									(g_VGrid[i].lngLeft - g_disp.x) * (int)g_disp.width,
 									0,
-									((g_VGrid[i].left + g_VGrid[i].intWidth + 1 - g_disp.x) * (int)g_disp.width) - (g_VGrid[i].left - g_disp.x) * (int)g_disp.width,
+									((g_VGrid[i].lngLeft + g_VGrid[i].intWidth + 1 - g_disp.x) * (int)g_disp.width) - (g_VGrid[i].lngLeft - g_disp.x) * (int)g_disp.width,
 									frmMain.picMain.Height);
 							}
 						}
@@ -691,7 +691,7 @@ namespace Bmse
 					{
 						if (g_VGrid[i].intCh != 0)
 						{
-							g.DrawLine(pen, g_VGrid[i].left + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].left + g_VGrid[i].intWidth, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, frmMain.picMain.Height);
 							// PrintLine
 						}
 					}
@@ -749,9 +749,9 @@ namespace Bmse
 					{
 						if (g_VGrid[i].intCh == 0)
 						{
-							g.DrawLine(pen, g_VGrid[i].left, g_disp.y, g_VGrid[i].left, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].lngLeft, g_disp.y, g_VGrid[i].lngLeft, frmMain.picMain.Height);
 							// PrintLine
-							g.DrawLine(pen, g_VGrid[i].left + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].left + g_VGrid[i].intWidth, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, frmMain.picMain.Height);
 							// PrintLine
 						}
 					}
@@ -797,7 +797,7 @@ namespace Bmse
 							{
 								if (frmMain.mnuOptionsVertical.Checked)
 								{
-									lngRet = (int)((g_VGrid[i].left + (g_VGrid[i].intWidth / 2) - g_disp.x) * g_disp.width);
+									lngRet = (int)((g_VGrid[i].lngLeft + (g_VGrid[i].intWidth / 2) - g_disp.x) * g_disp.width);
 
 									for (int j = 0; j < g_VGrid[i].strText.Length; j++)
 									{
@@ -820,7 +820,7 @@ namespace Bmse
 									intRet = g_VGrid[i].strText.Length;
 									retSize = g.MeasureString(g_VGrid[i].strText, font);
 
-									int x = (int)((g_VGrid[i].left + g_VGrid[i].intWidth / 2 - g_disp.x) * g_disp.width - (int)(retSize.Width / 2.0f) + 1);
+									int x = (int)((g_VGrid[i].lngLeft + g_VGrid[i].intWidth / 2 - g_disp.x) * g_disp.width - (int)(retSize.Width / 2.0f) + 1);
 
 									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x, 0);
 									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x - 1, 1);
@@ -1290,7 +1290,7 @@ namespace Bmse
 			{
 				if (g_VGrid[i].blnDraw && g_VGrid[i].intCh != 0)
 				{
-					if (g_VGrid[i].left <= lngRet)
+					if (g_VGrid[i].lngLeft <= lngRet)
 					{
 						retObj.intCh = g_VGrid[i].intCh;
 					}

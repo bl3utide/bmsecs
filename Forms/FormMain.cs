@@ -708,8 +708,8 @@ namespace Bmse.Forms
 						{
 							if (Module.g_VGrid[i].intCh != 0)
 							{
-								if (Module.g_VGrid[i].left + Module.g_VGrid[i].intWidth > retRect.left
-									&& Module.g_VGrid[i].left < retRect.right)
+								if (Module.g_VGrid[i].lngLeft + Module.g_VGrid[i].intWidth > retRect.left
+									&& Module.g_VGrid[i].lngLeft < retRect.right)
 								{
 									select[i] = true;
 								}
