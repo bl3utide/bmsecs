@@ -611,7 +611,11 @@ namespace Bmse.Forms
 									App.module.ObjSelectCancel();
 								}
 
-								// TODO: 6289行目から
+								Module.gObj[Module.gObj[Module.gObj.Length - 1].height].select = 1;
+
+								App.module.MoveSelectedObj();
+
+								// TODO: 6293行目から
 							}
 						}
 					}
