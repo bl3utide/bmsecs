@@ -897,7 +897,7 @@ namespace Bmse.Forms
 						}
 					}
 
-					mnuContext.Show(e.X, e.Y);
+					mnuContext.Show(Cursor.Position);
 				}
 
 				Module.g_blnIgnoreInput = false;
