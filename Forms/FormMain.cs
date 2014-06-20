@@ -71,7 +71,7 @@ namespace Bmse.Forms
 
 					if (mnuOptionsMoveOnGrid.Checked)
 					{
-						lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition - (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition / lngRet) * lngRet;
+						lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition - (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition / lngRet) * lngRet;
 
 						newObj.lngPosition = newObj.lngPosition - lngRet;
 					}
@@ -79,7 +79,7 @@ namespace Bmse.Forms
 
 				newObj.lngPosition = newObj.lngPosition + Module.g_Measure[newObj.intMeasure].lngY;
 
-				App.module.CopyObj(ref oldObj, ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
+				App.module.CopyObj(ref oldObj, ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
 
 				oldObj.intCh = Module.g_intVGridNum[oldObj.intCh];
 
@@ -259,7 +259,7 @@ namespace Bmse.Forms
 						}
 					}
 
-					App.module.DrawStatusBar(ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
+					App.module.DrawStatusBar(ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
 				}
 			}
 			catch (Exception e)
@@ -496,15 +496,15 @@ namespace Bmse.Forms
 						if (Module.g_Obj[Module.g_Obj.Length - 1].intCh != 0)
 						{
 							Module.g_InputLog.AddData(App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
-													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngID, 4)
-													+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh), 2)
-													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intAtt
-													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intMeasure)
-													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition, 3)
-													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].sngValue
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngID, 4)
+													+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh), 2)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intAtt
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intMeasure)
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition, 3)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue
 													+ ",");
 
-							App.module.RemoveObj(Module.g_Obj[Module.g_Obj.Length - 1].intHeight);
+							App.module.RemoveObj(Module.g_Obj[Module.g_Obj.Length - 1].lngHeight);
 
 							App.module.ArrangeObj();
 
@@ -522,11 +522,11 @@ namespace Bmse.Forms
 							if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
 							{
 								lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
-								lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition
-									- (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition / lngRet) * lngRet;
+								lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition
+									- (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition / lngRet) * lngRet;
 							}
 
-							if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intSelect != 0)	// 複数選択っぽい
+							if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intSelect != 0)	// 複数選択っぽい
 							{
 								if (EnvUtil.Control)
 								{
@@ -557,9 +557,9 @@ namespace Bmse.Forms
 
 											Module.g_Obj[i].intSelect = 0;
 
-											if (i == retObj.intHeight)
+											if (i == retObj.lngHeight)
 											{
-												retObj.intHeight = Module.g_Obj.Length - 1;
+												retObj.lngHeight = Module.g_Obj.Length - 1;
 											}
 
 											Array.Resize(ref Module.g_Obj, Module.g_Obj.Length + 1);
@@ -584,19 +584,19 @@ namespace Bmse.Forms
 									{
 										App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[i]);
 
-										Module.g_Obj[i].intHeight = m_retObj.Length - 1;
+										Module.g_Obj[i].lngHeight = m_retObj.Length - 1;
 
 										Array.Resize(ref m_retObj, m_retObj.Length + 1);
 									}
 								}
 
-								App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
+								App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
 
 								if(mnuOptionsSelectPreview.Checked
-									&& (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh >= 11 && Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh <= 29)
-									|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh > 100)
+									&& (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh >= 11 && Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh <= 29)
+									|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh > 100)
 								{
-									strRet = Module.g_strWAV[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].sngValue];
+									strRet = Module.g_strWAV[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue];
 
 									if(!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
 									{
@@ -611,11 +611,12 @@ namespace Bmse.Forms
 									App.module.ObjSelectCancel();
 								}
 
-								Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intSelect = 1;
+								Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intSelect = 1;
 
 								App.module.MoveSelectedObj();
 
 								// TODO: 6293行目から
+								//Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].
 							}
 						}
 					}

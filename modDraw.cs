@@ -1195,7 +1195,7 @@ namespace Bmse
 								retObj.sngValue = g_Obj[i].sngValue;
 								retObj.lngPosition = g_Obj[i].lngPosition;
 								retObj.intMeasure = g_Obj[i].intMeasure;
-								retObj.intHeight = i;
+								retObj.lngHeight = i;
 							}
 						}
 					}
@@ -1216,7 +1216,7 @@ namespace Bmse
 					}
 					else
 					{
-						g_Obj[g_Obj.Length - 1].intHeight = retObj.intHeight;
+						g_Obj[g_Obj.Length - 1].lngHeight = retObj.lngHeight;
 						return;
 					}
 				}
@@ -1228,11 +1228,11 @@ namespace Bmse
 						g_Obj[g_Obj.Length - 1].intCh = 0;
 					}
 
-					if (retObj.intHeight != g_Obj[g_Obj.Length - 1].intHeight)
+					if (retObj.lngHeight != g_Obj[g_Obj.Length - 1].lngHeight)
 					{
-						if (g_Obj[retObj.intHeight].intCh != 0)
+						if (g_Obj[retObj.lngHeight].intCh != 0)
 						{
-							retObj.lngPosition = g_Obj[retObj.intHeight].lngPosition;
+							retObj.lngPosition = g_Obj[retObj.lngHeight].lngPosition;
 						}
 
 						CopyObj(ref g_Obj[g_Obj.Length - 1], ref retObj);
@@ -1302,7 +1302,7 @@ namespace Bmse
 			}
 
 			retObj.lngID = g_lngIDNum;
-			retObj.intHeight = g_Obj.Length - 1;
+			retObj.lngHeight = g_Obj.Length - 1;
 
 			if (y < 1)
 			{
@@ -1594,7 +1594,7 @@ namespace Bmse
 		{
 			destObj.lngID = srcObj.lngID;
 			destObj.intCh = srcObj.intCh;
-			destObj.intHeight = srcObj.intHeight;
+			destObj.lngHeight = srcObj.lngHeight;
 			destObj.intMeasure = srcObj.intMeasure;
 			destObj.lngPosition = srcObj.lngPosition;
 			destObj.intSelect = srcObj.intSelect;
@@ -1609,7 +1609,7 @@ namespace Bmse
 				g_lngObjID[g_Obj[num].lngID] = -1;
 				g_Obj[num].lngID = 0;
 				g_Obj[num].intCh = 0;
-				g_Obj[num].intHeight = 0;
+				g_Obj[num].lngHeight = 0;
 				g_Obj[num].intMeasure = 0;
 				g_Obj[num].lngPosition = 0;
 				g_Obj[num].intSelect = 0;
@@ -1632,9 +1632,9 @@ namespace Bmse
 				{
 					//SwapObj(lngRet, i);
 
-					if (i == g_Obj[g_Obj.Length - 1].intHeight)
+					if (i == g_Obj[g_Obj.Length - 1].lngHeight)
 					{
-						g_Obj[g_Obj.Length - 1].intHeight = lngRet;
+						g_Obj[g_Obj.Length - 1].lngHeight = lngRet;
 					}
 
 					lngRet++;
@@ -1680,9 +1680,9 @@ namespace Bmse
 					{
 						//TODO: SwapObj(i, j + lngRet);
 
-						if (i == g_Obj[g_Obj.Length - 1].intHeight)
+						if (i == g_Obj[g_Obj.Length - 1].lngHeight)
 						{
-							g_Obj[g_Obj.Length - 1].intHeight = j + lngRet;
+							g_Obj[g_Obj.Length - 1].lngHeight = j + lngRet;
 						}
 
 						lngRet++;

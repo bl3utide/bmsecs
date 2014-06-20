@@ -27,7 +27,7 @@ namespace Bmse
 
 				for (int i = 0; i < g_Obj.Length - 1; i++)
 				{
-					g_Obj[i].lngPosition = (g_Measure[g_Obj[i].intMeasure].intLen / g_Obj[i].intHeight) * g_Obj[i].lngPosition;
+					g_Obj[i].lngPosition = (g_Measure[g_Obj[i].intMeasure].intLen / g_Obj[i].lngHeight) * g_Obj[i].lngPosition;
 
 					if (g_Obj[i].intCh == 3)	// BPM
 					{
@@ -500,7 +500,7 @@ namespace Bmse
 						g_Obj[g_Obj.Length - 1].lngID = g_lngIDNum;
 						g_lngObjID[g_lngIDNum] = g_lngIDNum;
 						g_Obj[g_Obj.Length - 1].lngPosition = i - 1;
-						g_Obj[g_Obj.Length - 1].intHeight = lngSepaNum;
+						g_Obj[g_Obj.Length - 1].lngHeight = lngSepaNum;
 						g_Obj[g_Obj.Length - 1].intMeasure = intMeasure;
 						g_Obj[g_Obj.Length - 1].intCh = intCh;
 

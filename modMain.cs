@@ -133,7 +133,7 @@ namespace Bmse
 		public int intCh;
 		public int intAtt;
 		public int intMeasure;
-		public int intHeight;
+		public int lngHeight;
 		public int lngPosition;
 		public int sngValue;
 		public int intSelect;
