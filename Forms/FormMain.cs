@@ -593,7 +593,7 @@ namespace Bmse.Forms
 								App.module.CopyObj(ref mObj[mObj.Length - 1], ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
 
 								if(mnuOptionsSelectPreview.Checked
-									&& (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch >= 11 && Module.gObj[Module.gObj[Module.gObj.Length - 1].height]. <= 29)
+									&& (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch >= 11 && Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch <= 29)
 									|| Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch > 100)
 								{
 									strRet = Module.gWAV[Module.gObj[Module.gObj[Module.gObj.Length - 1].height].value];
