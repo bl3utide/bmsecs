@@ -710,7 +710,6 @@ namespace Bmse.Forms
 
 								App.module.MoveSelectedObj();
 
-								// TODO: 6293行目から
 								m_retObj = new g_udtObj[1];
 
 								for (int i = 0; i < Module.g_Obj.Length - 1; i++)
@@ -808,11 +807,104 @@ namespace Bmse.Forms
 				}
 				else if (e.Button == System.Windows.Forms.MouseButtons.Right)
 				{
-					// TODO: 6434行目から
+					Module.g_Mouse.x = e.X;
+					Module.g_Mouse.y = e.Y;
+
+					App.module.DrawObjMax(e.X, e.Y);
+
+					// スポイト機能
+					if (EnvUtil.Shift)
+					{
+						if (Module.g_Obj[Module.g_Obj.Length - 1].lngHeight < Module.g_Obj.Length - 1)
+						{
+							if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 4
+								|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 6
+								|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 7
+								|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh > 10)
+							{
+								int temp;
+								string str;
+
+								if (mnuOptionsNumFF.Checked)
+								{
+									str = App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue);
+
+									// もし 01-FF じゃなかったら 01-ZZ 表示に移行する
+									// ASCII 文字セットでは 0-9 < A-Z < a-z
+									if ((int)(StringUtil.Left(str, 1)[0]) > (int)('F')
+										|| (int)(StringUtil.Right(str, 1)[0]) > (int)('F'))
+									{
+										mnuOptionsNumFF.PerformClick();
+										temp = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue;
+									}
+									else
+									{
+										temp = Convert.ToInt32(str, 16);
+									}
+								}
+								else
+								{
+									temp = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue;
+								}
+
+								m_blnPreview = false;
+
+								if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh > 10)
+								{
+									lstWAV.SelectedIndex = temp - 1;
+								}
+								else
+								{
+									if (optChangeBottom.SelectedTab == optChangeBottom2)
+									{
+										lstBGA.SelectedIndex = temp - 1;
+									}
+									else
+									{
+										lstBMP.SelectedIndex = temp - 1;
+									}
+								}
+
+								m_blnPreview = true;
+							}
+
+							return;
+						}
+					}
+
+					if (mnuOptionsRightClickDelete.Checked)
+					{
+						if (Module.g_Obj[Module.g_Obj.Length - 1].lngHeight < Module.g_Obj.Length - 1)
+						{
+							Module.g_InputLog.AddData(App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngID, 4)
+													+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh), 2)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intAtt
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intMeasure)
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition, 3)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue + ",");
+							
+							App.module.RemoveObj(Module.g_Obj[Module.g_Obj.Length - 1].lngHeight);
+
+							Module.g_Obj[Module.g_Obj.Length - 1].intCh = 0;
+							Module.g_Obj[Module.g_Obj.Length - 1].lngHeight = Module.g_Obj.Length - 1;
+
+							App.module.ArrangeObj();
+
+							picMain.Refresh();
+
+							return;
+						}
+					}
+
+					mnuContext.Show(e.X, e.Y);
 				}
+
+				Module.g_blnIgnoreInput = false;
 			}
 			catch (Exception exception)
 			{
+				App.module.CleanUp(exception.Message, "picMain_MouseDown");
 			}
 		}
 
