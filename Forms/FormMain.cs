@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Bmse.Common;
 using Bmse.Util;
@@ -435,6 +436,61 @@ namespace Bmse.Forms
 			picMain.Refresh();
 		}
 
+		private void tlbMenuNew_Click(Object sender, EventArgs e)
+		{
+			mnuFileNew.PerformClick();
+		}
+
+		private void tlbMenuOpen_Click(Object sender, EventArgs e)
+		{
+			mnuFileOpen.PerformClick();
+		}
+
+		private void tlbMenuReload_Click(Object sender, EventArgs e)
+		{
+			mnuRecentFiles[0].PerformClick();
+		}
+
+		private void tlbMenuSave_Click(Object sender, EventArgs e)
+		{
+			mnuFileSave.PerformClick();
+		}
+
+		private void tlbMenuSaveAs_Click(Object sender, EventArgs e)
+		{
+			mnuFileSaveAs.PerformClick();
+		}
+
+		private void tlbMenuEdit_Click(Object sender, EventArgs e)
+		{
+			mnuEditMode0.PerformClick();
+		}
+
+		private void tlbMenuWrite_Click(Object sender, EventArgs e)
+		{
+			mnuEditMode1.PerformClick();
+		}
+
+		private void tlbMenuDelete_Click(Object sender, EventArgs e)
+		{
+			mnuEditMode2.PerformClick();
+		}
+
+		private void tlbMenuPlayAll_Click(Object sender, EventArgs e)
+		{
+			mnuToolsPlayAll.PerformClick();
+		}
+
+		private void tlbMenuPlay_Click(Object sender, EventArgs e)
+		{
+			mnuToolsPlay.PerformClick();
+		}
+
+		private void tlbMenuStop_Click(Object sender, EventArgs e)
+		{
+			mnuToolsPlayStop.PerformClick();
+		}
+
 		private void mnuFileNew_Click(Object sender, EventArgs e)
 		{
 			if (App.module.SaveCheck() != 0)
@@ -592,13 +648,13 @@ namespace Bmse.Forms
 
 								App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
 
-								if(mnuOptionsSelectPreview.Checked
+								if (mnuOptionsSelectPreview.Checked
 									&& (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh >= 11 && Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh <= 29)
 									|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh > 100)
 								{
 									strRet = Module.g_strWAV[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue];
 
-									if(!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
+									if (!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
 									{
 										//TODO: PreviewWAV(strRet);
 									}
@@ -606,7 +662,7 @@ namespace Bmse.Forms
 							}
 							else
 							{	// 単数選択っぽい
-								if(!EnvUtil.Control)
+								if (!EnvUtil.Control)
 								{
 									App.module.ObjSelectCancel();
 								}
@@ -616,10 +672,104 @@ namespace Bmse.Forms
 								App.module.MoveSelectedObj();
 
 								// TODO: 6293行目から
-								//Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].
+								m_retObj = new g_udtObj[1];
+
+								for (int i = 0; i < Module.g_Obj.Length - 1; i++)
+								{
+									App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[i]);
+									Module.g_Obj[i].lngHeight = m_retObj.Length - 1;
+									Array.Resize(ref m_retObj, m_retObj.Length + 1);
+								}
+
+								App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
+
+								if (mnuOptionsSelectPreview.Checked)
+								{
+									if ((11 <= Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh
+										&& Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh <= 29)
+										|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh > 100)
+									{
+										strRet = Module.g_strWAV[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue];
+
+										if (!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
+										{
+											// TODO: PreviewWAV(strRet);
+										}
+									}
+									else if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 4
+										|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 6
+										|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh == 7)
+									{
+										if (Module.g_strBGA[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue].Length != 0)
+										{
+											// TODO: PreviewBGA(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue);
+										}
+										else
+										{
+											strRet = Module.g_strBMP[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].sngValue];
+
+											if (!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
+											{
+												// TODO: PreviewBMP(strRet);
+											}
+										}
+									}
+								}
 							}
+
+							picMain.Refresh();
+						}
+						else
+						{	// オブジェのないところで押したっぽい
+							if (!EnvUtil.Control)
+							{
+								App.module.ObjSelectCancel();
+								picMain.Refresh();
+							}
+							else
+							{
+								for (int i = 0; i < Module.g_Obj.Length - 1; i++)
+								{
+									if (Module.g_Obj[i].intSelect != 0)
+									{
+										Module.g_Obj[i].intSelect = 5;
+									}
+								}
+
+								picMain.Refresh();
+							}
+
+							Module.g_SelectArea.blnFlag = true;
+							Module.g_SelectArea.x1 = e.X / (int)Module.g_disp.width + Module.g_disp.x;
+							Module.g_SelectArea.y1 = (picMain.Height - e.Y) / (int)Module.g_disp.height + Module.g_disp.y;
+							Module.g_SelectArea.x2 = Module.g_SelectArea.x1;
+							Module.g_SelectArea.y2 = Module.g_SelectArea.y1;
+
+							App.module.DrawSelectArea();
+						}
+
+						if (Module.g_disp.intEffect != 0)
+						{
+							//TODO: App.module.DrawEffect();
 						}
 					}
+					else
+					{	//// tlbMenuWrite.Checked = true
+						
+						App.module.ObjSelectCancel();
+						picMain.Refresh();
+
+						App.module.InitPen();
+						using(Graphics gPicMain = picMain.CreateGraphics())
+						{
+							App.module.DrawObj(ref Module.g_Obj[Module.g_Obj.Length - 1], gPicMain);
+						}
+						App.module.DeletePen();
+					}
+				}
+				else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+				{
+					// TODO: 6434行目から
 				}
 			}
 			catch (Exception exception)

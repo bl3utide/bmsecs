@@ -793,6 +793,7 @@
 			this.tlbMenuNew.Name = "tlbMenuNew";
 			this.tlbMenuNew.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuNew.Text = "tlbMenuNew";
+			this.tlbMenuNew.Click += tlbMenuNew_Click;
 			// 
 			// tlbMenuOpen
 			// 
@@ -804,6 +805,7 @@
 			this.tlbMenuOpen.Name = "tlbMenuOpen";
 			this.tlbMenuOpen.Size = new System.Drawing.Size(38, 25);
 			this.tlbMenuOpen.Text = "tlbMenuOpen";
+			this.tlbMenuOpen.Click += tlbMenuOpen_Click;
 			// 
 			// tlbMenuReload
 			// 
@@ -814,6 +816,7 @@
 			this.tlbMenuReload.Name = "tlbMenuReload";
 			this.tlbMenuReload.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuReload.Text = "tlbMenuReload";
+			this.tlbMenuReload.Click += tlbMenuReload_Click;
 			// 
 			// tlbMenuSave
 			// 
@@ -824,6 +827,7 @@
 			this.tlbMenuSave.Name = "tlbMenuSave";
 			this.tlbMenuSave.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuSave.Text = "tlbMenuSave";
+			this.tlbMenuSave.Click += tlbMenuSave_Click;
 			// 
 			// tlbMenuSaveAs
 			// 
@@ -834,6 +838,7 @@
 			this.tlbMenuSaveAs.Name = "tlbMenuSaveAs";
 			this.tlbMenuSaveAs.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuSaveAs.Text = "tlbMenuSaveAs";
+			this.tlbMenuSaveAs.Click += tlbMenuSaveAs_Click;
 			// 
 			// tlbMenuSepMode
 			// 
@@ -853,6 +858,7 @@
 			this.tlbMenuEdit.Name = "tlbMenuEdit";
 			this.tlbMenuEdit.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuEdit.Text = "tlbMenuEdit";
+			this.tlbMenuEdit.Click += tlbMenuEdit_Click;
 			// 
 			// tlbMenuWrite
 			// 
@@ -864,6 +870,7 @@
 			this.tlbMenuWrite.Name = "tlbMenuWrite";
 			this.tlbMenuWrite.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuWrite.Text = "tlbMenuWrite";
+			this.tlbMenuWrite.Click += tlbMenuWrite_Click;
 			// 
 			// tlbMenuDelete
 			// 
@@ -875,6 +882,7 @@
 			this.tlbMenuDelete.Name = "tlbMenuDelete";
 			this.tlbMenuDelete.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuDelete.Text = "tlbMenuDelete";
+			this.tlbMenuDelete.Click += tlbMenuDelete_Click;
 			// 
 			// tlbMenuSepViewer
 			// 
@@ -901,6 +909,7 @@
 			this.tlbMenuPlayAll.Name = "tlbMenuPlayAll";
 			this.tlbMenuPlayAll.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuPlayAll.Text = "tlbMenuPlayAll";
+			this.tlbMenuPlayAll.Click += tlbMenuPlayAll_Click;
 			// 
 			// tlbMenuPlay
 			// 
@@ -911,6 +920,7 @@
 			this.tlbMenuPlay.Name = "tlbMenuPlay";
 			this.tlbMenuPlay.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuPlay.Text = "tlbMenuPlay";
+			this.tlbMenuPlay.Click += tlbMenuPlay_Click;
 			// 
 			// tlbMenuStop
 			// 
@@ -921,6 +931,7 @@
 			this.tlbMenuStop.Name = "tlbMenuStop";
 			this.tlbMenuStop.Size = new System.Drawing.Size(23, 25);
 			this.tlbMenuStop.Text = "tlbMenuStop";
+			this.tlbMenuStop.Click += tlbMenuStop_Click;
 			// 
 			// lblGridMain
 			// 

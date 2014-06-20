@@ -872,7 +872,7 @@ namespace Bmse
 		}
 
 		//private static Font ObjFont = new Font(System.Windows.Forms.Control.DefaultFont.Name, 8.0f, FontStyle.Regular);
-		private void DrawObj(ref g_udtObj retObj, Graphics g)
+		public void DrawObj(ref g_udtObj retObj, Graphics g)
 		{
 			int intRet;
 			string text;
