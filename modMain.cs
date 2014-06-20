@@ -72,82 +72,82 @@ namespace Bmse
 		public int bottom;
 	}
 
-	public struct Mouse
+	public struct m_udtMouse
 	{
 		public int x;
 		public int y;
 	}
 
-	public struct Display
+	public struct m_udtDisplay
 	{
 		public int x;
 		public int y;
 		public double width;
 		public double height;
-		public int maxX;
-		public int maxY;
-		public int startMeasure;
-		public int endMeasure;
-		public int startPos;
-		public int endPos;
-		public int maxMeasure;		// 最大表示小節
-		public int resolution;		// 分解能
-		public int effect;			// 画面効果
+		public int lngMaxX;
+		public int lngMaxY;
+		public int intStartMeasure;
+		public int intEndMeasure;
+		public int lngStartPos;
+		public int lngEndPos;
+		public int intMaxMeasure;		// 最大表示小節
+		public int intResolution;		// 分解能
+		public int intEffect;			// 画面効果
 	}
 
-	public struct Bms
+	public struct m_udtBMS
 	{
-		public string dir;			// ディレクトリ
-		public string fileName;		// BMSファイル名
-		public int playerType;		// #PLAYER
-		public string genre;		// #GENRE
-		public string title;		// #TITLE
-		public string artist;		// #ARTIST
-		public double bpm;			// #BPM
-		public int playLevel;		// #PLAYLEVEL
-		public int playRank;		// #RANK
-		public double total;		// #TOTAL
-		public int volume;			// #VOLWAV
-		public string stageFile;	// #STAGEFILE
-		public bool saveFlag;
+		public string strDir;			// ディレクトリ
+		public string strFileName;		// BMSファイル名
+		public int intPlayerType;		// #PLAYER
+		public string strGenre;			// #GENRE
+		public string strTitle;			// #TITLE
+		public string strArtist;		// #ARTIST
+		public double sngBPM;			// #BPM
+		public int lngPlayLevel;		// #PLAYLEVEL
+		public int intPlayRank;			// #RANK
+		public double sngTotal;			// #TOTAL
+		public int intVolume;			// #VOLWAV
+		public string strStageFile;		// #STAGEFILE
+		public bool blnSaveFlag;
 	}
 
-	public struct VerticalLine
+	public struct m_udtVerticalLine
 	{
-		public bool visible;
-		public int ch;
-		public string text;
-		public int width;
-		public int left;
-		public int objLeft;
-		public Color BackColor;
-		public int lightNum;
-		public int shadowNum;
-		public int brushNum;
-		public bool draw;
+		public bool blnVisible;
+		public int intCh;
+		public string strText;
+		public int intWidth;
+		public int lngLeft;
+		public int lngObjLeft;
+		public Color lngBackColor;
+		public int intLightNum;
+		public int intShadowNum;
+		public int intBrushNum;
+		public bool blnDraw;
 	}
 
-	public struct Obj
+	public struct g_udtObj
 	{
-		public int id;
-		public int ch;
-		public int att;
-		public int measure;
-		public int height;
-		public int position;
-		public int value;
-		public int select;
+		public int lngID;
+		public int intCh;
+		public int intAtt;
+		public int intMeasure;
+		public int intHeight;
+		public int lngPosition;
+		public int sngValue;
+		public int intSelect;
 	}
 
-	public struct Measure
+	public struct m_udtMeasure
 	{
-		public int len;
-		public int y;
+		public int intLen;
+		public int lngY;
 	}
 
-	public struct SelectArea
+	public struct m_udtSelectArea
 	{
-		public bool flag;
+		public bool blnFlag;
 		public int x1;
 		public int y1;
 		public int x2;
@@ -157,13 +157,13 @@ namespace Bmse
 	/// <summary>
 	/// ビューワ情報
 	/// </summary>
-	public struct Viewer
+	public struct g_udtViewer
 	{
-		public string appName;
-		public string appPath;
-		public string argAll;
-		public string argPlay;
-		public string argStop;
+		public string strAppName;
+		public string strAppPath;
+		public string strArgAll;
+		public string strArgPlay;
+		public string strArgStop;
 	}
 
 	partial class Module
@@ -183,33 +183,33 @@ namespace Bmse
 
 		public const double PI = 3.14159265358979;
 
-		public static string gAppTitle;
-		public static Mouse gMouse;
-		public static Display gDisp;
-		public static Bms gBms;
-		public static VerticalLine[] gVGrid = new VerticalLine[62];
-		public static int[] gVGridNum = new int[133];
-		public static Obj[] gObj;
-		public static int[] gObjID;
-		public static int gIDNum;
-		public static Measure[] gMeasure = new Measure[1000];
-		public static string[] gWAV = new string[1296];
-		public static string[] gBMP = new string[1296];
-		public static string[] gBGA = new string[1296];
-		public static double[] gBPM = new double[1296];
-		public static int[] gSTOP = new int[1296];
-		public static SelectArea gSelectArea;
-		public static string[] gLangFileName;		// 言語ファイルのパス一覧
-		public static string[] gThemeFileName;
-		public static string[] gStatusBar = new string[24];
-		public static bool gIgnoreInput;
-		public static string gAppDir;
-		public static string gHelpFileName;
-		public static string gFiler;
-		public static string[] gRecentFiles = new string[5];
-		public static Log gInputLog;
-		public static Viewer[] gViewer;
-		public static string[] gMessage = new string[(int)Message.Max];
+		public static string g_strAppTitle;
+		public static m_udtMouse g_Mouse;
+		public static m_udtDisplay g_disp;
+		public static m_udtBMS g_BMS;
+		public static m_udtVerticalLine[] g_VGrid = new m_udtVerticalLine[62];
+		public static int[] g_intVGridNum = new int[133];
+		public static g_udtObj[] g_Obj;
+		public static int[] g_lngObjID;
+		public static int g_lngIDNum;
+		public static m_udtMeasure[] g_Measure = new m_udtMeasure[1000];
+		public static string[] g_strWAV = new string[1296];
+		public static string[] g_strBMP = new string[1296];
+		public static string[] g_strBGA = new string[1296];
+		public static double[] g_sngBPM = new double[1296];
+		public static int[] g_lngSTOP = new int[1296];
+		public static m_udtSelectArea g_SelectArea;
+		public static string[] g_strLangFileName;		// 言語ファイルのパス一覧
+		public static string[] g_strThemeFileName;
+		public static string[] g_strStatusBar = new string[24];
+		public static bool g_blnIgnoreInput;
+		public static string g_strAppDir;
+		public static string g_strHelpFileName;
+		public static string g_strFiler;
+		public static string[] g_strRecentFiles = new string[5];
+		public static Log g_InputLog;
+		public static g_udtViewer[] g_Viewer;
+		public static string[] g_Message = new string[(int)Message.Max];
 
 		private static int confCount = 0;
 
@@ -227,23 +227,23 @@ namespace Bmse
 			string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 			if (StringUtil.Right(appPath, 1).Equals("\\"))
 			{
-				gAppDir = appPath;
+				g_strAppDir = appPath;
 			}
 			else
 			{
-				gAppDir = appPath + "\\";
+				g_strAppDir = appPath + "\\";
 			}
 
 			// アプリケーションのタイトルを設定
 			string appmajor = EnvUtil.AppMajor;
 			string appminor = EnvUtil.AppMinor;
 			string apprevision = EnvUtil.AppRevision;
-			gAppTitle = "BMx Sequence Editor " + appmajor + "." + appminor + "." + apprevision;
+			g_strAppTitle = "BMx Sequence Editor " + appmajor + "." + appminor + "." + apprevision;
 
 			// いくつか初期化
-			gLangFileName = new string[1];
-			gInputLog = new Log();
-			gViewer = new Viewer[2];
+			g_strLangFileName = new string[1];
+			g_InputLog = new Log();
+			g_Viewer = new g_udtViewer[2];
 
 			// viewer設定ファイルの初期化
 			if (!ConfigManager.Instance.Exist(CommonConst.XML_VIEWER))
@@ -280,7 +280,7 @@ namespace Bmse
 				}
 				else
 				{
-					gViewer[gViewer.Length - 1].appName = viewer["name"];
+					g_Viewer[g_Viewer.Length - 1].strAppName = viewer["name"];
 				}
 
 				if (viewer["path"].Length == 0)
@@ -289,18 +289,18 @@ namespace Bmse
 				}
 				else
 				{
-					gViewer[gViewer.Length - 1].appPath = viewer["path"];
+					g_Viewer[g_Viewer.Length - 1].strAppPath = viewer["path"];
 				}
 
-				gViewer[gViewer.Length - 1].argAll = viewer["all"];
-				gViewer[gViewer.Length - 1].argPlay = viewer["play"];
-				gViewer[gViewer.Length - 1].argStop = viewer["stop"];
+				g_Viewer[g_Viewer.Length - 1].strArgAll = viewer["all"];
+				g_Viewer[g_Viewer.Length - 1].strArgPlay = viewer["play"];
+				g_Viewer[g_Viewer.Length - 1].strArgStop = viewer["stop"];
 
-				frmMain.cboViewer.Items.Add(gViewer[gViewer.Length - 1].appName);
-				Array.Resize(ref gViewer, gViewer.Length + 1);
+				frmMain.cboViewer.Items.Add(g_Viewer[g_Viewer.Length - 1].strAppName);
+				Array.Resize(ref g_Viewer, g_Viewer.Length + 1);
 			}
 
-			Array.Resize(ref gViewer, frmMain.cboViewer.Items.Count + 1);
+			Array.Resize(ref g_Viewer, frmMain.cboViewer.Items.Count + 1);
 
 			if (frmMain.cboViewer.Items.Count == 0)
 			{
@@ -315,7 +315,7 @@ namespace Bmse
 
 			//---------------------------------------------------------------------------
 			// 言語ファイル読み込み
-			string[] langFiles = FileUtil.Files(gAppDir, CommonConst.ALL_LANG_FILES);
+			string[] langFiles = FileUtil.Files(g_strAppDir, CommonConst.ALL_LANG_FILES);
 			retInt = 0;
 
 			foreach (string langFile in langFiles)
@@ -324,8 +324,8 @@ namespace Bmse
 				{
 					// ファイルが存在する言語をメニューに追加
 
-					Array.Resize(ref gLangFileName, retInt + 1);
-					gLangFileName[retInt] = langFile;
+					Array.Resize(ref g_strLangFileName, retInt + 1);
+					g_strLangFileName[retInt] = langFile;
 
 					ToolStripItem langMenu = new ToolStripMenuItem();
 
@@ -349,7 +349,7 @@ namespace Bmse
 						int _index = frmMain.mnuLanguage.DropDownItems.IndexOf((ToolStripItem)sender);
 						((ToolStripMenuItem)frmMain.mnuLanguage.DropDownItems[_index]).Checked = true;
 
-						LoadLanguageFile(CommonConst.CONFDIR_LANG + gLangFileName[_index]);
+						LoadLanguageFile(CommonConst.CONFDIR_LANG + g_strLangFileName[_index]);
 
 						//Redraw();
 						frmMain.picMain.Refresh();
@@ -368,7 +368,7 @@ namespace Bmse
 
 			//---------------------------------------------------------------------------
 			// テーマファイル読み込み
-			string[] themeFiles = FileUtil.Files(gAppDir, CommonConst.ALL_THEME_FILES);
+			string[] themeFiles = FileUtil.Files(g_strAppDir, CommonConst.ALL_THEME_FILES);
 			retInt = 0;
 
 			foreach (string themeFile in themeFiles)
@@ -377,8 +377,8 @@ namespace Bmse
 				{
 					// ファイルが存在するテーマをメニューに追加
 
-					Array.Resize(ref gThemeFileName, retInt + 1);
-					gThemeFileName[retInt] = themeFile;
+					Array.Resize(ref g_strThemeFileName, retInt + 1);
+					g_strThemeFileName[retInt] = themeFile;
 
 					ToolStripItem themeMenu = new ToolStripMenuItem();
 
@@ -402,7 +402,7 @@ namespace Bmse
 						int _index = frmMain.mnuTheme.DropDownItems.IndexOf((ToolStripItem)sender);
 						((ToolStripMenuItem)frmMain.mnuTheme.DropDownItems[_index]).Checked = true;
 
-						LoadThemeFile(CommonConst.CONFDIR_THEME + gThemeFileName[_index]);
+						LoadThemeFile(CommonConst.CONFDIR_THEME + g_strThemeFileName[_index]);
 
 						//Redraw();
 						frmMain.picMain.Refresh();
@@ -421,24 +421,24 @@ namespace Bmse
 
 			//---------------------------------------------------------------------------
 			// 初期化
-			gBms.playerType = 1;
-			gBms.genre = "";
-			gBms.title = "";
-			gBms.artist = "";
-			gBms.bpm = double.Parse(frmMain.txtBPM.Text);
-			gBms.playLevel = 1;
-			gBms.playRank = 3;
-			gBms.total = 0;
-			gBms.volume = 0;
-			gBms.saveFlag = true;
+			g_BMS.intPlayerType = 1;
+			g_BMS.strGenre = "";
+			g_BMS.strTitle = "";
+			g_BMS.strArtist = "";
+			g_BMS.sngBPM = double.Parse(frmMain.txtBPM.Text);
+			g_BMS.lngPlayLevel = 1;
+			g_BMS.intPlayRank = 3;
+			g_BMS.sngTotal = 0;
+			g_BMS.intVolume = 0;
+			g_BMS.blnSaveFlag = true;
 
-			gObj = new Obj[1];
-			gObjID = new int[1];
-			gIDNum = 0;
+			g_Obj = new g_udtObj[1];
+			g_lngObjID = new int[1];
+			g_lngIDNum = 0;
 
 			for (int i = 0; i < 256 + 64; i++)
 			{
-				gSin[i] = Math.Sin(i * PI / 128);
+				g_sngSin[i] = Math.Sin(i * PI / 128);
 			}
 
 			// 開くボタンの履歴メニューを初期化
@@ -459,7 +459,7 @@ namespace Bmse
 			frmMain.mnuHelpOpen.Enabled = false;
 
 			// フォームタイトル設定
-			frmMain.Text = gAppTitle;
+			frmMain.Text = g_strAppTitle;
 
 			frmWindowAbout = new FormWindowAbout();
 			frmWindowFind = new FormWindowFind();
@@ -493,23 +493,23 @@ namespace Bmse
 				break;
 			}
 
-			frmMain.dlgMainOpen.InitialDirectory = gAppDir;
-			frmMain.dlgMainSave.InitialDirectory = gAppDir;
+			frmMain.dlgMainOpen.InitialDirectory = g_strAppDir;
+			frmMain.dlgMainSave.InitialDirectory = g_strAppDir;
 			frmMain.dlgMainOpen.CheckFileExists = true;
 			frmMain.dlgMainOpen.CheckPathExists = true;
 			//frmMain.dlgMainSave.CheckFileExists = true;
 			frmMain.dlgMainSave.CheckPathExists = true;
 			frmMain.dlgMainSave.OverwritePrompt = true;
 
-			gDisp.maxY = frmMain.vsbMain.Maximum;	// UNDONE: スクロールバー絡みの問題
-			gDisp.maxX = frmMain.hsbMain.Minimum;	// UNDONE: スクロールバー絡みの問題
+			g_disp.lngMaxY = frmMain.vsbMain.Maximum;	// UNDONE: スクロールバー絡みの問題
+			g_disp.lngMaxX = frmMain.hsbMain.Minimum;	// UNDONE: スクロールバー絡みの問題
 
 			frmMain.hsbMain.SmallChange = OBJ_WIDTH;
 			frmMain.hsbMain.LargeChange = OBJ_WIDTH * 4;
 
-			frmMain.cboPlayer.SelectedIndex = gBms.playerType - 1;
-			frmMain.cboPlayLevel.Text = gBms.playLevel.ToString();
-			frmMain.cboPlayRank.SelectedIndex = gBms.playRank;
+			frmMain.cboPlayer.SelectedIndex = g_BMS.intPlayerType - 1;
+			frmMain.cboPlayLevel.Text = g_BMS.lngPlayLevel.ToString();
+			frmMain.cboPlayRank.SelectedIndex = g_BMS.intPlayRank;
 
 			if (ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Options", "UseOldFormat", false))
 			{
@@ -538,137 +538,137 @@ namespace Bmse
 			for (int i = 0; i < 1000; i++)
 			{
 				frmMain.lstMeasureLen.Items.Insert(i, "#" + i.ToString("000") + ":4/4");
-				gMeasure[i].len = 192;
+				g_Measure[i].intLen = 192;
 			}
 
 			int[] chArray = { 0, 8, 9, 0, 21, 16, 11, 12, 13, 14, 15, 18, 19, 16, 0, 26, 21, 22, 23, 24, 25, 28, 29, 26, 0, 4, 7, 6, 0, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 0 };
-			for (int i = 0; i < gVGrid.Length; i++)
+			for (int i = 0; i < g_VGrid.Length; i++)
 			{
-				gVGrid[i].ch = chArray[i];
-				gVGrid[i].visible = true;
+				g_VGrid[i].intCh = chArray[i];
+				g_VGrid[i].blnVisible = true;
 
-				if (gVGrid[i].ch == 3 || gVGrid[i].ch == 8 || gVGrid[i].ch == 9) //'BPM/STOP
+				if (g_VGrid[i].intCh == 3 || g_VGrid[i].intCh == 8 || g_VGrid[i].intCh == 9) //'BPM/STOP
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.BPM_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.BPM_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.BPM;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.BPM_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.BPM_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.BPM;
 				}
-				else if (gVGrid[i].ch == 4 || gVGrid[i].ch == 6 || gVGrid[i].ch == 7) //'BGA/Layer/Poor
+				else if (g_VGrid[i].intCh == 4 || g_VGrid[i].intCh == 6 || g_VGrid[i].intCh == 7) //'BGA/Layer/Poor
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.BGA_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.BGA_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.BGA;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.BGA_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.BGA_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.BGA;
 				}
-				else if (gVGrid[i].ch == 11)
+				else if (g_VGrid[i].intCh == 11)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY01_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY01_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY01;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY01_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY01_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY01;
 				}
-				else if (gVGrid[i].ch == 12)
+				else if (g_VGrid[i].intCh == 12)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY02_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY02_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY02;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY02_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY02_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY02;
 				}
-				else if (gVGrid[i].ch == 13)
+				else if (g_VGrid[i].intCh == 13)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY03_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY03_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY03;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY03_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY03_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY03;
 				}
-				else if (gVGrid[i].ch == 14)
+				else if (g_VGrid[i].intCh == 14)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY04_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY04_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY04;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY04_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY04_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY04;
 				}
-				else if (gVGrid[i].ch == 15)
+				else if (g_VGrid[i].intCh == 15)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY05_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY05_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY05;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY05_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY05_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY05;
 				}
-				else if (gVGrid[i].ch == 18)
+				else if (g_VGrid[i].intCh == 18)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY06_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY06_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY06;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY06_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY06_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY06;
 				}
-				else if (gVGrid[i].ch == 19)
+				else if (g_VGrid[i].intCh == 19)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY07_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY07_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY07;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY07_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY07_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY07;
 				}
-				else if (gVGrid[i].ch == 16)
+				else if (g_VGrid[i].intCh == 16)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY08_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY08_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY08;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY08_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY08_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY08;
 				}
-				else if (gVGrid[i].ch == 21)
+				else if (g_VGrid[i].intCh == 21)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY11_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY11_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY11;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY11_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY11_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY11;
 				}
-				else if (gVGrid[i].ch == 22)
+				else if (g_VGrid[i].intCh == 22)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY12_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY12_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY12;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY12_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY12_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY12;
 				}
-				else if (gVGrid[i].ch == 23)
+				else if (g_VGrid[i].intCh == 23)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY13_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY13_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY13;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY13_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY13_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY13;
 				}
-				else if (gVGrid[i].ch == 24)
+				else if (g_VGrid[i].intCh == 24)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY14_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY14_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY14;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY14_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY14_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY14;
 				}
-				else if (gVGrid[i].ch == 25)
+				else if (g_VGrid[i].intCh == 25)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY15_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY15_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY15;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY15_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY15_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY15;
 				}
-				else if (gVGrid[i].ch == 28)
+				else if (g_VGrid[i].intCh == 28)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY16_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY16_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY16;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY16_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY16_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY16;
 				}
-				else if (gVGrid[i].ch == 29)
+				else if (g_VGrid[i].intCh == 29)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY17_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY17_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY17;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY17_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY17_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY17;
 				}
-				else if (gVGrid[i].ch == 26)
+				else if (g_VGrid[i].intCh == 26)
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.KEY18_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.KEY18_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.KEY18;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.KEY18_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.KEY18_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.KEY18;
 				}
-				else if (gVGrid[i].ch > 100) //'BGM
+				else if (g_VGrid[i].intCh > 100) //'BGM
 				{
-					gVGrid[i].lightNum = (int)PEN_NUM.BGM_LIGHT;
-					gVGrid[i].shadowNum = (int)PEN_NUM.BGM_SHADOW;
-					gVGrid[i].brushNum = (int)BRUSH_NUM.BGM;
+					g_VGrid[i].intLightNum = (int)PEN_NUM.BGM_LIGHT;
+					g_VGrid[i].intShadowNum = (int)PEN_NUM.BGM_SHADOW;
+					g_VGrid[i].intBrushNum = (int)BRUSH_NUM.BGM;
 				}
 
-				if (gVGrid[i].ch != 0)
+				if (g_VGrid[i].intCh != 0)
 				{
-					gVGrid[i].width = GRID_WIDTH;
+					g_VGrid[i].intWidth = GRID_WIDTH;
 				}
 				else
 				{
-					gVGrid[i].width = SPACE_WIDTH;
+					g_VGrid[i].intWidth = SPACE_WIDTH;
 				}
 			}
 
@@ -687,20 +687,20 @@ namespace Bmse
 			frmMain.cboNumerator.SelectedIndex = 3;
 			frmMain.cboDenominator.SelectedIndex = 0;
 
-			gDisp.maxMeasure = 0;
+			g_disp.intMaxMeasure = 0;
 			ChangeMaxMeasure(15);
 			ChangeResolution();
 
 			GetCmdLine();
 
-			gBms.saveFlag = true;
+			g_BMS.blnSaveFlag = true;
 
 			frmMain.lstWAV.SetSelected(0, true);
 			frmMain.lstBMP.SetSelected(0, true);
 			frmMain.lstBGA.SetSelected(0, true);
 			frmMain.lstMeasureLen.SetSelected(0, true);
 
-			gIgnoreInput = false;
+			g_blnIgnoreInput = false;
 
 			if (ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "EasterEgg", "Tips", 0) != 0)
 			{
@@ -724,29 +724,29 @@ namespace Bmse
 
 		public void CleanUp(string expMessage, string errProcedure)
 		{
-			gInputLog = null;
+			g_InputLog = null;
 
 			// TODO: SaveConfig();
 
 			// TODO: 音声デバイスの停止
 
-			DeleteFile(gBms.dir + "___bmse_temp.bms");
-			DeleteFile(gAppDir + "___bmse_temp.bms");
+			DeleteFile(g_BMS.strDir + "___bmse_temp.bms");
+			DeleteFile(g_strAppDir + "___bmse_temp.bms");
 
-			if (gBms.dir == null || gBms.dir.Length == 0)
+			if (g_BMS.strDir == null || g_BMS.strDir.Length == 0)
 			{
-				gBms.dir = gAppDir;
+				g_BMS.strDir = g_strAppDir;
 			}
 
 			for (int i = 0; i < 10000; i++)
 			{
-				gBms.fileName = "temp" + i.ToString("0000") + ".bms";
+				g_BMS.strFileName = "temp" + i.ToString("0000") + ".bms";
 
 				if (i == 9999)
 				{
 					// TODO: CreateBMS(gBms.dir + gBms.fileName);
 				}
-				else if ("".Equals(FileUtil.Dir(gBms.dir + gBms.fileName)))
+				else if ("".Equals(FileUtil.Dir(g_BMS.strDir + g_BMS.strFileName)))
 				{
 					// TODO: CreateBMS(gBms.dir + gBms.fileName);
 					break;
@@ -770,14 +770,14 @@ namespace Bmse
 			if(cleanup)
 			{
 				string crlf = Environment.NewLine;
-				error = gMessage[(int)Message.ERR_01] + crlf + error + crlf;
-				error = error + gMessage[(int)Message.ERR_02] + crlf;
-				error = error + gBms.dir + gBms.fileName;
+				error = g_Message[(int)Message.ERR_01] + crlf + error + crlf;
+				error = error + g_Message[(int)Message.ERR_02] + crlf;
+				error = error + g_BMS.strDir + g_BMS.strFileName;
 			}
 
 			frmMain.Show();
 
-			MessageBox.Show(error, gAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			MessageBox.Show(error, g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 		}
 
 		public int DeleteFile(string fileName)
@@ -800,21 +800,21 @@ namespace Bmse
 
 			try
 			{
-				if (frmMain.cboPlayer.SelectedIndex + 1 != gBms.playerType
-					|| !frmMain.txtGenre.Text.Equals(gBms.genre)
-					|| !frmMain.txtTitle.Text.Equals(gBms.title)
-					|| !frmMain.txtArtist.Text.Equals(gBms.artist)
-					|| int.Parse(frmMain.cboPlayLevel.Text) != gBms.playLevel
-					|| double.Parse(frmMain.txtBPM.Text) != gBms.bpm
-					|| frmMain.cboPlayRank.SelectedIndex != gBms.playRank
-					|| double.Parse(frmMain.txtTotal.Text) != gBms.total
-					|| int.Parse(frmMain.txtVolume.Text) != gBms.volume
-					|| !frmMain.txtStageFile.Text.Equals(gBms.stageFile))
+				if (frmMain.cboPlayer.SelectedIndex + 1 != g_BMS.intPlayerType
+					|| !frmMain.txtGenre.Text.Equals(g_BMS.strGenre)
+					|| !frmMain.txtTitle.Text.Equals(g_BMS.strTitle)
+					|| !frmMain.txtArtist.Text.Equals(g_BMS.strArtist)
+					|| int.Parse(frmMain.cboPlayLevel.Text) != g_BMS.lngPlayLevel
+					|| double.Parse(frmMain.txtBPM.Text) != g_BMS.sngBPM
+					|| frmMain.cboPlayRank.SelectedIndex != g_BMS.intPlayRank
+					|| double.Parse(frmMain.txtTotal.Text) != g_BMS.sngTotal
+					|| int.Parse(frmMain.txtVolume.Text) != g_BMS.intVolume
+					|| !frmMain.txtStageFile.Text.Equals(g_BMS.strStageFile))
 				{
-					gBms.saveFlag = false;
+					g_BMS.blnSaveFlag = false;
 				}
 
-				if (gBms.saveFlag)
+				if (g_BMS.blnSaveFlag)
 				{
 					return 0;
 				}
@@ -822,15 +822,15 @@ namespace Bmse
 				frmMain.Show();
 
 				DialogResult res
-					= MessageBox.Show(gMessage[(int)Message.MSG_FILE_CHANGED],
-										gAppTitle,
+					= MessageBox.Show(g_Message[(int)Message.MSG_FILE_CHANGED],
+										g_strAppTitle,
 										MessageBoxButtons.YesNoCancel,
 										MessageBoxIcon.Exclamation);
 
 				if(res == DialogResult.Yes)
 				{
-					if (( gBms.dir != null && !"".Equals(gBms.dir) )
-						&& ( gBms.fileName != null && !"".Equals(gBms.fileName) ))
+					if (( g_BMS.strDir != null && !"".Equals(g_BMS.strDir) )
+						&& ( g_BMS.strFileName != null && !"".Equals(g_BMS.strFileName) ))
 					{
 						//TODO: CreateBMS(gBms.dir + gBms.fileName);
 					}
@@ -838,19 +838,19 @@ namespace Bmse
 					{
 						frmMain.dlgMainSave.Filter
 							= "BMS files (*.bms,*.bme,*.bml,*.pms)|*.bms;*.bme;*.bml;*.pms|All files (*.*)|*.*";
-						frmMain.dlgMainSave.FileName = gBms.fileName;
+						frmMain.dlgMainSave.FileName = g_BMS.strFileName;
 
 						frmMain.dlgMainSave.ShowDialog();
 
-						gBms.dir = System.IO.Path.GetDirectoryName(frmMain.dlgMainSave.FileName) + "\\";
-						gBms.fileName = Path.GetFileName(frmMain.dlgMainSave.FileName);
+						g_BMS.strDir = System.IO.Path.GetDirectoryName(frmMain.dlgMainSave.FileName) + "\\";
+						g_BMS.strFileName = Path.GetFileName(frmMain.dlgMainSave.FileName);
 
 						// TODO: CreateBMS(gBms.dir + gBms.fileName);
 						
 						// TODO: RecentFileRotation(gBms.dir + gBms.fileName);
 
-						frmMain.dlgMainOpen.InitialDirectory = gBms.dir;
-						frmMain.dlgMainSave.InitialDirectory = gBms.dir;
+						frmMain.dlgMainOpen.InitialDirectory = g_BMS.strDir;
+						frmMain.dlgMainSave.InitialDirectory = g_BMS.strDir;
 					}
 
 					return 0;
@@ -892,13 +892,13 @@ namespace Bmse
 					|| ".BML".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper())
 					|| ".PMS".Equals(cmdArray[i].Substring(cmdArray[i].Length - 4, 4).ToUpper()))
 				{
-					gBms.fileName = Path.GetFileName(cmdArray[i]);
-					gBms.dir = System.IO.Path.GetDirectoryName(cmdArray[i]) + "\\";
-					frmMain.dlgMainOpen.InitialDirectory = gBms.dir;
-					frmMain.dlgMainSave.InitialDirectory = gBms.dir;
+					g_BMS.strFileName = Path.GetFileName(cmdArray[i]);
+					g_BMS.strDir = System.IO.Path.GetDirectoryName(cmdArray[i]) + "\\";
+					frmMain.dlgMainOpen.InitialDirectory = g_BMS.strDir;
+					frmMain.dlgMainSave.InitialDirectory = g_BMS.strDir;
 
-					Console.WriteLine(gBms.fileName);
-					Console.WriteLine(gBms.dir);
+					Console.WriteLine(g_BMS.strFileName);
+					Console.WriteLine(g_BMS.strDir);
 
 					LoadBMS();
 					// TODO: RecentFilesRotation(gBms.dir + gBms.fileName);
@@ -980,25 +980,25 @@ namespace Bmse
 			frmMain.picMain.BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "MeasureNum", "64,64,64").Split(',');
-			gSystemColor[(int)COLOR_NUM.MEASURE_NUM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.MEASURE_NUM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "MeasureLine", "255,255,255").Split(',');
-			gSystemColor[(int)COLOR_NUM.MEASURE_LINE] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.MEASURE_LINE] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "GridMain", "96,96,96").Split(',');
-			gSystemColor[(int)COLOR_NUM.GRID_MAIN] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.GRID_MAIN] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "GridSub", "192,192,192").Split(',');
-			gSystemColor[(int)COLOR_NUM.GRID_SUB] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.GRID_SUB] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "VerticalMain", "255,255,255").Split(',');
-			gSystemColor[(int)COLOR_NUM.VERTICAL_MAIN] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.VERTICAL_MAIN] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "VerticalSub", "128,128,128").Split(',');
-			gSystemColor[(int)COLOR_NUM.VERTICAL_SUB] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.VERTICAL_SUB] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			array = ConfigManager.Instance.GetValue(fileName, "Main", "Info", "0,255,0").Split(',');
-			gSystemColor[(int)COLOR_NUM.INFO] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+			g_lngSystemColor[(int)COLOR_NUM.INFO] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 			for (int i = 0; i < (int)BRUSH_NUM.Max; i++)
 			{
@@ -1011,56 +1011,56 @@ namespace Bmse
 
 						for (int j = 0; j < 32; j++)
 						{
-							gVGrid[(int)GRID.NUM_BGM + j].text = array[j];
-							gVGrid[(int)GRID.NUM_BGM + j].BackColor = retColor;
+							g_VGrid[(int)GRID.NUM_BGM + j].strText = array[j];
+							g_VGrid[(int)GRID.NUM_BGM + j].lngBackColor = retColor;
 						}
 
 						array = ConfigManager.Instance.GetValue(fileName, "BGM", "ObjectLight", "255,0,0").Split(',');
-						gPenColor[(int)PEN_NUM.BGM_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BGM_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BGM", "ObjectShawdow", "96,0,0").Split(',');
-						gPenColor[(int)PEN_NUM.BGM_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BGM_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BGM", "ObjectColor", "128,0,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.BGM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.BGM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
 					case (int)BRUSH_NUM.BPM:
 						array = ConfigManager.Instance.GetValue(fileName, "BPM", "Text", "BPM,STOP").Split(',');
-						gVGrid[(int)GRID.NUM_BPM].text = array[0];
-						gVGrid[(int)GRID.NUM_STOP].text = array[1];
+						g_VGrid[(int)GRID.NUM_BPM].strText = array[0];
+						g_VGrid[(int)GRID.NUM_STOP].strText = array[1];
 
 						array = ConfigManager.Instance.GetValue(fileName, "BPM", "Background", "48,48,48").Split(',');
 						retColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gVGrid[(int)GRID.NUM_BPM].BackColor = retColor;
-						gVGrid[(int)GRID.NUM_STOP].BackColor= retColor;
+						g_VGrid[(int)GRID.NUM_BPM].lngBackColor = retColor;
+						g_VGrid[(int)GRID.NUM_STOP].lngBackColor= retColor;
 
 						array = ConfigManager.Instance.GetValue(fileName, "BPM", "ObjectLight", "192,192,0").Split(',');
-						gPenColor[(int)PEN_NUM.BPM_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BPM_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BPM", "ObjectShadow", "128,128,0").Split(',');
-						gPenColor[(int)PEN_NUM.BPM_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BPM_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BPM", "ObjectColor", "160,160,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.BPM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.BPM] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
 					case (int)BRUSH_NUM.BGA:
 						array = ConfigManager.Instance.GetValue(fileName, "BGA", "Text", "BGA,LAYER,POOR").Split(',');
-						gVGrid[(int)GRID.NUM_BGA].text = array[0];
-						gVGrid[(int)GRID.NUM_LAYER].text = array[1];
-						gVGrid[(int)GRID.NUM_POOR].text = array[2];
+						g_VGrid[(int)GRID.NUM_BGA].strText = array[0];
+						g_VGrid[(int)GRID.NUM_LAYER].strText = array[1];
+						g_VGrid[(int)GRID.NUM_POOR].strText = array[2];
 
 						array = ConfigManager.Instance.GetValue(fileName, "BGA", "Background", "0,24,0").Split(',');
 						retColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gVGrid[(int)GRID.NUM_BGA].BackColor = retColor;
-						gVGrid[(int)GRID.NUM_LAYER].BackColor = retColor;
-						gVGrid[(int)GRID.NUM_POOR].BackColor = retColor;
+						g_VGrid[(int)GRID.NUM_BGA].lngBackColor = retColor;
+						g_VGrid[(int)GRID.NUM_LAYER].lngBackColor = retColor;
+						g_VGrid[(int)GRID.NUM_POOR].lngBackColor = retColor;
 
 						array = ConfigManager.Instance.GetValue(fileName, "BGA", "ObjectLight", "0,255,0").Split(',');
-						gPenColor[(int)PEN_NUM.BGA_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BGA_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BGA", "ObjectShadow", "0,96,0").Split(',');
-						gPenColor[(int)PEN_NUM.BGA_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.BGA_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "BGA", "ObjectColor", "0,128,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.BGA] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.BGA] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
@@ -1071,20 +1071,20 @@ namespace Bmse
 						retInt = (i - (int)BRUSH_NUM.KEY01) + 1;
 
 						//gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
+						g_VGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].strText = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "Background", "32,32,32").Split(',');
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectLight", "192,192,192").Split(',');
-						gPenColor[(int)PEN_NUM.KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectShadow", "96,96,96").Split(',');
-						gPenColor[(int)PEN_NUM.KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectColor", "128,128,128").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						break;
 
@@ -1094,40 +1094,40 @@ namespace Bmse
 						retInt = (i - (int)BRUSH_NUM.KEY01) + 1;
 
 						//gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt).ToString();
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
+						g_VGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].strText = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "Background", "0,0,40").Split(',');
-						gVGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_1P_1KEY + retInt - 1].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectLight", "96,96,255").Split(',');
-						gPenColor[(int)PEN_NUM.KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY01_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectShadow", "0,0,128").Split(',');
-						gPenColor[(int)PEN_NUM.KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY01_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY01_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY01_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_0" + retInt, "ObjectColor", "0,0,255").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY01 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						break;
 
 					case (int)BRUSH_NUM.KEY08:
-						gVGrid[(int)GRID.NUM_1P_SC_L].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "Text", "SC");
-						gVGrid[(int)GRID.NUM_1P_SC_R].text = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "Text", "SC");
+						g_VGrid[(int)GRID.NUM_1P_SC_L].strText = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "Text", "SC");
+						g_VGrid[(int)GRID.NUM_1P_SC_R].strText = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "Text", "SC");
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "Background", "48,0,0").Split(',');
-						gVGrid[(int)GRID.NUM_1P_SC_L].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gVGrid[(int)GRID.NUM_1P_SC_R].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_1P_SC_L].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_1P_SC_R].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "ObjectLight", "255,96,96").Split(',');
-						gPenColor[(int)PEN_NUM.KEY08_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY08_LIGHT] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY08_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY08_LIGHT] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "ObjectShadow", "128,0,0").Split(',');
-						gPenColor[(int)PEN_NUM.KEY08_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY08_SHADOW] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY08_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY08_SHADOW] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_1P_SC", "ObjectColor", "255,0,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY08] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY08] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY08] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY08] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						break;
 
@@ -1138,27 +1138,27 @@ namespace Bmse
 						retInt = (i - (int)BRUSH_NUM.KEY11) + 1;
 
 						//gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
+						g_VGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].strText = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "Background", "32,32,32").Split(',');
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectLight", "192,192,192").Split(',');
-						gPenColor[(int)PEN_NUM.KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectShadow", "96,96,96").Split(',');
-						gPenColor[(int)PEN_NUM.KEY11_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY11_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY11_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY11_SHADOW+ retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectColor", "128,128,128").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						if (i == (int)BRUSH_NUM.KEY11)
 						{
 							//gVGrid[(int)GRID.NUM_FOOTPEDAL].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt).ToString();
-							gVGrid[(int)GRID.NUM_FOOTPEDAL].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt.ToString());
+							g_VGrid[(int)GRID.NUM_FOOTPEDAL].strText = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Text", retInt.ToString());
 							array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_01", "Background", "32,32,32").Split(',');
-							gVGrid[(int)GRID.NUM_FOOTPEDAL].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+							g_VGrid[(int)GRID.NUM_FOOTPEDAL].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 							array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectLight", "192,192,192").Split(',');
 							// UNDONE: 元のソースコードでもここで終わってるけど不自然に感じる
 						}
@@ -1171,72 +1171,72 @@ namespace Bmse
 						retInt = (i - (int)BRUSH_NUM.KEY11) + 1;
 
 						//gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt).ToString();
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
+						g_VGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].strText = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt.ToString(), "Text", retInt.ToString());
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "Background", "0,0,40").Split(',');
-						gVGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_2P_1KEY + retInt - 1].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectLight", "96,96,255").Split(',');
-						gPenColor[(int)PEN_NUM.KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY11_LIGHT + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectShadow", "0,0,128").Split(',');
-						gPenColor[(int)PEN_NUM.KEY11_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY11_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY11_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY11_SHADOW + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_0" + retInt, "ObjectColor", "0,0,255").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY11 + retInt - 1] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						break;
 
 					case (int)BRUSH_NUM.KEY18:
-						gVGrid[(int)GRID.NUM_2P_SC_L].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "Text", "SC");
-						gVGrid[(int)GRID.NUM_2P_SC_R].text = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "Text", "SC");
+						g_VGrid[(int)GRID.NUM_2P_SC_L].strText = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "Text", "SC");
+						g_VGrid[(int)GRID.NUM_2P_SC_R].strText = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "Text", "SC");
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "Background", "48,0,0").Split(',');
-						gVGrid[(int)GRID.NUM_2P_SC_L].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gVGrid[(int)GRID.NUM_2P_SC_R].BackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_2P_SC_L].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_VGrid[(int)GRID.NUM_2P_SC_R].lngBackColor = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "ObjectLight", "255,96,96").Split(',');
-						gPenColor[(int)PEN_NUM.KEY18_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY18_LIGHT] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY18_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY18_LIGHT] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "ObjectShadow", "128,0,0").Split(',');
-						gPenColor[(int)PEN_NUM.KEY18_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gPenColor[(int)PEN_NUM.INV_KEY18_SHADOW] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngPenColor[(int)PEN_NUM.KEY18_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.INV_KEY18_SHADOW] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_2P_SC", "ObjectColor", "255,0,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.KEY18] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
-						gBrushColor[(int)BRUSH_NUM.INV_KEY18] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
+						g_lngBrushColor[(int)BRUSH_NUM.KEY18] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.INV_KEY18] = Color.FromArgb(int.Parse(array[0]) / 2, int.Parse(array[1]) / 2, int.Parse(array[2]) / 2);
 
 						break;
 
 					case (int)BRUSH_NUM.LONGNOTE:
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_LONGNOTE", "ObjectLight", "0,128,0").Split(',');
-						gPenColor[(int)PEN_NUM.LONGNOTE_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.LONGNOTE_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_LONGNOTE", "ObjectShadow", "0,32,0").Split(',');
-						gPenColor[(int)PEN_NUM.LONGNOTE_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.LONGNOTE_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "KEY_LONGNOTE", "ObjectColor", "0,64,0").Split(',');
-						gBrushColor[(int)BRUSH_NUM.LONGNOTE] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.LONGNOTE] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
 					case (int)BRUSH_NUM.SELECT_OBJ:
 						array = ConfigManager.Instance.GetValue(fileName, "SELECT", "ObjectLight", "255,255,255").Split(',');
-						gPenColor[(int)PEN_NUM.SELECT_OBJ_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.SELECT_OBJ_LIGHT] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "SELECT", "ObjectShadow", "128,128,128").Split(',');
-						gPenColor[(int)PEN_NUM.SELECT_OBJ_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.SELECT_OBJ_SHADOW] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 						array = ConfigManager.Instance.GetValue(fileName, "SELECT", "ObjectColor", "0,255,255").Split(',');
-						gBrushColor[(int)BRUSH_NUM.SELECT_OBJ] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngBrushColor[(int)BRUSH_NUM.SELECT_OBJ] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
 					case (int)BRUSH_NUM.EDIT_FRAME:
 						array = ConfigManager.Instance.GetValue(fileName, "SELECT", "EditFrame", "255,255,255").Split(',');
-						gPenColor[(int)PEN_NUM.EDIT_FRAME] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.EDIT_FRAME] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 
 					case (int)BRUSH_NUM.DELETE_FRAME:
 						array = ConfigManager.Instance.GetValue(fileName, "SELECT", "DeleteFrame", "255,255,255").Split(',');
-						gPenColor[(int)PEN_NUM.DELETE_FRAME] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
+						g_lngPenColor[(int)PEN_NUM.DELETE_FRAME] = Color.FromArgb(int.Parse(array[0]), int.Parse(array[1]), int.Parse(array[2]));
 
 						break;
 				}
@@ -1245,22 +1245,22 @@ namespace Bmse
 
 		public void LoadLanguageFile(string fileName)
 		{
-			gStatusBar[0] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_01", "BGA");
-			gStatusBar[3] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_04", "BGA");
-			gStatusBar[5] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_06", "BGA Poor");
-			gStatusBar[6] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_07", "BGA Layer");
-			gStatusBar[7] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_08", "BPM Change");
-			gStatusBar[8] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_09", "Stop Sequence");
-			gStatusBar[10] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_1P", "1P Key");
-			gStatusBar[11] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_2P", "2P Key");
-			gStatusBar[12] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_SCRATCH_1P", "1P Scratch");
-			gStatusBar[13] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_SCRATCH_2P", "2P Scratch");
-			gStatusBar[14] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_INVISIBLE", "(Invisible)");
-			gStatusBar[15] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_LONGNOTE", "(LongNote)");
-			gStatusBar[19] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_EDIT", "Edit Mode");
-			gStatusBar[20] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_WRITE", "Write Mode");
-			gStatusBar[21] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_DELETE", "Delete Mode");
-			gStatusBar[22] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MEASURE", "Measure");
+			g_strStatusBar[0] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_01", "BGA");
+			g_strStatusBar[3] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_04", "BGA");
+			g_strStatusBar[5] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_06", "BGA Poor");
+			g_strStatusBar[6] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_07", "BGA Layer");
+			g_strStatusBar[7] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_08", "BPM Change");
+			g_strStatusBar[8] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_09", "Stop Sequence");
+			g_strStatusBar[10] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_1P", "1P Key");
+			g_strStatusBar[11] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_KEY_2P", "2P Key");
+			g_strStatusBar[12] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_SCRATCH_1P", "1P Scratch");
+			g_strStatusBar[13] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_SCRATCH_2P", "2P Scratch");
+			g_strStatusBar[14] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_INVISIBLE", "(Invisible)");
+			g_strStatusBar[15] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "CH_LONGNOTE", "(LongNote)");
+			g_strStatusBar[19] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_EDIT", "Edit Mode");
+			g_strStatusBar[20] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_WRITE", "Write Mode");
+			g_strStatusBar[21] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MODE_DELETE", "Delete Mode");
+			g_strStatusBar[22] = ConfigManager.Instance.GetValue(fileName, "StatusBar", "MEASURE", "Measure");
 
 			frmMain.mnuFile.Text = ConfigManager.Instance.GetValue(fileName, "Menu", "FILE", "&File");
 			frmMain.mnuFileNew.Text = ConfigManager.Instance.GetValue(fileName, "Menu", "FILE_NEW", "&New");
@@ -1407,15 +1407,15 @@ namespace Bmse
 
 			if (frmMain.tlbMenuEdit.Checked)
 			{
-				frmMain.staMainMode.Text = gStatusBar[19];
+				frmMain.staMainMode.Text = g_strStatusBar[19];
 			}
 			else if (frmMain.tlbMenuWrite.Checked)
 			{
-				frmMain.staMainMode.Text = gStatusBar[20];
+				frmMain.staMainMode.Text = g_strStatusBar[20];
 			}
 			else
 			{
-				frmMain.staMainMode.Text = gStatusBar[21];
+				frmMain.staMainMode.Text = g_strStatusBar[21];
 			}
 
 			frmMain.tlbMenuNew.ToolTipText = ConfigManager.Instance.GetValue(fileName, "ToolBar", "TOOLTIP_NEW", "New");
@@ -1505,29 +1505,29 @@ namespace Bmse
 			frmWindowConvert.cmdDecide.Text = ConfigManager.Instance.GetValue(fileName, "Convert", "CMD_DECIDE", "Run");
 			frmWindowConvert.cmdCancel.Text = ConfigManager.Instance.GetValue(fileName, "Convert", "CMD_CANCEL", "Cancel");
 
-			gMessage[(int)Message.ERR_01] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_MESSAGE_01", "The unexpected error occurred. Program will shut down.\nRefer to the \"error.txt\" for the details of an error.");
-			gMessage[(int)Message.ERR_02] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_MESSAGE_02", "Temporary file is saved to...");
-			gMessage[(int)Message.ERR_FILE_NOT_FOUND] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_FILE_NOT_FOUND", "File not found.");
-			gMessage[(int)Message.ERR_LOAD_CANCEL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_LOAD_CANCEL", "Loading will be aborted.");
-			gMessage[(int)Message.ERR_SAVE_ERROR] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_SAVE_ERROR", "Error occured while saving.");
-			gMessage[(int)Message.ERR_SAVE_CANCEL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_SAVE_CANCEL", "Saving will be aborted.");
-			gMessage[(int)Message.ERR_OVERFLOW_LARGE] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_LARGE", "Error:\nValue is too large.");
-			gMessage[(int)Message.ERR_OVERFLOW_SMALL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_SMALL", "Error:\nValue is too small.");
-			gMessage[(int)Message.ERR_OVERFLOW_BPM] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_BPM", "You have used more than 1295 BPM change command.\nNumber of commands should be less than 1295.");
-			gMessage[(int)Message.ERR_OVERFLOW_STOP] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_STOP", "You have used more than 1295 STOP command.\nNumber of commands should be less than 1295.");
-			gMessage[(int)Message.ERR_APP_NOT_FOUND] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_APP_NOT_FOUND", " is not found.");
-			gMessage[(int)Message.ERR_FILE_ALREADY_EXIST] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_FILE_ALREADY_EXIST", "File already exist.");
+			g_Message[(int)Message.ERR_01] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_MESSAGE_01", "The unexpected error occurred. Program will shut down.\nRefer to the \"error.txt\" for the details of an error.");
+			g_Message[(int)Message.ERR_02] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_MESSAGE_02", "Temporary file is saved to...");
+			g_Message[(int)Message.ERR_FILE_NOT_FOUND] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_FILE_NOT_FOUND", "File not found.");
+			g_Message[(int)Message.ERR_LOAD_CANCEL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_LOAD_CANCEL", "Loading will be aborted.");
+			g_Message[(int)Message.ERR_SAVE_ERROR] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_SAVE_ERROR", "Error occured while saving.");
+			g_Message[(int)Message.ERR_SAVE_CANCEL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_SAVE_CANCEL", "Saving will be aborted.");
+			g_Message[(int)Message.ERR_OVERFLOW_LARGE] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_LARGE", "Error:\nValue is too large.");
+			g_Message[(int)Message.ERR_OVERFLOW_SMALL] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_SMALL", "Error:\nValue is too small.");
+			g_Message[(int)Message.ERR_OVERFLOW_BPM] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_BPM", "You have used more than 1295 BPM change command.\nNumber of commands should be less than 1295.");
+			g_Message[(int)Message.ERR_OVERFLOW_STOP] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_OVERFLOW_STOP", "You have used more than 1295 STOP command.\nNumber of commands should be less than 1295.");
+			g_Message[(int)Message.ERR_APP_NOT_FOUND] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_APP_NOT_FOUND", " is not found.");
+			g_Message[(int)Message.ERR_FILE_ALREADY_EXIST] = ConfigManager.Instance.GetValue(fileName, "Message", "ERROR_FILE_ALREADY_EXIST", "File already exist.");
 
-			gMessage[(int)Message.MSG_CONFIRM] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_CONFIRM", "This command cannot be undone, OK?");
-			gMessage[(int)Message.MSG_FILE_CHANGED] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_FILE_CHANGED", "Do you want to save changes?");
-			gMessage[(int)Message.MSG_INI_CHANGED] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_INI_CHANGED", "ini format has changed.\n(All setting will reset)");
-			gMessage[(int)Message.MSG_ALIGN_LIST] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_ALIGN_LIST", "Do you want the filelist to be rewrited into the old format [01 - FF]?\n(Attention: Some programs are compatible only with old format files.)");
-			gMessage[(int)Message.MSG_DELETE_FILE] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_DELETE_FILE", "They have been deleted:");
+			g_Message[(int)Message.MSG_CONFIRM] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_CONFIRM", "This command cannot be undone, OK?");
+			g_Message[(int)Message.MSG_FILE_CHANGED] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_FILE_CHANGED", "Do you want to save changes?");
+			g_Message[(int)Message.MSG_INI_CHANGED] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_INI_CHANGED", "ini format has changed.\n(All setting will reset)");
+			g_Message[(int)Message.MSG_ALIGN_LIST] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_ALIGN_LIST", "Do you want the filelist to be rewrited into the old format [01 - FF]?\n(Attention: Some programs are compatible only with old format files.)");
+			g_Message[(int)Message.MSG_DELETE_FILE] = ConfigManager.Instance.GetValue(fileName, "Message", "INFO_DELETE_FILE", "They have been deleted:");
 
-			gMessage[(int)Message.INPUT_BPM] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_BPM", "Enter the BPM you wish to change to.\n(Decimal number can be used. Enter 0 to cancel)");
-			gMessage[(int)Message.INPUT_STOP] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_STOP", "Enter the length of stoppage 1 corresponds to 1/192 of the measure.\n(Enter under 0 to cancel)");
-			gMessage[(int)Message.INPUT_RENAME] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_RENAME", "Please enter new filename.");
-			gMessage[(int)Message.INPUT_SIZE] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_SIZE", "Type your display magnification.\n(Maximum 16.00. Enter under 0 to cancel)");
+			g_Message[(int)Message.INPUT_BPM] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_BPM", "Enter the BPM you wish to change to.\n(Decimal number can be used. Enter 0 to cancel)");
+			g_Message[(int)Message.INPUT_STOP] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_STOP", "Enter the length of stoppage 1 corresponds to 1/192 of the measure.\n(Enter under 0 to cancel)");
+			g_Message[(int)Message.INPUT_RENAME] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_RENAME", "Please enter new filename.");
+			g_Message[(int)Message.INPUT_SIZE] = ConfigManager.Instance.GetValue(fileName, "Message", "INPUT_SIZE", "Type your display magnification.\n(Maximum 16.00. Enter under 0 to cancel)");
 
 			string defaultFont = System.Windows.Forms.Control.DefaultFont.Name;
 			LoadFont(ConfigManager.Instance.GetValue(fileName, "Main", "Font", defaultFont), ConfigManager.Instance.GetValue(fileName, "Main", "FixedFont", defaultFont), ConfigManager.Instance.GetValue(fileName, "Main", "Charset", 1));
@@ -1603,7 +1603,7 @@ namespace Bmse
 
 			for (i = 0; i < frmMain.mnuLanguage.DropDownItems.Count; i++)
 			{
-				if (retStr.Equals(gLangFileName[i]))
+				if (retStr.Equals(g_strLangFileName[i]))
 				{
 					((ToolStripMenuItem)frmMain.mnuLanguage.DropDownItems[i]).Checked = true;
 					break;
@@ -1616,7 +1616,7 @@ namespace Bmse
 			
 			if(!INI_VERSION.Equals(ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Main", "ini", "")))
 			{
-				MessageBox.Show(gMessage[(int)Message.MSG_INI_CHANGED], gAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
+				MessageBox.Show(g_Message[(int)Message.MSG_INI_CHANGED], g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 				throw new Exception();
 			}
 
@@ -1624,7 +1624,7 @@ namespace Bmse
 
 			for (i = 0; i < frmMain.mnuTheme.DropDownItems.Count; i++)
 			{
-				if (retStr.Equals(gThemeFileName[i]))
+				if (retStr.Equals(g_strThemeFileName[i]))
 				{
 					((ToolStripMenuItem)frmMain.mnuTheme.DropDownItems[i]).Checked = true;
 					break;
@@ -1633,10 +1633,10 @@ namespace Bmse
 
 			LoadThemeFile(CommonConst.CONFDIR_THEME + retStr);
 
-			gHelpFileName = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Main", "Help", "");
-			gFiler = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Main", "Filer", "");
+			g_strHelpFileName = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Main", "Help", "");
+			g_strFiler = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "Main", "Filer", "");
 
-			if (!"".Equals(gHelpFileName))
+			if (!"".Equals(g_strHelpFileName))
 			{
 				frmMain.mnuHelpOpen.Enabled = true;
 			}
@@ -1736,19 +1736,19 @@ namespace Bmse
 			frmMain.lblVScroll.Visible = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "ToolBar", "Resolution", false);
 			frmMain.cboVScroll.Visible = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "ToolBar", "Resolution", false);
 
-			for (i = 0; i < gRecentFiles.Length; i++)
+			for (i = 0; i < g_strRecentFiles.Length; i++)
 			{
-				gRecentFiles[i] = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "RecentFiles", i.ToString(), "");
+				g_strRecentFiles[i] = ConfigManager.Instance.GetValue(CommonConst.XML_COMMON, "RecentFiles", i.ToString(), "");
 
 				string istr = (i + 1).ToString();
 
-				if (gRecentFiles[i].Length != 0)
+				if (g_strRecentFiles[i].Length != 0)
 				{
-					frmMain.mnuRecentFiles[i].Text = "&" + istr.Substring(istr.Length - 1) + ":" + gRecentFiles[i];
+					frmMain.mnuRecentFiles[i].Text = "&" + istr.Substring(istr.Length - 1) + ":" + g_strRecentFiles[i];
 					frmMain.mnuRecentFiles[i].Enabled = true;
 					frmMain.mnuRecentFiles[i].Visible = true;
 
-					frmMain.tlbMenuOpen.DropDownItems[i].Text = "&" + istr.Substring(istr.Length - 1) + ":" + gRecentFiles[i];
+					frmMain.tlbMenuOpen.DropDownItems[i].Text = "&" + istr.Substring(istr.Length - 1) + ":" + g_strRecentFiles[i];
 					frmMain.tlbMenuOpen.DropDownItems[i].Enabled = true;
 					frmMain.tlbMenuOpen.DropDownItems[i].Visible = true;
 

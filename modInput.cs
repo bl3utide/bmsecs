@@ -17,36 +17,36 @@ namespace Bmse
 		{
 			try
 			{
-				frmMain.Text = gAppTitle + " - Now Loading";
+				frmMain.Text = g_strAppTitle + " - Now Loading";
 
 				LoadBMSStart();
 
 				LoadBMSData();
 
-				Array.Resize(ref gObj, gObj.Length);
+				Array.Resize(ref g_Obj, g_Obj.Length);
 
-				for (int i = 0; i < gObj.Length - 1; i++)
+				for (int i = 0; i < g_Obj.Length - 1; i++)
 				{
-					gObj[i].position = (gMeasure[gObj[i].measure].len / gObj[i].height) * gObj[i].position;
+					g_Obj[i].lngPosition = (g_Measure[g_Obj[i].intMeasure].intLen / g_Obj[i].intHeight) * g_Obj[i].lngPosition;
 
-					if (gObj[i].ch == 3)	// BPM
+					if (g_Obj[i].intCh == 3)	// BPM
 					{
-						gObj[i].ch = 8;
+						g_Obj[i].intCh = 8;
 					}
-					else if (gObj[i].ch == 8)	// 拡張BPM
+					else if (g_Obj[i].intCh == 8)	// 拡張BPM
 					{
-						if (gBPM[gObj[i].value] == 0)
+						if (g_sngBPM[g_Obj[i].sngValue] == 0)
 						{
-							gObj[i].ch = 0;
+							g_Obj[i].intCh = 0;
 						}
 						else
 						{
-							gObj[i].value = (int)gBPM[gObj[i].value];
+							g_Obj[i].sngValue = (int)g_sngBPM[g_Obj[i].sngValue];
 						}
 					}
-					else if (gObj[i].ch == 9)	// ストップシーケンス
+					else if (g_Obj[i].intCh == 9)	// ストップシーケンス
 					{
-						gObj[i].value = gSTOP[gObj[i].value];
+						g_Obj[i].sngValue = g_lngSTOP[g_Obj[i].sngValue];
 					}
 				}
 
@@ -64,11 +64,11 @@ namespace Bmse
 			{
 				for (int i = 0; i < 1296; i++)
 				{
-					gWAV[i] = "";
-					gBMP[i] = "";
-					gBGA[i] = "";
-					gBPM[i] = 0;
-					gSTOP[i] = 0;
+					g_strWAV[i] = "";
+					g_strBMP[i] = "";
+					g_strBGA[i] = "";
+					g_sngBPM[i] = 0;
+					g_lngSTOP[i] = 0;
 				}
 
 				frmMain.cboPlayer.SelectedIndex = 0;
@@ -95,30 +95,30 @@ namespace Bmse
 
 				for (int i = 0; i < 1000; i++)
 				{
-					gMeasure[i].len = 192;
+					g_Measure[i].intLen = 192;
 					frmMain.lstMeasureLen.Items[i] = "#" + i.ToString("000") + ":4/4";
 				}
 
-				gBms.playerType = 1;
-				gBms.genre = "";
-				gBms.title = "";
-				gBms.artist = "";
-				gBms.bpm = 120;
-				gBms.playLevel = 1;
-				gBms.playRank = 3;
-				gBms.total = 0;
-				gBms.volume = 0;
-				gBms.stageFile = "";
+				g_BMS.intPlayerType = 1;
+				g_BMS.strGenre = "";
+				g_BMS.strTitle = "";
+				g_BMS.strArtist = "";
+				g_BMS.sngBPM = 120;
+				g_BMS.lngPlayLevel = 1;
+				g_BMS.intPlayRank = 3;
+				g_BMS.sngTotal = 0;
+				g_BMS.intVolume = 0;
+				g_BMS.strStageFile = "";
 
-				gDisp.maxMeasure = 0;
+				g_disp.intMaxMeasure = 0;
 				ChangeMaxMeasure(15);
 				ChangeResolution();
 
-				gInputLog.Clear();
+				g_InputLog.Clear();
 
-				gObj = new Obj[1];
-				gObjID = new int[1];
-				gIDNum = 0;
+				g_Obj = new g_udtObj[1];
+				g_lngObjID = new int[1];
+				g_lngIDNum = 0;
 
 				mReadFlag = true;
 				mExInfo = "";
@@ -146,17 +146,17 @@ namespace Bmse
 
 				frmMain.lstMeasureLen.Visible = true;
 
-				frmMain.Text = gAppTitle;
+				frmMain.Text = g_strAppTitle;
 
-				if (gBms.dir.Length != 0)
+				if (g_BMS.strDir.Length != 0)
 				{
 					if (frmMain.mnuOptionsFileNameOnly.Checked)
 					{
-						frmMain.Text = frmMain.Text + " - " + gBms.fileName;
+						frmMain.Text = frmMain.Text + " - " + g_BMS.strFileName;
 					}
 					else
 					{
-						frmMain.Text = frmMain.Text + " - " + gBms.dir + gBms.fileName;
+						frmMain.Text = frmMain.Text + " - " + g_BMS.strDir + g_BMS.strFileName;
 					}
 				}
 
@@ -164,10 +164,10 @@ namespace Bmse
 
 				frmMain.Enabled = true;
 
-				if ("PMS".Equals(StringUtil.Right(gBms.fileName, 3).ToUpper()))
+				if ("PMS".Equals(StringUtil.Right(g_BMS.strFileName, 3).ToUpper()))
 				{
 					frmMain.cboPlayer.SelectedIndex = 3;
-					gBms.playerType = 4;
+					g_BMS.intPlayerType = 4;
 				}
 
 				mReadFlag = true;
@@ -197,10 +197,10 @@ namespace Bmse
 			{
 				for (int i = 0; i < 1000; i++)
 				{
-					gMeasure[i].len = 192;
+					g_Measure[i].intLen = 192;
 				}
 
-				using (StreamReader reader = new StreamReader(gBms.dir + gBms.fileName))
+				using (StreamReader reader = new StreamReader(g_BMS.strDir + g_BMS.strFileName))
 				{
 					while (reader.Peek() >= 0)
 					{
@@ -219,7 +219,7 @@ namespace Bmse
 			}
 			catch (FileNotFoundException e)
 			{
-				MessageBox.Show(gMessage[(int)Message.ERR_FILE_NOT_FOUND] + "\r\n" + gMessage[(int)Message.ERR_LOAD_CANCEL], gAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				MessageBox.Show(g_Message[(int)Message.ERR_FILE_NOT_FOUND] + "\r\n" + g_Message[(int)Message.ERR_LOAD_CANCEL], g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
 				LoadBMSStart();
 				LoadBMSEnd();
@@ -248,60 +248,60 @@ namespace Bmse
 					switch (array[0])
 					{
 						case "#PLAYER":
-							gBms.playerType = int.Parse(strParam);
+							g_BMS.intPlayerType = int.Parse(strParam);
 							frmMain.cboPlayer.SelectedIndex = int.Parse(strParam) - 1;
 							break;
 
 						case "#GENRE":
-							gBms.genre = strParam;
+							g_BMS.strGenre = strParam;
 							frmMain.txtGenre.Text = strParam;
 							break;
 
 						case "#TITLE":
-							gBms.title = strParam;
+							g_BMS.strTitle = strParam;
 							frmMain.txtTitle.Text = strParam;
 							break;
 
 						case "#ARTIST":
-							gBms.artist = strParam;
+							g_BMS.strArtist = strParam;
 							frmMain.txtArtist.Text = strParam;
 							break;
 
 						case "#BPM":
-							gBms.bpm = double.Parse(strParam);
+							g_BMS.sngBPM = double.Parse(strParam);
 							frmMain.txtBPM.Text = strParam;
 							break;
 
 						case "#PLAYLEVEL":
-							gBms.playLevel = int.Parse(strParam);
+							g_BMS.lngPlayLevel = int.Parse(strParam);
 							frmMain.cboPlayLevel.Text = strParam;
 							break;
 
 						case "#RANK":
-							gBms.playRank = int.Parse(strParam);
-							if (gBms.playRank < 0)
+							g_BMS.intPlayRank = int.Parse(strParam);
+							if (g_BMS.intPlayRank < 0)
 							{
-								gBms.playRank = 0;
+								g_BMS.intPlayRank = 0;
 							}
-							if (gBms.playRank > 3)
+							if (g_BMS.intPlayRank > 3)
 							{
-								gBms.playRank = 3;
+								g_BMS.intPlayRank = 3;
 							}
-							frmMain.cboPlayRank.SelectedIndex = gBms.playRank;
+							frmMain.cboPlayRank.SelectedIndex = g_BMS.intPlayRank;
 							break;
 
 						case "#TOTAL":
-							gBms.total = double.Parse(strParam);
+							g_BMS.sngTotal = double.Parse(strParam);
 							frmMain.txtTotal.Text = strParam;
 							break;
 
 						case "#VOLWAV":
-							gBms.volume = int.Parse(strParam);
+							g_BMS.intVolume = int.Parse(strParam);
 							frmMain.txtVolume.Text = strParam;
 							break;
 
 						case "#STAGEFILE":
-							gBms.stageFile = strParam;
+							g_BMS.strStageFile = strParam;
 							frmMain.txtStageFile.Text = strParam;
 							break;
 
@@ -323,7 +323,7 @@ namespace Bmse
 								case "#WAV":
 									if (!"00".Equals(strRet) && !directInput)
 									{
-										gWAV[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+										g_strWAV[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
 
 										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
 											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
@@ -336,7 +336,7 @@ namespace Bmse
 								case "#BMP":
 									if (!"00".Equals(strRet) && !directInput)
 									{
-										gBMP[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+										g_strBMP[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
 
 										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
 											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
@@ -353,7 +353,7 @@ namespace Bmse
 								case "#BGA":
 									if (!"00".Equals(strRet) && !directInput)
 									{
-										gBGA[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
+										g_strBGA[lngNumConv(strRet)] = StringUtil.Right(lineData, lineData.Length - 7);
 
 										if ((int)(StringUtil.Left(strRet, 1)[0]) > (int)('F')
 											|| (int)(StringUtil.Right(strRet, 1)[0]) > (int)('F'))
@@ -366,7 +366,7 @@ namespace Bmse
 								case "#BPM":
 									if ("00".Equals(strRet) && !directInput)
 									{
-										gBPM[lngNumConv(strRet)] = double.Parse(StringUtil.Right(lineData, lineData.Length - 7));
+										g_sngBPM[lngNumConv(strRet)] = double.Parse(StringUtil.Right(lineData, lineData.Length - 7));
 									}
 									break;
 
@@ -375,7 +375,7 @@ namespace Bmse
 									{
 										if ("00".Equals(strRet) && !directInput)
 										{
-											gSTOP[lngNumConv(strRet)] = int.Parse(StringUtil.Right(lineData, lineData.Length - 8));
+											g_lngSTOP[lngNumConv(strRet)] = int.Parse(StringUtil.Right(lineData, lineData.Length - 8));
 										}
 									}
 									else if (StringUtil.IsNumeric(StringUtil.Mid(array[0], 2)))
@@ -454,18 +454,18 @@ namespace Bmse
 						intRet = 48;
 					}
 
-					gMeasure[intMeasure].len = 192 * int.Parse(strParam);
+					g_Measure[intMeasure].intLen = 192 * int.Parse(strParam);
 
-					if (gMeasure[intMeasure].len < 3)
+					if (g_Measure[intMeasure].intLen < 3)
 					{
-						gMeasure[intMeasure].len = 3;
+						g_Measure[intMeasure].intLen = 3;
 					}
 
-					while (gMeasure[intMeasure].len / intRet > 64)
+					while (g_Measure[intMeasure].intLen / intRet > 64)
 					{
 						if (intRet >= 48)
 						{
-							gMeasure[intMeasure].len = 3072;
+							g_Measure[intMeasure].intLen = 3072;
 							break;
 						}
 
@@ -474,7 +474,7 @@ namespace Bmse
 
 					frmMain.lstMeasureLen.Items[intMeasure]
 						= "#" + intMeasure.ToString("000")
-						+ ":" + (gMeasure[intMeasure].len / intRet).ToString()
+						+ ":" + (g_Measure[intMeasure].intLen / intRet).ToString()
 						+ "/" + (192 / intRet).ToString();
 
 					return;
@@ -497,20 +497,20 @@ namespace Bmse
 				{
 					if (!"00".Equals(StringUtil.Mid(strParam, i * 2 - 1, 2)))
 					{
-						gObj[gObj.Length - 1].id = gIDNum;
-						gObjID[gIDNum] = gIDNum;
-						gObj[gObj.Length - 1].position = i - 1;
-						gObj[gObj.Length - 1].height = lngSepaNum;
-						gObj[gObj.Length - 1].measure = intMeasure;
-						gObj[gObj.Length - 1].ch = intCh;
+						g_Obj[g_Obj.Length - 1].lngID = g_lngIDNum;
+						g_lngObjID[g_lngIDNum] = g_lngIDNum;
+						g_Obj[g_Obj.Length - 1].lngPosition = i - 1;
+						g_Obj[g_Obj.Length - 1].intHeight = lngSepaNum;
+						g_Obj[g_Obj.Length - 1].intMeasure = intMeasure;
+						g_Obj[g_Obj.Length - 1].intCh = intCh;
 
-						ChangeMaxMeasure(gObj[gObj.Length - 1].measure);
+						ChangeMaxMeasure(g_Obj[g_Obj.Length - 1].intMeasure);
 
 						switch (intCh)
 						{
 							case 1:	// BGM
-								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
-								gObj[gObj.Length - 1].ch = intRet;
+								g_Obj[g_Obj.Length - 1].sngValue = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								g_Obj[g_Obj.Length - 1].intCh = intRet;
 								break;
 
 							case 4:	// BGA
@@ -518,11 +518,11 @@ namespace Bmse
 							case 7:	// Layer
 							case 8:	// 拡張BPM
 							case 9:	// ストップシーケンス
-								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								g_Obj[g_Obj.Length - 1].sngValue = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
 								break;
 
 							case 3:	// BPM
-								gObj[gObj.Length - 1].value = Convert.ToInt32(StringUtil.Mid(strParam, i * 2 - 1, 2), 16);
+								g_Obj[g_Obj.Length - 1].sngValue = Convert.ToInt32(StringUtil.Mid(strParam, i * 2 - 1, 2), 16);
 								break;
 
 							case 11:	// キー音
@@ -541,7 +541,7 @@ namespace Bmse
 							case 26:
 							case 28:
 							case 29:
-								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								g_Obj[g_Obj.Length - 1].sngValue = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
 								break;
 
 							case 31:	// キー音
@@ -560,9 +560,9 @@ namespace Bmse
 							case 46:
 							case 48:
 							case 49:
-								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
-								gObj[gObj.Length - 1].ch = gObj[gObj.Length - 1].ch - 20;
-								gObj[gObj.Length - 1].att = 1;
+								g_Obj[g_Obj.Length - 1].sngValue = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								g_Obj[g_Obj.Length - 1].intCh = g_Obj[g_Obj.Length - 1].intCh - 20;
+								g_Obj[g_Obj.Length - 1].intAtt = 1;
 								break;
 
 							case 51:	// キー音
@@ -581,19 +581,19 @@ namespace Bmse
 							case 66:
 							case 68:
 							case 69:
-								gObj[gObj.Length - 1].value = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
-								gObj[gObj.Length - 1].ch -= 40;
-								gObj[gObj.Length - 1].att = 2;
+								g_Obj[g_Obj.Length - 1].sngValue = lngNumConv(StringUtil.Mid(strParam, i * 2 - 1, 2));
+								g_Obj[g_Obj.Length - 1].intCh -= 40;
+								g_Obj[g_Obj.Length - 1].intAtt = 2;
 								break;
 								
 							default:
 								return;
 						}
 
-						Array.Resize(ref gObj, gObj.Length + 1);
+						Array.Resize(ref g_Obj, g_Obj.Length + 1);
 
-						gIDNum++;
-						Array.Resize(ref gObjID, gIDNum + 1);
+						g_lngIDNum++;
+						Array.Resize(ref g_lngObjID, g_lngIDNum + 1);
 					}
 				}
 			}

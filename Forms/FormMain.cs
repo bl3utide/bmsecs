@@ -7,10 +7,10 @@ namespace Bmse.Forms
 {
 	public partial class FormMain : Form
 	{
-		private int mScrollDir;
-		private Obj[] mObj;
-		private bool mMouseDown;
-		private bool mPreview;
+		private int m_intScrollDir;
+		private g_udtObj[] m_retObj;
+		private bool m_blnMouseDown;
+		private bool m_blnPreview;
 
 		public int lngFromString(string str)
 		{
@@ -53,143 +53,143 @@ namespace Bmse.Forms
 			int _j;
 			int lngRet;
 			bool blRet;
-			Obj oldObj = new Obj();
-			Obj newObj = new Obj();
+			g_udtObj oldObj = new g_udtObj();
+			g_udtObj newObj = new g_udtObj();
 
 			try
 			{
 
 				App.module.SetObjData(ref newObj, x, y);
 
-				newObj.ch = Module.gVGridNum[newObj.ch];
+				newObj.intCh = Module.g_intVGridNum[newObj.intCh];
 
 				if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
 				{
 					lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
 
-					newObj.position = (newObj.position / lngRet) * lngRet;
+					newObj.lngPosition = (newObj.lngPosition / lngRet) * lngRet;
 
 					if (mnuOptionsMoveOnGrid.Checked)
 					{
-						lngRet = Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position - (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position / lngRet) * lngRet;
+						lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition - (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition / lngRet) * lngRet;
 
-						newObj.position = newObj.position - lngRet;
+						newObj.lngPosition = newObj.lngPosition - lngRet;
 					}
 				}
 
-				newObj.position = newObj.position + Module.gMeasure[newObj.measure].y;
+				newObj.lngPosition = newObj.lngPosition + Module.g_Measure[newObj.intMeasure].lngY;
 
-				App.module.CopyObj(ref oldObj, ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+				App.module.CopyObj(ref oldObj, ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
 
-				oldObj.ch = Module.gVGridNum[oldObj.ch];
+				oldObj.intCh = Module.g_intVGridNum[oldObj.intCh];
 
 				if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
 				{
 					lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
 
-					oldObj.position = (oldObj.position / lngRet) * lngRet;
+					oldObj.lngPosition = (oldObj.lngPosition / lngRet) * lngRet;
 				}
 
-				oldObj.position = oldObj.position + Module.gMeasure[oldObj.measure].y;
+				oldObj.lngPosition = oldObj.lngPosition + Module.g_Measure[oldObj.intMeasure].lngY;
 
 				// Y軸固定移動
 				if (EnvUtil.Shift)
 				{
-					newObj.position = oldObj.position;
+					newObj.lngPosition = oldObj.lngPosition;
 				}
 
-				if (newObj.ch != oldObj.ch || newObj.position != oldObj.position)
+				if (newObj.intCh != oldObj.intCh || newObj.lngPosition != oldObj.lngPosition)
 				{
-					if (newObj.ch > oldObj.ch)
+					if (newObj.intCh > oldObj.intCh)
 					{
-						for (int j = oldObj.ch; j < newObj.ch; j++)
+						for (int j = oldObj.intCh; j < newObj.intCh; j++)
 						{
-							if (Module.gVGrid[j].draw && Module.gVGrid[j].ch != 0)
+							if (Module.g_VGrid[j].blnDraw && Module.g_VGrid[j].intCh != 0)
 							{
-								newObj.att++;
+								newObj.intAtt++;
 							}
 						}
 					}
-					else if (newObj.ch < oldObj.ch)
+					else if (newObj.intCh < oldObj.intCh)
 					{
-						for (int j = oldObj.ch; j >= newObj.ch + 1; j--)
+						for (int j = oldObj.intCh; j >= newObj.intCh + 1; j--)
 						{
-							if (Module.gVGrid[j].visible && Module.gVGrid[j].ch != 0)
+							if (Module.g_VGrid[j].blnVisible && Module.g_VGrid[j].intCh != 0)
 							{
-								newObj.att++;
+								newObj.intAtt++;
 							}
 						}
 					}
 
-					blRet = newObj.ch != oldObj.ch
-						&& newObj.ch != 0
-						&& oldObj.ch != 0
-						&& newObj.ch != Module.gVGrid.Length - 1
-						&& oldObj.ch != Module.gVGrid.Length - 1;
+					blRet = newObj.intCh != oldObj.intCh
+						&& newObj.intCh != 0
+						&& oldObj.intCh != 0
+						&& newObj.intCh != Module.g_VGrid.Length - 1
+						&& oldObj.intCh != Module.g_VGrid.Length - 1;
 
-					for (int i = 0; i < Module.gObj.Length - 1; i++)
+					for (int i = 0; i < Module.g_Obj.Length - 1; i++)
 					{
-						if (Module.gObj[i].select == 1)
+						if (Module.g_Obj[i].intSelect == 1)
 						{
-							Module.gObj[i].position += newObj.position - oldObj.position;
+							Module.g_Obj[i].lngPosition += newObj.lngPosition - oldObj.lngPosition;
 
-							while (Module.gObj[i].position >= Module.gMeasure[Module.gObj[i].measure].len)
+							while (Module.g_Obj[i].lngPosition >= Module.g_Measure[Module.g_Obj[i].intMeasure].intLen)
 							{
-								if (Module.gObj[i].measure < 999)
+								if (Module.g_Obj[i].intMeasure < 999)
 								{
-									Module.gObj[i].position -= Module.gMeasure[Module.gObj[i].measure].len;
-									Module.gObj[i].measure++;
+									Module.g_Obj[i].lngPosition -= Module.g_Measure[Module.g_Obj[i].intMeasure].intLen;
+									Module.g_Obj[i].intMeasure++;
 								}
 								else
 								{
-									Module.gObj[i].measure = 999;
+									Module.g_Obj[i].intMeasure = 999;
 									break;
 								}
 							}
 
-							while (Module.gObj[i].position < 0)
+							while (Module.g_Obj[i].lngPosition < 0)
 							{
-								if (Module.gObj[i].measure > 0)
+								if (Module.g_Obj[i].intMeasure > 0)
 								{
-									Module.gObj[i].position = Module.gMeasure[Module.gObj[i].measure - 1].len + Module.gObj[i].position;
-									Module.gObj[i].measure--;
+									Module.g_Obj[i].lngPosition = Module.g_Measure[Module.g_Obj[i].intMeasure - 1].intLen + Module.g_Obj[i].lngPosition;
+									Module.g_Obj[i].intMeasure--;
 								}
 								else
 								{
-									Module.gObj[i].measure = 0;
+									Module.g_Obj[i].intMeasure = 0;
 									break;
 								}
 							}
 
 							if (blRet)
 							{
-								if (Module.gObj[i].ch < 0)
+								if (Module.g_Obj[i].intCh < 0)
 								{
-									_j = Module.gObj[i].ch;
+									_j = Module.g_Obj[i].intCh;
 								}
-								else if (Module.gObj[i].ch > 1000)
+								else if (Module.g_Obj[i].intCh > 1000)
 								{
-									_j = Module.gObj[i].ch - 1000;
+									_j = Module.g_Obj[i].intCh - 1000;
 								}
 								else
 								{
-									_j = Module.gVGridNum[Module.gObj[i].ch];
+									_j = Module.g_intVGridNum[Module.g_Obj[i].intCh];
 								}
 
-								if (newObj.ch > oldObj.ch)
+								if (newObj.intCh > oldObj.intCh)
 								{
-									for (int k = 1; k <= newObj.att; k++)
+									for (int k = 1; k <= newObj.intAtt; k++)
 									{
 										while (true)
 										{
 											_j++;
 
-											if (_j < 0 || _j > Module.gVGrid.Length - 1)
+											if (_j < 0 || _j > Module.g_VGrid.Length - 1)
 											{
 												break;
 											}
 
-											if (Module.gVGrid[_j].visible && Module.gVGrid[_j].ch != 0)
+											if (Module.g_VGrid[_j].blnVisible && Module.g_VGrid[_j].intCh != 0)
 											{
 												break;
 											}
@@ -198,18 +198,18 @@ namespace Bmse.Forms
 								}
 								else
 								{
-									for (int k = 1; k <= newObj.att; k++)
+									for (int k = 1; k <= newObj.intAtt; k++)
 									{
 										while (true)
 										{
 											_j--;
 
-											if (_j < 0 || _j > Module.gVGrid.Length - 1)
+											if (_j < 0 || _j > Module.g_VGrid.Length - 1)
 											{
 												break;
 											}
 
-											if (Module.gVGrid[_j].visible && Module.gVGrid[_j].ch != 0)
+											if (Module.g_VGrid[_j].blnVisible && Module.g_VGrid[_j].intCh != 0)
 											{
 												break;
 											}
@@ -219,38 +219,38 @@ namespace Bmse.Forms
 
 								if (_j < 0)
 								{
-									Module.gObj[i].ch = _j;
+									Module.g_Obj[i].intCh = _j;
 								}
-								else if (_j > Module.gVGrid.Length - 1)
+								else if (_j > Module.g_VGrid.Length - 1)
 								{
-									Module.gObj[i].ch = 1000 + _j;
+									Module.g_Obj[i].intCh = 1000 + _j;
 								}
 								else
 								{
-									Module.gObj[i].ch = Module.gVGrid[_j].ch;
+									Module.g_Obj[i].intCh = Module.g_VGrid[_j].intCh;
 								}
 
-								switch (Module.gObj[i].ch)
+								switch (Module.g_Obj[i].intCh)
 								{
 									case 8:
 										break;
 
 									case 9:
-										if (Module.gObj[i].value < 0)
+										if (Module.g_Obj[i].sngValue < 0)
 										{
-											Module.gObj[i].value = 1;
+											Module.g_Obj[i].sngValue = 1;
 										}
 
 										break;
 
 									default:
-										if (Module.gObj[i].value < 0)
+										if (Module.g_Obj[i].sngValue < 0)
 										{
-											Module.gObj[i].value = 1;
+											Module.g_Obj[i].sngValue = 1;
 										}
-										else if (Module.gObj[i].value > 1295)
+										else if (Module.g_Obj[i].sngValue > 1295)
 										{
-											Module.gObj[i].value = 1295;
+											Module.g_Obj[i].sngValue = 1295;
 										}
 
 										break;
@@ -259,7 +259,7 @@ namespace Bmse.Forms
 						}
 					}
 
-					App.module.DrawStatusBar(ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+					App.module.DrawStatusBar(ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
 				}
 			}
 			catch (Exception e)
@@ -442,12 +442,12 @@ namespace Bmse.Forms
 				return;
 			}
 
-			this.Text = Module.gAppTitle + " - Now Initializing";
+			this.Text = Module.g_strAppTitle + " - Now Initializing";
 
-			App.module.DeleteFile(Module.gBms.dir + "___bmse_temp.bms");
+			App.module.DeleteFile(Module.g_BMS.strDir + "___bmse_temp.bms");
 
-			Module.gBms.dir = "";
-			Module.gBms.fileName = "";
+			Module.g_BMS.strDir = "";
+			Module.g_BMS.strFileName = "";
 
 			App.module.LoadBMSStart();
 			App.module.LoadBMSEnd();
@@ -477,38 +477,38 @@ namespace Bmse.Forms
 		{
 			string strRet;
 			int lngRet;
-			Obj retObj = new Obj();
+			g_udtObj retObj = new g_udtObj();
 			string[] array;
 
 			try
 			{
-				if (Module.gIgnoreInput)
+				if (Module.g_blnIgnoreInput)
 				{
 					return;
 				}
 
-				mMouseDown = true;
+				m_blnMouseDown = true;
 
 				if (e.Button == System.Windows.Forms.MouseButtons.Left)
 				{
 					if (tlbMenuDelete.Checked)
 					{
-						if (Module.gObj[Module.gObj.Length - 1].ch != 0)
+						if (Module.g_Obj[Module.g_Obj.Length - 1].intCh != 0)
 						{
-							Module.gInputLog.AddData(App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
-													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].id, 4)
-													+ StringUtil.Right("0" + string.Format("{0:X}", Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch), 2)
-													+ Module.gObj[Module.gObj[Module.gObj.Length - 1].height].att
-													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].measure)
-													+ App.module.strNumConv(Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position, 3)
-													+ Module.gObj[Module.gObj[Module.gObj.Length - 1].height].value
+							Module.g_InputLog.AddData(App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngID, 4)
+													+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh), 2)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intAtt
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intMeasure)
+													+ App.module.strNumConv(Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition, 3)
+													+ Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].sngValue
 													+ ",");
 
-							App.module.RemoveObj(Module.gObj[Module.gObj.Length - 1].height);
+							App.module.RemoveObj(Module.g_Obj[Module.g_Obj.Length - 1].intHeight);
 
 							App.module.ArrangeObj();
 
-							App.module.RemoveObj(Module.gObj.Length - 1);
+							App.module.RemoveObj(Module.g_Obj.Length - 1);
 						}
 
 						App.module.ObjSelectCancel();
@@ -517,52 +517,52 @@ namespace Bmse.Forms
 					}
 					else if (tlbMenuEdit.Checked)
 					{
-						if (Module.gObj[Module.gObj.Length - 1].ch != 0)	// オブジェのあるところで押したっぽい
+						if (Module.g_Obj[Module.g_Obj.Length - 1].intCh != 0)	// オブジェのあるところで押したっぽい
 						{
 							if (DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value != 0)
 							{
 								lngRet = 192 / DataSource.DsListDispGridMain[cboDispGridMain.SelectedIndex].Value;
-								lngRet = Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position
-									- (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].position / lngRet) * lngRet;
+								lngRet = Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition
+									- (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].lngPosition / lngRet) * lngRet;
 							}
 
-							if (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].select != 0)	// 複数選択っぽい
+							if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intSelect != 0)	// 複数選択っぽい
 							{
 								if (EnvUtil.Control)
 								{
-									App.module.CopyObj(ref retObj, ref Module.gObj[Module.gObj.Length - 1]);
+									App.module.CopyObj(ref retObj, ref Module.g_Obj[Module.g_Obj.Length - 1]);
 
 									array = new string[1];
 
-									for (int i = 0; i < Module.gObj.Length - 1; i++)
+									for (int i = 0; i < Module.g_Obj.Length - 1; i++)
 									{
-										if (Module.gObj[i].select != 0)
+										if (Module.g_Obj[i].intSelect != 0)
 										{
 
-											App.module.CopyObj(ref Module.gObj[Module.gObj.Length - 1], ref Module.gObj[i]);
-											Module.gObj[Module.gObj.Length - 1].id = Module.gIDNum;
+											App.module.CopyObj(ref Module.g_Obj[Module.g_Obj.Length - 1], ref Module.g_Obj[i]);
+											Module.g_Obj[Module.g_Obj.Length - 1].lngID = Module.g_lngIDNum;
 
 											array[array.Length - 1] = App.module.strNumConv((int)CMD_LOG.OBJ_ADD)
-																	+ App.module.strNumConv(Module.gIDNum, 4)
-																	+ StringUtil.Right("0" + string.Format("{0:X}", Module.gObj[i].ch), 2)
-																	+ Module.gObj[i].att
-																	+ App.module.strNumConv(Module.gObj[i].measure)
-																	+ App.module.strNumConv(Module.gObj[i].position, 3)
-																	+ Module.gObj[i].value;
+																	+ App.module.strNumConv(Module.g_lngIDNum, 4)
+																	+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[i].intCh), 2)
+																	+ Module.g_Obj[i].intAtt
+																	+ App.module.strNumConv(Module.g_Obj[i].intMeasure)
+																	+ App.module.strNumConv(Module.g_Obj[i].lngPosition, 3)
+																	+ Module.g_Obj[i].sngValue;
 											Array.Resize(ref array, array.Length + 1);
 
-											Module.gObjID[Module.gIDNum] = Module.gObj.Length - 1;
-											Module.gIDNum++;
-											Array.Resize(ref Module.gObjID, Module.gIDNum + 1);
+											Module.g_lngObjID[Module.g_lngIDNum] = Module.g_Obj.Length - 1;
+											Module.g_lngIDNum++;
+											Array.Resize(ref Module.g_lngObjID, Module.g_lngIDNum + 1);
 
-											Module.gObj[i].select = 0;
+											Module.g_Obj[i].intSelect = 0;
 
-											if (i == retObj.height)
+											if (i == retObj.intHeight)
 											{
-												retObj.height = Module.gObj.Length - 1;
+												retObj.intHeight = Module.g_Obj.Length - 1;
 											}
 
-											Array.Resize(ref Module.gObj, Module.gObj.Length + 1);
+											Array.Resize(ref Module.g_Obj, Module.g_Obj.Length + 1);
 										}
 									}
 
@@ -570,35 +570,35 @@ namespace Bmse.Forms
 									{
 										Array.Resize(ref array, array.Length - 1);
 
-										Module.gInputLog.AddData(string.Join(",", array) + ",");
+										Module.g_InputLog.AddData(string.Join(",", array) + ",");
 
-										App.module.CopyObj(ref Module.gObj[Module.gObj.Length - 1], ref retObj);
+										App.module.CopyObj(ref Module.g_Obj[Module.g_Obj.Length - 1], ref retObj);
 									}
 								}
 
-								mObj = new Obj[1];
+								m_retObj = new g_udtObj[1];
 
-								for (int i = 0; i < Module.gObj.Length - 1; i++)
+								for (int i = 0; i < Module.g_Obj.Length - 1; i++)
 								{
-									if (Module.gObj[i].select != 0)
+									if (Module.g_Obj[i].intSelect != 0)
 									{
-										App.module.CopyObj(ref mObj[mObj.Length - 1], ref Module.gObj[i]);
+										App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[i]);
 
-										Module.gObj[i].height = mObj.Length - 1;
+										Module.g_Obj[i].intHeight = m_retObj.Length - 1;
 
-										Array.Resize(ref mObj, mObj.Length + 1);
+										Array.Resize(ref m_retObj, m_retObj.Length + 1);
 									}
 								}
 
-								App.module.CopyObj(ref mObj[mObj.Length - 1], ref Module.gObj[Module.gObj[Module.gObj.Length - 1].height]);
+								App.module.CopyObj(ref m_retObj[m_retObj.Length - 1], ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight]);
 
 								if(mnuOptionsSelectPreview.Checked
-									&& (Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch >= 11 && Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch <= 29)
-									|| Module.gObj[Module.gObj[Module.gObj.Length - 1].height].ch > 100)
+									&& (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh >= 11 && Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh <= 29)
+									|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intCh > 100)
 								{
-									strRet = Module.gWAV[Module.gObj[Module.gObj[Module.gObj.Length - 1].height].value];
+									strRet = Module.g_strWAV[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].sngValue];
 
-									if(!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.gBms.dir + strRet)))
+									if(!"".Equals(strRet) && !"".Equals(FileUtil.Dir(Module.g_BMS.strDir + strRet)))
 									{
 										//TODO: PreviewWAV(strRet);
 									}
@@ -611,7 +611,7 @@ namespace Bmse.Forms
 									App.module.ObjSelectCancel();
 								}
 
-								Module.gObj[Module.gObj[Module.gObj.Length - 1].height].select = 1;
+								Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].intHeight].intSelect = 1;
 
 								App.module.MoveSelectedObj();
 
@@ -637,19 +637,19 @@ namespace Bmse.Forms
 			{
 				if (e.Button == System.Windows.Forms.MouseButtons.Left)
 				{
-					if (!mMouseDown)
+					if (!m_blnMouseDown)
 					{
 						return;
 					}
 				}
 
-				if (!Module.gSelectArea.flag)
+				if (!Module.g_SelectArea.blnFlag)
 				{
 					// 選択範囲なし
 
 					if (e.Button == System.Windows.Forms.MouseButtons.Left
 						&& tlbMenuEdit.Checked
-						&& Module.gObj[Module.gObj.Length - 1].ch != 0)
+						&& Module.g_Obj[Module.g_Obj.Length - 1].intCh != 0)
 					{
 						// オブジェ移動中
 
@@ -671,45 +671,45 @@ namespace Bmse.Forms
 				{
 					// 選択範囲あり
 
-					Module.gMouse.x = e.X;
-					Module.gMouse.y = e.Y;
+					Module.g_Mouse.x = e.X;
+					Module.g_Mouse.y = e.Y;
 
-					Module.gSelectArea.x2 = e.X / (int)Module.gDisp.width + Module.gDisp.x;
-					Module.gSelectArea.y2 = (picMain.Height - e.Y) / (int)Module.gDisp.height + Module.gDisp.y;
+					Module.g_SelectArea.x2 = e.X / (int)Module.g_disp.width + Module.g_disp.x;
+					Module.g_SelectArea.y2 = (picMain.Height - e.Y) / (int)Module.g_disp.height + Module.g_disp.y;
 
-					if (Module.gSelectArea.x1 > Module.gSelectArea.x2)
+					if (Module.g_SelectArea.x1 > Module.g_SelectArea.x2)
 					{
-						retRect.left = Module.gSelectArea.x2;
-						retRect.right = Module.gSelectArea.x1;
+						retRect.left = Module.g_SelectArea.x2;
+						retRect.right = Module.g_SelectArea.x1;
 					}
 					else
 					{
-						retRect.left = Module.gSelectArea.x1;
-						retRect.right = Module.gSelectArea.x2;
+						retRect.left = Module.g_SelectArea.x1;
+						retRect.right = Module.g_SelectArea.x2;
 					}
 
-					if (Module.gSelectArea.y1 > Module.gSelectArea.y2)
+					if (Module.g_SelectArea.y1 > Module.g_SelectArea.y2)
 					{
-						retRect.top = Module.gSelectArea.y2;
-						retRect.bottom = Module.gSelectArea.y1;
+						retRect.top = Module.g_SelectArea.y2;
+						retRect.bottom = Module.g_SelectArea.y1;
 					}
 					else
 					{
-						retRect.top = Module.gSelectArea.y1;
-						retRect.bottom = Module.gSelectArea.y2;
+						retRect.top = Module.g_SelectArea.y1;
+						retRect.bottom = Module.g_SelectArea.y2;
 					}
 
-					select = new bool[Module.gVGrid.Length];
+					select = new bool[Module.g_VGrid.Length];
 
-					for (int i = 0; i < Module.gVGrid.Length; i++)
+					for (int i = 0; i < Module.g_VGrid.Length; i++)
 					{
 						select[i] = false;
-						if (Module.gVGrid[i].visible)
+						if (Module.g_VGrid[i].blnVisible)
 						{
-							if (Module.gVGrid[i].ch != 0)
+							if (Module.g_VGrid[i].intCh != 0)
 							{
-								if (Module.gVGrid[i].left + Module.gVGrid[i].width > retRect.left
-									&& Module.gVGrid[i].left < retRect.right)
+								if (Module.g_VGrid[i].left + Module.g_VGrid[i].intWidth > retRect.left
+									&& Module.g_VGrid[i].left < retRect.right)
 								{
 									select[i] = true;
 								}
@@ -717,85 +717,85 @@ namespace Bmse.Forms
 						}
 					}
 
-					for (int i = 0; i < Module.gObj.Length - 1; i++)
+					for (int i = 0; i < Module.g_Obj.Length - 1; i++)
 					{
-						if (select[Module.gVGridNum[Module.gObj[i].ch]])
+						if (select[Module.g_intVGridNum[Module.g_Obj[i].intCh]])
 						{
-							lngRet = Module.gMeasure[Module.gObj[i].measure].y + Module.gObj[i].position;
+							lngRet = Module.g_Measure[Module.g_Obj[i].intMeasure].lngY + Module.g_Obj[i].lngPosition;
 
-							if (lngRet + Module.OBJ_HEIGHT / Module.gDisp.height >= retRect.top && lngRet <= retRect.bottom)
+							if (lngRet + Module.OBJ_HEIGHT / Module.g_disp.height >= retRect.top && lngRet <= retRect.bottom)
 							{
-								if (Module.gObj[i].select < 5)
+								if (Module.g_Obj[i].intSelect < 5)
 								{
-									Module.gObj[i].select = 4;
+									Module.g_Obj[i].intSelect = 4;
 								}
 								else
 								{
-									Module.gObj[i].select = 6;
+									Module.g_Obj[i].intSelect = 6;
 								}
 							}
 							else
 							{
-								if (Module.gObj[i].select < 5)
+								if (Module.g_Obj[i].intSelect < 5)
 								{
-									Module.gObj[i].select = 0;
+									Module.g_Obj[i].intSelect = 0;
 								}
 								else
 								{
-									Module.gObj[i].select = 5;
+									Module.g_Obj[i].intSelect = 5;
 								}
 							}
 						}
 						else
 						{
-							if (Module.gObj[i].select < 5)
+							if (Module.g_Obj[i].intSelect < 5)
 							{
-								Module.gObj[i].select = 0;
+								Module.g_Obj[i].intSelect = 0;
 							}
 							else
 							{
-								Module.gObj[i].select = 5;
+								Module.g_Obj[i].intSelect = 5;
 							}
 						}
 					}
 
 					App.module.DrawSelectArea();
 
-					if (Module.gDisp.effect != 0)
+					if (Module.g_disp.intEffect != 0)
 					{
 						// TODO: DrawEffect();
 					}
 
-					Module.gMouse.x = e.X;
+					Module.g_Mouse.x = e.X;
 					if (YAxisFixed)
 					{
-						Module.gMouse.y = e.Y;
+						Module.g_Mouse.y = e.Y;
 					}
 
-					mScrollDir = 0;
+					m_intScrollDir = 0;
 
 					if (e.X < 0)
 					{
-						mScrollDir = 20;
+						m_intScrollDir = 20;
 					}
 					else if (e.X > picMain.Width)
 					{
-						mScrollDir = 10;
+						m_intScrollDir = 10;
 					}
 
 					if (!YAxisFixed)
 					{
 						if (e.Y < 0)
 						{
-							mScrollDir += 1;
+							m_intScrollDir += 1;
 						}
 						else if (e.Y > picMain.Height)
 						{
-							mScrollDir += 2;
+							m_intScrollDir += 2;
 						}
 					}
 
-					if (mScrollDir != 0)
+					if (m_intScrollDir != 0)
 					{
 						tmrMain.Enabled = true;
 					}

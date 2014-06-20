@@ -205,14 +205,14 @@ namespace Bmse
 	{
 		public const int OBJ_DIFF = -1;
 
-		public Color[] gPenColor = new Color[(int)PEN_NUM.Max];
-		public Color[] gBrushColor = new Color[(int)BRUSH_NUM.Max];
-		public Color[] gSystemColor = new Color[(int)COLOR_NUM.Max];
+		public Color[] g_lngPenColor = new Color[(int)PEN_NUM.Max];
+		public Color[] g_lngBrushColor = new Color[(int)BRUSH_NUM.Max];
+		public Color[] g_lngSystemColor = new Color[(int)COLOR_NUM.Max];
 
-		private Pen[] hPen = new Pen[76];
-		private Brush[] hBrush = new Brush[38];
+		private Pen[] m_hPen = new Pen[76];
+		private Brush[] m_hBrush = new Brush[38];
 
-		private Obj[] mRetObj;
+		private g_udtObj[] m_retObj;
 
 		public const int OBJ_WIDTH = 28;
 		public const int OBJ_HEIGHT = 9;
@@ -225,7 +225,7 @@ namespace Bmse
 		public const int LEFT_SPACE = FRAME_WIDTH + SPACE_WIDTH;
 		public const int RIGHT_SPACE = FRAME_WIDTH + SPACE_WIDTH * 2;
 
-		public static double[] gSin = new double[256 + 64];
+		public static double[] g_sngSin = new double[256 + 64];
 
 		public void InitVerticalLine()
 		{
@@ -237,38 +237,38 @@ namespace Bmse
 				{
 					for (int i = (int)GRID.NUM_1P_1KEY; i <= (int)GRID.NUM_1P_7KEY; i++)
 					{
-						gVGrid[i].width = GRID_WIDTH;
+						g_VGrid[i].intWidth = GRID_WIDTH;
 					}
 
 					for (int i = (int)GRID.NUM_2P_1KEY; i <= (int)GRID.NUM_2P_7KEY; i++)
 					{
-						gVGrid[i].width = GRID_WIDTH;
+						g_VGrid[i].intWidth = GRID_WIDTH;
 					}
 				}
 				else
 				{
-					gVGrid[(int)GRID.NUM_1P_1KEY].width = GRID_HALF_EDGE_WIDTH;
-					gVGrid[(int)GRID.NUM_2P_1KEY].width = GRID_HALF_EDGE_WIDTH;
+					g_VGrid[(int)GRID.NUM_1P_1KEY].intWidth = GRID_HALF_EDGE_WIDTH;
+					g_VGrid[(int)GRID.NUM_2P_1KEY].intWidth = GRID_HALF_EDGE_WIDTH;
 
 					for (int i = (int)GRID.NUM_1P_2KEY; i <= (int)GRID.NUM_1P_6KEY; i++)
 					{
-						gVGrid[i].width = GRID_HALF_WIDTH;
+						g_VGrid[i].intWidth = GRID_HALF_WIDTH;
 					}
 
 					for(int i = (int)GRID.NUM_2P_2KEY; i <= (int)GRID.NUM_2P_6KEY; i++)
 					{
-						gVGrid[i].width = GRID_HALF_WIDTH;
+						g_VGrid[i].intWidth = GRID_HALF_WIDTH;
 					}
 
 					if (frmMain.cboDispKey.SelectedIndex != 0)
 					{
-						gVGrid[(int)GRID.NUM_1P_7KEY].width = GRID_HALF_EDGE_WIDTH;
-						gVGrid[(int)GRID.NUM_2P_7KEY].width = GRID_HALF_EDGE_WIDTH;
+						g_VGrid[(int)GRID.NUM_1P_7KEY].intWidth = GRID_HALF_EDGE_WIDTH;
+						g_VGrid[(int)GRID.NUM_2P_7KEY].intWidth = GRID_HALF_EDGE_WIDTH;
 					}
 					else
 					{
-						gVGrid[(int)GRID.NUM_1P_5KEY].width = GRID_HALF_EDGE_WIDTH;
-						gVGrid[(int)GRID.NUM_2P_5KEY].width = GRID_HALF_EDGE_WIDTH;
+						g_VGrid[(int)GRID.NUM_1P_5KEY].intWidth = GRID_HALF_EDGE_WIDTH;
+						g_VGrid[(int)GRID.NUM_2P_5KEY].intWidth = GRID_HALF_EDGE_WIDTH;
 					}
 				}
 
@@ -277,115 +277,115 @@ namespace Bmse
 					case 0:
 					case 1:
 					case 2:	// 1P/2P/DP
-						gVGrid[(int)GRID.NUM_FOOTPEDAL].visible = false;
-						gVGrid[(int)GRID.NUM_2P_SC_L].visible = true;
+						g_VGrid[(int)GRID.NUM_FOOTPEDAL].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_SC_L].blnVisible = true;
 
 						if (frmMain.cboDispKey.SelectedIndex == 0)
 						{
-							gVGrid[(int)GRID.NUM_1P_6KEY].visible = false;
-							gVGrid[(int)GRID.NUM_1P_7KEY].visible = false;
+							g_VGrid[(int)GRID.NUM_1P_6KEY].blnVisible = false;
+							g_VGrid[(int)GRID.NUM_1P_7KEY].blnVisible = false;
 						}
 						else
 						{
-							gVGrid[(int)GRID.NUM_1P_6KEY].visible = true;
-							gVGrid[(int)GRID.NUM_1P_7KEY].visible = true;
+							g_VGrid[(int)GRID.NUM_1P_6KEY].blnVisible = true;
+							g_VGrid[(int)GRID.NUM_1P_7KEY].blnVisible = true;
 						}
 
 						if (frmMain.cboDispKey.SelectedIndex == 0)
 						{
-							gVGrid[(int)GRID.NUM_1P_SC_L].visible = true;
-							gVGrid[(int)GRID.NUM_1P_SC_R].visible = false;
+							g_VGrid[(int)GRID.NUM_1P_SC_L].blnVisible = true;
+							g_VGrid[(int)GRID.NUM_1P_SC_R].blnVisible = false;
 						}
 						else
 						{
-							gVGrid[(int)GRID.NUM_1P_SC_L].visible = false;
-							gVGrid[(int)GRID.NUM_1P_SC_R].visible = true;
+							g_VGrid[(int)GRID.NUM_1P_SC_L].blnVisible = false;
+							g_VGrid[(int)GRID.NUM_1P_SC_R].blnVisible = true;
 						}
 
 						if (frmMain.cboPlayer.SelectedIndex != 0)
 						{
 							for (int i = (int)GRID.NUM_2P_SC_L; i <= (int)GRID.NUM_2P_SC_R + 1; i++)
 							{
-								gVGrid[i].visible = true;
+								g_VGrid[i].blnVisible = true;
 							}
 
 							if (frmMain.cboDispKey.SelectedIndex == 0)
 							{
-								gVGrid[(int)GRID.NUM_2P_6KEY].visible = false;
-								gVGrid[(int)GRID.NUM_2P_7KEY].visible = false;
+								g_VGrid[(int)GRID.NUM_2P_6KEY].blnVisible = false;
+								g_VGrid[(int)GRID.NUM_2P_7KEY].blnVisible = false;
 							}
 							else
 							{
-								gVGrid[(int)GRID.NUM_2P_6KEY].visible = true;
-								gVGrid[(int)GRID.NUM_2P_7KEY].visible = true;
+								g_VGrid[(int)GRID.NUM_2P_6KEY].blnVisible = true;
+								g_VGrid[(int)GRID.NUM_2P_7KEY].blnVisible = true;
 							}
 
 							if (frmMain.cboDispSC2P.SelectedIndex == 0)
 							{
-								gVGrid[(int)GRID.NUM_2P_SC_L].visible = true;
-								gVGrid[(int)GRID.NUM_2P_SC_R].visible = false;
+								g_VGrid[(int)GRID.NUM_2P_SC_L].blnVisible = true;
+								g_VGrid[(int)GRID.NUM_2P_SC_R].blnVisible = false;
 							}
 							else
 							{
-								gVGrid[(int)GRID.NUM_2P_SC_L].visible = false;
-								gVGrid[(int)GRID.NUM_2P_SC_R].visible = true;
+								g_VGrid[(int)GRID.NUM_2P_SC_L].blnVisible = false;
+								g_VGrid[(int)GRID.NUM_2P_SC_R].blnVisible = true;
 							}
 						}
 						else
 						{
 							for (int i = (int)GRID.NUM_2P_SC_L; i <= (int)GRID.NUM_2P_SC_R + 1; i++)
 							{
-								gVGrid[i].visible = false;
+								g_VGrid[i].blnVisible = false;
 							}
 						}
 
 						break;
 
 					case 3:	// PMS
-						gVGrid[(int)GRID.NUM_FOOTPEDAL].visible = false;
-						gVGrid[(int)GRID.NUM_1P_SC_L].visible = false;
-						gVGrid[(int)GRID.NUM_1P_6KEY].visible = false;
-						gVGrid[(int)GRID.NUM_1P_7KEY].visible = false;
-						gVGrid[(int)GRID.NUM_1P_SC_R].visible = false;
-						gVGrid[(int)GRID.NUM_2P_SC_L - 1].visible = false;
-						gVGrid[(int)GRID.NUM_2P_SC_L].visible = false;
-						gVGrid[(int)GRID.NUM_2P_1KEY].visible = false;
-						gVGrid[(int)GRID.NUM_2P_SC_R + 1].visible = true;
+						g_VGrid[(int)GRID.NUM_FOOTPEDAL].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_1P_SC_L].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_1P_6KEY].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_1P_7KEY].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_1P_SC_R].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_SC_L - 1].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_SC_L].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_1KEY].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_SC_R + 1].blnVisible = true;
 
 						for (int i = (int)GRID.NUM_2P_2KEY; i <= (int)GRID.NUM_2P_5KEY; i++)
 						{
-							gVGrid[i].visible = true;
+							g_VGrid[i].blnVisible = true;
 						}
 
 						for (int i = (int)GRID.NUM_2P_6KEY; i <= (int)GRID.NUM_2P_SC_R; i++)
 						{
-							gVGrid[(int)GRID.NUM_1P_5KEY].width = GRID_HALF_WIDTH;
-							gVGrid[(int)GRID.NUM_2P_5KEY].width = GRID_HALF_EDGE_WIDTH;
+							g_VGrid[(int)GRID.NUM_1P_5KEY].intWidth = GRID_HALF_WIDTH;
+							g_VGrid[(int)GRID.NUM_2P_5KEY].intWidth = GRID_HALF_EDGE_WIDTH;
 						}
 
 						break;
 
 					case 4:	// Oct
-						gVGrid[(int)GRID.NUM_FOOTPEDAL].visible = true;
-						gVGrid[(int)GRID.NUM_1P_SC_L].visible = true;
-						gVGrid[(int)GRID.NUM_1P_6KEY].visible = true;
-						gVGrid[(int)GRID.NUM_1P_7KEY].visible = true;
-						gVGrid[(int)GRID.NUM_2P_SC_L - 1].visible = false;
-						gVGrid[(int)GRID.NUM_2P_1KEY].visible = false;
-						gVGrid[(int)GRID.NUM_2P_SC_R].visible = true;
-						gVGrid[(int)GRID.NUM_2P_SC_R + 1].visible = true;
+						g_VGrid[(int)GRID.NUM_FOOTPEDAL].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_1P_SC_L].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_1P_6KEY].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_1P_7KEY].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_2P_SC_L - 1].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_1KEY].blnVisible = false;
+						g_VGrid[(int)GRID.NUM_2P_SC_R].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_2P_SC_R + 1].blnVisible = true;
 
 						for (int i = (int)GRID.NUM_2P_2KEY; i <= (int)GRID.NUM_2P_7KEY; i++)
 						{
-							gVGrid[i].visible = true;
+							g_VGrid[i].blnVisible = true;
 						}
 
 						if (frmMain.cboDispFrame.SelectedIndex == 0)
 						{
-							gVGrid[(int)GRID.NUM_1P_5KEY].width = GRID_HALF_WIDTH;
-							gVGrid[(int)GRID.NUM_1P_7KEY].width = GRID_HALF_WIDTH;
-							gVGrid[(int)GRID.NUM_2P_5KEY].width = GRID_HALF_WIDTH;
-							gVGrid[(int)GRID.NUM_2P_7KEY].width = GRID_HALF_EDGE_WIDTH;
+							g_VGrid[(int)GRID.NUM_1P_5KEY].intWidth = GRID_HALF_WIDTH;
+							g_VGrid[(int)GRID.NUM_1P_7KEY].intWidth = GRID_HALF_WIDTH;
+							g_VGrid[(int)GRID.NUM_2P_5KEY].intWidth = GRID_HALF_WIDTH;
+							g_VGrid[(int)GRID.NUM_2P_7KEY].intWidth = GRID_HALF_EDGE_WIDTH;
 						}
 
 						break;
@@ -398,11 +398,11 @@ namespace Bmse
 
 				for (int i = 0; i < 1000; i++)
 				{
-					gMeasure[i].y = retInt;
-					retInt = retInt + gMeasure[i].len;
+					g_Measure[i].lngY = retInt;
+					retInt = retInt + g_Measure[i].intLen;
 				}
 
-				gDisp.maxY = gMeasure[999].y + gMeasure[999].len;
+				g_disp.lngMaxY = g_Measure[999].lngY + g_Measure[999].intLen;
 
 				//Redraw();
 				frmMain.picMain.Refresh();
@@ -425,134 +425,134 @@ namespace Bmse
 					return;
 				}
 
-				for(int i = 0; i < gDisp.maxMeasure; i++)
+				for(int i = 0; i < g_disp.intMaxMeasure; i++)
 				{
-					retInt = retInt + gMeasure[i].len;
+					retInt = retInt + g_Measure[i].intLen;
 				}
 
-				frmMain.vsbMain.Minimum = retInt / gDisp.resolution;
+				frmMain.vsbMain.Minimum = retInt / g_disp.intResolution;
 
-				gDisp.width = DataSource.ItemData(frmMain.cboDispWidth, frmMain.cboDispWidth.SelectedIndex) / 100.0;
-				gDisp.height = DataSource.ItemData(frmMain.cboDispHeight, frmMain.cboDispHeight.SelectedIndex) / 100.0;
-				gDisp.startMeasure = 999;
-				gDisp.endMeasure = 999;
-				gDisp.startPos = gDisp.y - OBJ_HEIGHT;
-				gDisp.endPos = (int)(gDisp.y + frmMain.picMain.Height / gDisp.height);
+				g_disp.width = DataSource.ItemData(frmMain.cboDispWidth, frmMain.cboDispWidth.SelectedIndex) / 100.0;
+				g_disp.height = DataSource.ItemData(frmMain.cboDispHeight, frmMain.cboDispHeight.SelectedIndex) / 100.0;
+				g_disp.intStartMeasure = 999;
+				g_disp.intEndMeasure = 999;
+				g_disp.lngStartPos = g_disp.y - OBJ_HEIGHT;
+				g_disp.lngEndPos = (int)(g_disp.y + frmMain.picMain.Height / g_disp.height);
 
 				retInt = FRAME_WIDTH;
 
-				for (int i = 0; i < gVGridNum.Length; i++)
+				for (int i = 0; i < g_intVGridNum.Length; i++)
 				{
-					gVGridNum[i] = 0;
+					g_intVGridNum[i] = 0;
 				}
 
-				for (int i = 0; i < gVGrid.Length; i++)
+				for (int i = 0; i < g_VGrid.Length; i++)
 				{
-					if (gVGrid[i].visible)
+					if (g_VGrid[i].blnVisible)
 					{
-						if (11 <= gVGrid[i].ch && gVGrid[i].ch <= 29)
+						if (11 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 29)
 						{
-							gVGridNum[gVGrid[i].ch] = i;
-							gVGridNum[gVGrid[i].ch + 20] = i;
-							gVGridNum[gVGrid[i].ch + 40] = i;
+							g_intVGridNum[g_VGrid[i].intCh] = i;
+							g_intVGridNum[g_VGrid[i].intCh + 20] = i;
+							g_intVGridNum[g_VGrid[i].intCh + 40] = i;
 						}
-						else if (0 < gVGrid[i].ch)
+						else if (0 < g_VGrid[i].intCh)
 						{
-							gVGridNum[gVGrid[i].ch] = i;
+							g_intVGridNum[g_VGrid[i].intCh] = i;
 						}
 
-						gVGrid[i].left = retInt;
+						g_VGrid[i].left = retInt;
 
-						if (gVGrid[i].ch == 15)
+						if (g_VGrid[i].intCh == 15)
 						{
 							if (frmMain.cboDispKey.SelectedIndex == 1 || frmMain.cboPlayer.SelectedIndex > 2)
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + gVGrid[i].width - GRID_WIDTH;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
 							}
 						}
-						else if (gVGrid[i].ch == 25)
+						else if (g_VGrid[i].intCh == 25)
 						{
 							if (frmMain.cboPlayer.SelectedIndex == 4)
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else if (frmMain.cboDispKey.SelectedIndex == 0 || frmMain.cboPlayer.SelectedIndex == 3)
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH);
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH);
 							}
 							else
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 						}
-						else if (gVGrid[i].ch == 19)
+						else if (g_VGrid[i].intCh == 19)
 						{
 							if (frmMain.cboPlayer.SelectedIndex > 2)
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH) / 2;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 							}
 							else
 							{
-								gVGrid[i].objLeft = gVGrid[i].left + gVGrid[i].width - GRID_WIDTH;
+								g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
 							}
 						}
-						else if (gVGrid[i].ch == 29)
+						else if (g_VGrid[i].intCh == 29)
 						{
-							gVGrid[i].objLeft = gVGrid[i].left + gVGrid[i].width - GRID_WIDTH;
+							g_VGrid[i].lngObjLeft = g_VGrid[i].left + g_VGrid[i].intWidth - GRID_WIDTH;
 						}
-						else if ((12 <= gVGrid[i].ch && gVGrid[i].ch <= 18)
-							|| 22 <= gVGrid[i].ch && gVGrid[i].ch <= 28)
+						else if ((12 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 18)
+							|| 22 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 28)
 						{
-							gVGrid[i].objLeft = gVGrid[i].left + (gVGrid[i].width - GRID_WIDTH) / 2;
-						}
-						else
-						{
-							gVGrid[i].objLeft = retInt;
-						}
-
-						if (gVGrid[i].left + gVGrid[i].width >= gDisp.x && frmMain.picMain.Width + (gDisp.x - gVGrid[i].left) * gDisp.width >= 0)
-						{
-							gVGrid[i].draw = true;
+							g_VGrid[i].lngObjLeft = g_VGrid[i].left + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 						}
 						else
 						{
-							gVGrid[i].draw = false;
+							g_VGrid[i].lngObjLeft = retInt;
 						}
 
-						retInt += gVGrid[i].width;
+						if (g_VGrid[i].left + g_VGrid[i].intWidth >= g_disp.x && frmMain.picMain.Width + (g_disp.x - g_VGrid[i].left) * g_disp.width >= 0)
+						{
+							g_VGrid[i].blnDraw = true;
+						}
+						else
+						{
+							g_VGrid[i].blnDraw = false;
+						}
+
+						retInt += g_VGrid[i].intWidth;
 					}
 					else
 					{
-						gVGrid[i].draw = false;
+						g_VGrid[i].blnDraw = false;
 					}
 				}
 
-				gDisp.maxX = retInt;
+				g_disp.lngMaxX = retInt;
 
 				retInt = 0;
 
 				for (int i = 0; i < 1000; i++)
 				{
-					retInt += gMeasure[i].len;
+					retInt += g_Measure[i].intLen;
 
-					if (retInt > gDisp.y)
+					if (retInt > g_disp.y)
 					{
-						gDisp.startMeasure = i;
+						g_disp.intStartMeasure = i;
 						break;
 					}
 				}
 
-				for (int i = gDisp.startMeasure + 1; i < 1000; i++)
+				for (int i = g_disp.intStartMeasure + 1; i < 1000; i++)
 				{
-					retInt += gMeasure[i].len;
+					retInt += g_Measure[i].intLen;
 
-					if ((retInt - gDisp.y) * gDisp.height >= frmMain.picMain.Height)
+					if ((retInt - g_disp.y) * g_disp.height >= frmMain.picMain.Height)
 					{
-						gDisp.endMeasure = i;
+						g_disp.intEndMeasure = i;
 						break;
 					}
 				}
@@ -580,50 +580,50 @@ namespace Bmse
 
 				InitPen();
 
-				mRetObj = new Obj[1];
+				m_retObj = new g_udtObj[1];
 
-				for (int i = 0; i < gObj.Length - 1; i++)
+				for (int i = 0; i < g_Obj.Length - 1; i++)
 				{
-					if (gObj[i].ch > 0 && gObj[i].ch < 133)
+					if (g_Obj[i].intCh > 0 && g_Obj[i].intCh < 133)
 					{
-						if (gVGrid[gVGridNum[gObj[i].ch]].draw)
+						if (g_VGrid[g_intVGridNum[g_Obj[i].intCh]].blnDraw)
 						{
-							if (gDisp.startPos <= gMeasure[gObj[i].measure].y + gObj[i].position
-								&& gDisp.endPos >= gMeasure[gObj[i].measure].y + gObj[i].position)
+							if (g_disp.lngStartPos <= g_Measure[g_Obj[i].intMeasure].lngY + g_Obj[i].lngPosition
+								&& g_disp.lngEndPos >= g_Measure[g_Obj[i].intMeasure].lngY + g_Obj[i].lngPosition)
 							{
-								DrawObj(ref gObj[i], e.Graphics);
+								DrawObj(ref g_Obj[i], e.Graphics);
 							}
 						}
 					}
 				}
 
-				for (int i = 0; i < mRetObj.Length - 1; i++)
+				for (int i = 0; i < m_retObj.Length - 1; i++)
 				{
-					if(gDisp.startPos <= gMeasure[mRetObj[i].measure].y + mRetObj[i].position
-						&& gDisp.endPos >= gMeasure[mRetObj[i].measure].y + mRetObj[i].position
-						&& gVGrid[gVGridNum[mRetObj[i].ch]].draw
-						&& mRetObj[i].ch != 0)
+					if(g_disp.lngStartPos <= g_Measure[m_retObj[i].intMeasure].lngY + m_retObj[i].lngPosition
+						&& g_disp.lngEndPos >= g_Measure[m_retObj[i].intMeasure].lngY + m_retObj[i].lngPosition
+						&& g_VGrid[g_intVGridNum[m_retObj[i].intCh]].blnDraw
+						&& m_retObj[i].intCh != 0)
 					{
-						DrawObj(ref mRetObj[i], e.Graphics);
+						DrawObj(ref m_retObj[i], e.Graphics);
 					}
 				}
 
-				Array.Clear(mRetObj, 0, mRetObj.Length);
+				Array.Clear(m_retObj, 0, m_retObj.Length);
 
 				DeletePen();
 
 				DrawGridInfo(e.Graphics);
 
-				if ((gDisp.maxX + 16) * gDisp.width - frmMain.picMain.Width < 0)
+				if ((g_disp.lngMaxX + 16) * g_disp.width - frmMain.picMain.Width < 0)
 				{
 					frmMain.hsbMain.Maximum = 0;
 				}
 				else
 				{
-					frmMain.hsbMain.Maximum = (gDisp.maxX + FRAME_WIDTH) - (int)(frmMain.picMain.Width / gDisp.width);
+					frmMain.hsbMain.Maximum = (g_disp.lngMaxX + FRAME_WIDTH) - (int)(frmMain.picMain.Width / g_disp.width);
 				}
 
-				if (gDisp.effect != 0)
+				if (g_disp.intEffect != 0)
 				{
 					// TODO: DrawEffect();
 				}
@@ -638,18 +638,18 @@ namespace Bmse
 		{
 			if (frmMain.mnuOptionsLaneBG.Checked)
 			{
-				for (int i = 0; i < gVGrid.Length; i++)
+				for (int i = 0; i < g_VGrid.Length; i++)
 				{
-					using (Brush brush = new SolidBrush(gVGrid[i].BackColor))
+					using (Brush brush = new SolidBrush(g_VGrid[i].lngBackColor))
 					{
-						if (gVGrid[i].draw)
+						if (g_VGrid[i].blnDraw)
 						{
-							if (gVGrid[i].ch != 0)
+							if (g_VGrid[i].intCh != 0)
 							{
 								g.FillRectangle(brush,	// 座標修正済み
-									(gVGrid[i].left - gDisp.x) * (int)gDisp.width,
+									(g_VGrid[i].left - g_disp.x) * (int)g_disp.width,
 									0,
-									((gVGrid[i].left + gVGrid[i].width + 1 - gDisp.x) * (int)gDisp.width) - (gVGrid[i].left - gDisp.x) * (int)gDisp.width,
+									((g_VGrid[i].left + g_VGrid[i].intWidth + 1 - g_disp.x) * (int)g_disp.width) - (g_VGrid[i].left - g_disp.x) * (int)g_disp.width,
 									frmMain.picMain.Height);
 							}
 						}
@@ -667,15 +667,15 @@ namespace Bmse
 			FontFamily fontFamily = frmMain.picMain.Font.FontFamily;
 			using (Font font = new Font(fontFamily, 72.0f, FontStyle.Italic | FontStyle.Bold))
 			{
-				using (Brush brush = new SolidBrush(gSystemColor[(int)COLOR_NUM.MEASURE_NUM]))
+				using (Brush brush = new SolidBrush(g_lngSystemColor[(int)COLOR_NUM.MEASURE_NUM]))
 				{
-					for (int i = gDisp.startMeasure; i <= gDisp.endMeasure; i++)
+					for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 					{
 						retStr = "#" + i.ToString("000");
 
 						size = g.MeasureString(retStr, font);
 
-						g.DrawString(retStr, font, brush, (frmMain.picMain.Width - size.Width) / 2.0f, frmMain.picMain.Height - size.Height - (gMeasure[i].y - gDisp.y) * (float)gDisp.height);
+						g.DrawString(retStr, font, brush, (frmMain.picMain.Width - size.Width) / 2.0f, frmMain.picMain.Height - size.Height - (g_Measure[i].lngY - g_disp.y) * (float)g_disp.height);
 					}
 				}
 			}
@@ -683,15 +683,15 @@ namespace Bmse
 
 		private void DrawVerticalGrayLine(Graphics g)
 		{
-			using (Pen pen = new Pen(gSystemColor[(int)COLOR_NUM.VERTICAL_SUB], 1.0f))
+			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.VERTICAL_SUB], 1.0f))
 			{
-				for (int i = 0; i < gVGrid.Length; i++)
+				for (int i = 0; i < g_VGrid.Length; i++)
 				{
-					if (gVGrid[i].draw)
+					if (g_VGrid[i].blnDraw)
 					{
-						if (gVGrid[i].ch != 0)
+						if (g_VGrid[i].intCh != 0)
 						{
-							g.DrawLine(pen, gVGrid[i].left + gVGrid[i].width, gDisp.y, gVGrid[i].left + gVGrid[i].width, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].left + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].left + g_VGrid[i].intWidth, frmMain.picMain.Height);
 							// PrintLine
 						}
 					}
@@ -703,35 +703,35 @@ namespace Bmse
 		{
 			int retInt;
 
-			using (Pen pen = new Pen(gSystemColor[(int)COLOR_NUM.GRID_MAIN]))
+			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.GRID_MAIN]))
 			{
-				for (int i = gDisp.startMeasure; i <= gDisp.endMeasure; i++)
+				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 				{
 					int itemdata = DataSource.DsListDispGridMain[frmMain.cboDispGridMain.SelectedIndex].Value;
 					if (itemdata != 0)
 					{
 						retInt = 192 / itemdata;
 
-						for (int j = 0; j <= gMeasure[i].len; j += retInt)
+						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
-							g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (gMeasure[i].y + j), gDisp.maxX - FRAME_WIDTH, frmMain.picMain.Height - (gMeasure[i].y + j));
+							g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j));
 							// Print Line
 						}
 					}
 				}
 			}
-			using (Pen pen = new Pen(gSystemColor[(int)COLOR_NUM.GRID_SUB], 1.0f))
+			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.GRID_SUB], 1.0f))
 			{
-				for (int i = gDisp.startMeasure; i <= gDisp.endMeasure; i++)
+				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 				{
 					int itemdata = DataSource.DsListDispGridSub[frmMain.cboDispGridSub.SelectedIndex].Value;
 					if (itemdata != 0)
 					{
 						retInt = 192 / itemdata;
 
-						for (int j = 0; j <= gMeasure[i].len; j += retInt)
+						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
-							g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (gMeasure[i].y + j), gDisp.maxX - RIGHT_SPACE, frmMain.picMain.Height - (gMeasure[i].y + j));
+							g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - RIGHT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j));
 							// PrintLine
 						}
 					}
@@ -741,17 +741,17 @@ namespace Bmse
 
 		private void DrawVerticalWhiteLine(Graphics g)
 		{
-			using (Pen pen = new Pen(gSystemColor[(int)COLOR_NUM.VERTICAL_MAIN], 1.0f))
+			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.VERTICAL_MAIN], 1.0f))
 			{
-				for (int i = 0; i < gVGrid.Length; i++)
+				for (int i = 0; i < g_VGrid.Length; i++)
 				{
-					if (gVGrid[i].draw)
+					if (g_VGrid[i].blnDraw)
 					{
-						if (gVGrid[i].ch == 0)
+						if (g_VGrid[i].intCh == 0)
 						{
-							g.DrawLine(pen, gVGrid[i].left, gDisp.y, gVGrid[i].left, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].left, g_disp.y, g_VGrid[i].left, frmMain.picMain.Height);
 							// PrintLine
-							g.DrawLine(pen, gVGrid[i].left + gVGrid[i].width, gDisp.y, gVGrid[i].left + gVGrid[i].width, frmMain.picMain.Height);
+							g.DrawLine(pen, g_VGrid[i].left + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].left + g_VGrid[i].intWidth, frmMain.picMain.Height);
 							// PrintLine
 						}
 					}
@@ -761,17 +761,17 @@ namespace Bmse
 
 		private void DrawMeasureLine(Graphics g)
 		{
-			using (Pen pen = new Pen(gSystemColor[(int)COLOR_NUM.MEASURE_LINE], 1.0f))
+			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.MEASURE_LINE], 1.0f))
 			{
-				for (int i = gDisp.startMeasure; i <= gDisp.endMeasure; i++)
+				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 				{
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - gMeasure[i].y, gDisp.maxX - FRAME_WIDTH, frmMain.picMain.Height - gMeasure[i].y);
+					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY);
 					// PrintLine
 				}
 
-				if (gDisp.endMeasure == 999)
+				if (g_disp.intEndMeasure == 999)
 				{
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - gMeasure[999].y + gMeasure[999].len, gDisp.maxX - FRAME_WIDTH, frmMain.picMain.Height - gMeasure[999].y);
+					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY);
 					// PrintLine
 				}
 			}
@@ -787,21 +787,21 @@ namespace Bmse
 			FontFamily fontFamily = frmMain.picMain.Font.FontFamily;
 			using (Font font = new Font(fontFamily, 9.0f))
 			{
-				using (Brush brush = new SolidBrush(gSystemColor[(int)COLOR_NUM.INFO]))
+				using (Brush brush = new SolidBrush(g_lngSystemColor[(int)COLOR_NUM.INFO]))
 				{
-					for (int i = 0; i < gVGrid.Length; i++)
+					for (int i = 0; i < g_VGrid.Length; i++)
 					{
-						if (gVGrid[i].draw)
+						if (g_VGrid[i].blnDraw)
 						{
-							if (gVGrid[i].ch != 0)
+							if (g_VGrid[i].intCh != 0)
 							{
 								if (frmMain.mnuOptionsVertical.Checked)
 								{
-									lngRet = (int)((gVGrid[i].left + (gVGrid[i].width / 2) - gDisp.x) * gDisp.width);
+									lngRet = (int)((g_VGrid[i].left + (g_VGrid[i].intWidth / 2) - g_disp.x) * g_disp.width);
 
-									for (int j = 0; j < gVGrid[i].text.Length; j++)
+									for (int j = 0; j < g_VGrid[i].strText.Length; j++)
 									{
-										strRet = StringUtil.Mid(gVGrid[i].text, j + 1, 1);
+										strRet = StringUtil.Mid(g_VGrid[i].strText, j + 1, 1);
 										intRet = strRet.Length;
 										retSize = g.MeasureString(strRet, font);
 
@@ -817,16 +817,16 @@ namespace Bmse
 								}
 								else
 								{
-									intRet = gVGrid[i].text.Length;
-									retSize = g.MeasureString(gVGrid[i].text, font);
+									intRet = g_VGrid[i].strText.Length;
+									retSize = g.MeasureString(g_VGrid[i].strText, font);
 
-									int x = (int)((gVGrid[i].left + gVGrid[i].width / 2 - gDisp.x) * gDisp.width - (int)(retSize.Width / 2.0f) + 1);
+									int x = (int)((g_VGrid[i].left + g_VGrid[i].intWidth / 2 - g_disp.x) * g_disp.width - (int)(retSize.Width / 2.0f) + 1);
 
-									g.DrawString(gVGrid[i].text, font, Brushes.Black, x, 0);
-									g.DrawString(gVGrid[i].text, font, Brushes.Black, x - 1, 1);
-									g.DrawString(gVGrid[i].text, font, Brushes.Black, x + 1, 1);
-									g.DrawString(gVGrid[i].text, font, Brushes.Black, x, 2);
-									g.DrawString(gVGrid[i].text, font, brush, x, 1);
+									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x, 0);
+									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x - 1, 1);
+									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x + 1, 1);
+									g.DrawString(g_VGrid[i].strText, font, Brushes.Black, x, 2);
+									g.DrawString(g_VGrid[i].strText, font, brush, x, 1);
 								}
 							}
 						}
@@ -837,34 +837,34 @@ namespace Bmse
 
 		private void PrintLine(int x, int y, int w, int h)
 		{
-			w = w * (int)gDisp.width;
+			w = w * (int)g_disp.width;
 
-			if (x - gDisp.x < 0)
+			if (x - g_disp.x < 0)
 			{
 				if (w != 0)
 				{
-					w += (x - gDisp.x) * (int)gDisp.width;
+					w += (x - g_disp.x) * (int)g_disp.width;
 				}
 
 				x = 0;
 			}
 			else
 			{
-				x = (x - gDisp.x) * (int)gDisp.width;
+				x = (x - g_disp.x) * (int)g_disp.width;
 			}
 
-			if (y + gDisp.y < 0)
+			if (y + g_disp.y < 0)
 			{
 				if (h != 0)
 				{
-					h += y - gDisp.y;
+					h += y - g_disp.y;
 				}
 
 				y = 0;
 			}
 			else
 			{
-				y = (y - gDisp.y) * (int)gDisp.height;
+				y = (y - g_disp.y) * (int)g_disp.height;
 			}
 
 			// 1145行目
@@ -872,7 +872,7 @@ namespace Bmse
 		}
 
 		//private static Font ObjFont = new Font(System.Windows.Forms.Control.DefaultFont.Name, 8.0f, FontStyle.Regular);
-		private void DrawObj(ref Obj retObj, Graphics g)
+		private void DrawObj(ref g_udtObj retObj, Graphics g)
 		{
 			int intRet;
 			string text;
@@ -887,27 +887,27 @@ namespace Bmse
 
 			try
 			{
-				if (gVGridNum[retObj.ch] == 0)
+				if (g_intVGridNum[retObj.intCh] == 0)
 				{
 					return;
 				}
 
-				x = (gVGrid[gVGridNum[retObj.ch]].objLeft - gDisp.x) * (int)gDisp.width + 1;
-				y = frmMain.picMain.Height + OBJ_DIFF - (gMeasure[retObj.measure].y + retObj.position - gDisp.y) * (int)gDisp.height;
-				width = GRID_WIDTH * (int)gDisp.width - 1;
+				x = (g_VGrid[g_intVGridNum[retObj.intCh]].lngObjLeft - g_disp.x) * (int)g_disp.width + 1;
+				y = frmMain.picMain.Height + OBJ_DIFF - (g_Measure[retObj.intMeasure].lngY + retObj.lngPosition - g_disp.y) * (int)g_disp.height;
+				width = GRID_WIDTH * (int)g_disp.width - 1;
 
-				switch (retObj.ch)
+				switch (retObj.intCh)
 				{
 					case 3:
 					case 8:
 					case 9:
-						text = retObj.value.ToString();
+						text = retObj.sngValue.ToString();
 						break;
 
 					case 4:
 					case 6:
 					case 7:
-						text = gBMP[retObj.value];
+						text = g_strBMP[retObj.sngValue];
 						if (frmMain.mnuOptionsObjectFileName.Checked && text.Length > 0)
 						{
 							array = text.Split('.');
@@ -915,12 +915,12 @@ namespace Bmse
 						}
 						else
 						{
-							text = strNumConv(retObj.value);
+							text = strNumConv(retObj.sngValue);
 						}
 						break;
 
 					default:
-						text = gWAV[retObj.value];
+						text = g_strWAV[retObj.sngValue];
 
 						if (frmMain.mnuOptionsObjectFileName.Checked && text.Length > 0)
 						{
@@ -929,39 +929,39 @@ namespace Bmse
 						}
 						else
 						{
-							text = strNumConv(retObj.value);
+							text = strNumConv(retObj.sngValue);
 						}
 
-						if (retObj.att == 2 || (retObj.ch >= 51 && retObj.ch < 69))
+						if (retObj.intAtt == 2 || (retObj.intCh >= 51 && retObj.intCh < 69))
 						{
 							x += 3;
 							width -= 6;
 						}
 
-						if (retObj.att == 2 && retObj.ch >= 11 && retObj.ch <= 29)
+						if (retObj.intAtt == 2 && retObj.intCh >= 11 && retObj.intCh <= 29)
 						{
-							CopyObj(ref mRetObj[mRetObj.Length - 1], ref retObj);
-							mRetObj[mRetObj.Length - 1].ch = retObj.ch + 40;
+							CopyObj(ref m_retObj[m_retObj.Length - 1], ref retObj);
+							m_retObj[m_retObj.Length - 1].intCh = retObj.intCh + 40;
 
-							Array.Resize(ref mRetObj, mRetObj.Length + 1);
+							Array.Resize(ref m_retObj, m_retObj.Length + 1);
 						}
 
 						break;
 				}
 
-				switch (retObj.select)
+				switch (retObj.intSelect)
 				{
 					case 0:
 					case 4:
 					case 5:
 					case 6:
-						if (retObj.ch < 10 || retObj.ch > 100)
+						if (retObj.intCh < 10 || retObj.intCh > 100)
 						{
-							lightNum = gVGrid[gVGridNum[retObj.ch]].lightNum;
-							shadowNum = gVGrid[gVGridNum[retObj.ch]].shadowNum;
-							brushNum = gVGrid[gVGridNum[retObj.ch]].brushNum;
+							lightNum = g_VGrid[g_intVGridNum[retObj.intCh]].intLightNum;
+							shadowNum = g_VGrid[g_intVGridNum[retObj.intCh]].intShadowNum;
+							brushNum = g_VGrid[g_intVGridNum[retObj.intCh]].intBrushNum;
 						}
-						else if (retObj.ch > 50)
+						else if (retObj.intCh > 50)
 						{
 							lightNum = (int)PEN_NUM.LONGNOTE_LIGHT;
 							shadowNum = (int)PEN_NUM.LONGNOTE_SHADOW;
@@ -969,59 +969,59 @@ namespace Bmse
 						}
 						else
 						{
-							if (retObj.att == 0)
+							if (retObj.intAtt == 0)
 							{
-								lightNum = gVGrid[gVGridNum[retObj.ch]].lightNum;
-								shadowNum = gVGrid[gVGridNum[retObj.ch]].shadowNum;
-								brushNum = gVGrid[gVGridNum[retObj.ch]].brushNum;
+								lightNum = g_VGrid[g_intVGridNum[retObj.intCh]].intLightNum;
+								shadowNum = g_VGrid[g_intVGridNum[retObj.intCh]].intShadowNum;
+								brushNum = g_VGrid[g_intVGridNum[retObj.intCh]].intBrushNum;
 							}
 							else
 							{
-								intRet = retObj.ch % 10;
+								intRet = retObj.intCh % 10;
 
-								if (11 <= retObj.ch && retObj.ch <= 15)
+								if (11 <= retObj.intCh && retObj.intCh <= 15)
 								{
 									lightNum = (int)PEN_NUM.INV_KEY01_LIGHT + intRet - 1;
 									shadowNum = (int)PEN_NUM.INV_KEY01_SHADOW + intRet - 1;
 									brushNum = (int)BRUSH_NUM.INV_KEY01 + intRet - 1;
 								}
-								else if (retObj.ch == 18)
+								else if (retObj.intCh == 18)
 								{
 									lightNum = (int)PEN_NUM.KEY06_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY06_SHADOW;
 									brushNum = (int)BRUSH_NUM.INV_KEY06;
 								}
-								else if (retObj.ch == 19)
+								else if (retObj.intCh == 19)
 								{
 									lightNum = (int)PEN_NUM.KEY07_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY07_SHADOW;
 									brushNum = (int)BRUSH_NUM.INV_KEY07;
 								}
-								else if (retObj.ch == 16)
+								else if (retObj.intCh == 16)
 								{
 									lightNum = (int)PEN_NUM.KEY08_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY08_SHADOW;
 									brushNum = (int)BRUSH_NUM.INV_KEY08;
 								}
-								else if (21 <= retObj.ch && retObj.ch <= 25)
+								else if (21 <= retObj.intCh && retObj.intCh <= 25)
 								{
 									lightNum = (int)PEN_NUM.INV_KEY11_LIGHT + intRet - 1;
 									shadowNum = (int)PEN_NUM.INV_KEY11_SHADOW + intRet - 1;
 									brushNum = (int)BRUSH_NUM.INV_KEY11 + intRet - 1;
 								}
-								else if (retObj.ch == 28)
+								else if (retObj.intCh == 28)
 								{
 									lightNum = (int)PEN_NUM.KEY16_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY16_SHADOW;
 									brushNum = (int)BRUSH_NUM.INV_KEY16;
 								}
-								else if (retObj.ch == 29)
+								else if (retObj.intCh == 29)
 								{
 									lightNum = (int)PEN_NUM.KEY17_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY17_SHADOW;
 									brushNum = (int)BRUSH_NUM.INV_KEY17;
 								}
-								else if (retObj.ch == 26)
+								else if (retObj.intCh == 26)
 								{
 									lightNum = (int)PEN_NUM.KEY18_LIGHT;
 									shadowNum = (int)PEN_NUM.INV_KEY18_SHADOW;
@@ -1040,7 +1040,7 @@ namespace Bmse
 						break;
 
 					default:
-						if (retObj.select == 2)
+						if (retObj.intSelect == 2)
 						{
 							lightNum = (int)PEN_NUM.EDIT_FRAME;
 						}
@@ -1049,19 +1049,19 @@ namespace Bmse
 							lightNum = (int)PEN_NUM.DELETE_FRAME;
 						}
 
-						brushNum = hBrush.Length - 1;
+						brushNum = m_hBrush.Length - 1;
 
-						g.FillRectangle(hBrush[brushNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);	// 座標修正済み
-						g.DrawRectangle(hPen[lightNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);		// 座標修正済み
+						g.FillRectangle(m_hBrush[brushNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);	// 座標修正済み
+						g.DrawRectangle(m_hPen[lightNum], x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3);		// 座標修正済み
 
 						return;
 				}
 
-				g.FillRectangle(hBrush[brushNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);	// 座標修正済み
-				g.DrawRectangle(hPen[lightNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);		// 座標修正済み
+				g.FillRectangle(m_hBrush[brushNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);	// 座標修正済み
+				g.DrawRectangle(m_hPen[lightNum], x, y - OBJ_HEIGHT, width, OBJ_HEIGHT + 1);		// 座標修正済み
 
-				g.DrawLine(hPen[shadowNum], x, y, x + width - 1, y);
-				g.DrawLine(hPen[shadowNum], x + width - 1, y, x + width - 1, y - OBJ_HEIGHT);
+				g.DrawLine(m_hPen[shadowNum], x, y, x + width - 1, y);
+				g.DrawLine(m_hPen[shadowNum], x + width - 1, y, x + width - 1, y - OBJ_HEIGHT);
 
 				intRet = text.Length;
 
@@ -1072,7 +1072,7 @@ namespace Bmse
 
 					y -= (OBJ_HEIGHT + (int)retSize.Height) / 2 + 1;
 
-					if (retObj.select == 1)
+					if (retObj.intSelect == 1)
 					{
 						g.DrawString(text, font, Brushes.White, x + 3, y);
 						g.DrawString(text, font, Brushes.Black, x + 2, y);
@@ -1098,17 +1098,17 @@ namespace Bmse
 
 			try
 			{
-				if (gVGridNum[gObj[num].ch] == 0)
+				if (g_intVGridNum[g_Obj[num].intCh] == 0)
 				{
 					return;
 				}
 
-				x = (gVGrid[gVGridNum[gObj[num].ch]].objLeft - gDisp.x) * (int)gDisp.width + 1;
-				y = frmMain.picMain.Height + OBJ_DIFF - (gMeasure[gObj[num].measure].y + gObj[num].position - gDisp.y) * (int)gDisp.height;
+				x = (g_VGrid[g_intVGridNum[g_Obj[num].intCh]].lngObjLeft - g_disp.x) * (int)g_disp.width + 1;
+				y = frmMain.picMain.Height + OBJ_DIFF - (g_Measure[g_Obj[num].intMeasure].lngY + g_Obj[num].lngPosition - g_disp.y) * (int)g_disp.height;
 
-				width = GRID_WIDTH * (int)gDisp.width - 1;
+				width = GRID_WIDTH * (int)g_disp.width - 1;
 
-				if(gObj[num].att == 2 || (gObj[num].ch >= 51 && gObj[num].ch <= 69))
+				if(g_Obj[num].intAtt == 2 || (g_Obj[num].intCh >= 51 && g_Obj[num].intCh <= 69))
 				{
 					x += 3;
 					width -= 6;
@@ -1116,7 +1116,7 @@ namespace Bmse
 
 				using(Graphics gPicMain = frmMain.picMain.CreateGraphics())
 				{
-					using(Pen pen = new Pen(gPenColor[(int)PEN_NUM.EDIT_FRAME]))
+					using(Pen pen = new Pen(g_lngPenColor[(int)PEN_NUM.EDIT_FRAME]))
 					{
 						gPicMain.DrawRectangle(pen, x - 1, y - OBJ_HEIGHT - 1, width + 2, OBJ_HEIGHT + 3 );		// 座標修正済み
 					}
@@ -1131,11 +1131,11 @@ namespace Bmse
 		public void DrawObjMax(int x, int y)
 		{
 			int lngRet;
-			Obj retObj = new Obj();
+			g_udtObj retObj = new g_udtObj();
 
 			try
 			{
-				if (gIgnoreInput)
+				if (g_blnIgnoreInput)
 				{
 					return;
 				}
@@ -1144,58 +1144,58 @@ namespace Bmse
 
 				if (frmMain.tlbMenuWrite.Checked)
 				{
-					if (retObj.ch >= 11 && retObj.ch <= 29)
+					if (retObj.intCh >= 11 && retObj.intCh <= 29)
 					{
 						if (EnvUtil.Control)
 						{
-							retObj.att = 1;
+							retObj.intAtt = 1;
 						}
 						else if (EnvUtil.Shift)
 						{
-							retObj.ch += 40;
-							retObj.att = 2;
+							retObj.intCh += 40;
+							retObj.intAtt = 2;
 						}
 					}
 
 					if (DataSource.DsListDispGridMain[frmMain.cboDispGridMain.SelectedIndex].Value != 0)
 					{
 						lngRet = 192 / DataSource.DsListDispGridMain[frmMain.cboDispGridMain.SelectedIndex].Value;
-						retObj.position = (retObj.position / lngRet) * lngRet;
+						retObj.lngPosition = (retObj.lngPosition / lngRet) * lngRet;
 					}
 				}
 
 				if (!frmMain.tlbMenuWrite.Checked)
 				{
-					lngRet = gMeasure[retObj.measure].y + retObj.position;
+					lngRet = g_Measure[retObj.intMeasure].lngY + retObj.lngPosition;
 
-					for (int i = gObj.Length - 1; i >= 0; i--)
+					for (int i = g_Obj.Length - 1; i >= 0; i--)
 					{
-						if (gObj[i].ch == retObj.ch || (retObj.att == 2
-							&& gObj[i].ch + 40 == retObj.ch))
+						if (g_Obj[i].intCh == retObj.intCh || (retObj.intAtt == 2
+							&& g_Obj[i].intCh + 40 == retObj.intCh))
 						{
-							if (gMeasure[gObj[i].measure].y + gObj[i].position + OBJ_HEIGHT / gDisp.height >= lngRet
-								&& gMeasure[gObj[i].measure].y + gObj[i].position <= lngRet)
+							if (g_Measure[g_Obj[i].intMeasure].lngY + g_Obj[i].lngPosition + OBJ_HEIGHT / g_disp.height >= lngRet
+								&& g_Measure[g_Obj[i].intMeasure].lngY + g_Obj[i].lngPosition <= lngRet)
 							{
 								if (frmMain.tlbMenuEdit.Checked)
 								{
-									retObj.select = 2;
+									retObj.intSelect = 2;
 								}
 								else if (frmMain.tlbMenuDelete.Checked)
 								{
-									retObj.select = 3;
+									retObj.intSelect = 3;
 								}
 
-								retObj.att = gObj[i].att;
+								retObj.intAtt = g_Obj[i].intAtt;
 
-								if (retObj.att == 2)
+								if (retObj.intAtt == 2)
 								{
-									retObj.ch += 40;
+									retObj.intCh += 40;
 								}
 
-								retObj.value = gObj[i].value;
-								retObj.position = gObj[i].position;
-								retObj.measure = gObj[i].measure;
-								retObj.height = i;
+								retObj.sngValue = g_Obj[i].sngValue;
+								retObj.lngPosition = g_Obj[i].lngPosition;
+								retObj.intMeasure = g_Obj[i].intMeasure;
+								retObj.intHeight = i;
 							}
 						}
 					}
@@ -1205,38 +1205,38 @@ namespace Bmse
 
 				if (frmMain.tlbMenuWrite.Checked)
 				{
-					if (retObj.ch != gObj[gObj.Length - 1].ch
-						|| retObj.att != gObj[gObj.Length - 1].att
-						|| retObj.measure != gObj[gObj.Length - 1].measure
-						|| retObj.position != gObj[gObj.Length - 1].position
-						|| retObj.value != gObj[gObj.Length - 1].value)
+					if (retObj.intCh != g_Obj[g_Obj.Length - 1].intCh
+						|| retObj.intAtt != g_Obj[g_Obj.Length - 1].intAtt
+						|| retObj.intMeasure != g_Obj[g_Obj.Length - 1].intMeasure
+						|| retObj.lngPosition != g_Obj[g_Obj.Length - 1].lngPosition
+						|| retObj.sngValue != g_Obj[g_Obj.Length - 1].sngValue)
 					{
-						CopyObj(ref gObj[gObj.Length - 1], ref retObj);
-						gObjID[gObj[gObj.Length - 1].id] = gObj.Length - 1;
+						CopyObj(ref g_Obj[g_Obj.Length - 1], ref retObj);
+						g_lngObjID[g_Obj[g_Obj.Length - 1].lngID] = g_Obj.Length - 1;
 					}
 					else
 					{
-						gObj[gObj.Length - 1].height = retObj.height;
+						g_Obj[g_Obj.Length - 1].intHeight = retObj.intHeight;
 						return;
 					}
 				}
 				else
 				{
-					if (retObj.select != 2 && retObj.select != 3)
+					if (retObj.intSelect != 2 && retObj.intSelect != 3)
 					{
-						retObj.ch = 0;
-						gObj[gObj.Length - 1].ch = 0;
+						retObj.intCh = 0;
+						g_Obj[g_Obj.Length - 1].intCh = 0;
 					}
 
-					if (retObj.height != gObj[gObj.Length - 1].height)
+					if (retObj.intHeight != g_Obj[g_Obj.Length - 1].intHeight)
 					{
-						if (gObj[retObj.height].ch != 0)
+						if (g_Obj[retObj.intHeight].intCh != 0)
 						{
-							retObj.position = gObj[retObj.height].position;
+							retObj.lngPosition = g_Obj[retObj.intHeight].lngPosition;
 						}
 
-						CopyObj(ref gObj[gObj.Length - 1], ref retObj);
-						gObjID[gObj[gObj.Length - 1].id] = gObj.Length - 1;
+						CopyObj(ref g_Obj[g_Obj.Length - 1], ref retObj);
+						g_lngObjID[g_Obj[g_Obj.Length - 1].lngID] = g_Obj.Length - 1;
 					}
 					else
 					{
@@ -1246,19 +1246,19 @@ namespace Bmse
 
 				frmMain.picMain.Refresh();
 
-				if (gObj[gObj.Length - 1].ch != 0)
+				if (g_Obj[g_Obj.Length - 1].intCh != 0)
 				{
 					InitPen();
 
 					using(Graphics gPicmain = frmMain.picMain.CreateGraphics())
 					{
-						DrawObj(ref gObj[gObj.Length - 1], gPicmain);
+						DrawObj(ref g_Obj[g_Obj.Length - 1], gPicmain);
 					}
 
 					DeletePen();
 				}
 
-				if (gDisp.effect != 0)
+				if (g_disp.intEffect != 0)
 				{
 					//TODO: DrawEffect();
 				}
@@ -1269,7 +1269,7 @@ namespace Bmse
 			}
 		}
 
-		public void SetObjData(ref Obj retObj, int x, int y)
+		public void SetObjData(ref g_udtObj retObj, int x, int y)
 		{
 			int lngRet;
 
@@ -1282,17 +1282,17 @@ namespace Bmse
 				x = frmMain.picMain.Width;
 			}
 
-			lngRet = x / (int)gDisp.width + gDisp.x;
+			lngRet = x / (int)g_disp.width + g_disp.x;
 
-			retObj.ch = 8;
+			retObj.intCh = 8;
 
-			for (int i = 0; i < gVGrid.Length; i++)
+			for (int i = 0; i < g_VGrid.Length; i++)
 			{
-				if (gVGrid[i].draw && gVGrid[i].ch != 0)
+				if (g_VGrid[i].blnDraw && g_VGrid[i].intCh != 0)
 				{
-					if (gVGrid[i].left <= lngRet)
+					if (g_VGrid[i].left <= lngRet)
 					{
-						retObj.ch = gVGrid[i].ch;
+						retObj.intCh = g_VGrid[i].intCh;
 					}
 					else
 					{
@@ -1301,8 +1301,8 @@ namespace Bmse
 				}
 			}
 
-			retObj.id = gIDNum;
-			retObj.height = gObj.Length - 1;
+			retObj.lngID = g_lngIDNum;
+			retObj.intHeight = g_Obj.Length - 1;
 
 			if (y < 1)
 			{
@@ -1313,18 +1313,18 @@ namespace Bmse
 				y = frmMain.picMain.Height + OBJ_DIFF;
 			}
 
-			lngRet = (frmMain.picMain.Height - y + OBJ_DIFF) / (int)gDisp.height + gDisp.y;
+			lngRet = (frmMain.picMain.Height - y + OBJ_DIFF) / (int)g_disp.height + g_disp.y;
 
 			for (int i = 0; i < 1000; i++)
 			{
-				if (gMeasure[i].y <= lngRet)
+				if (g_Measure[i].lngY <= lngRet)
 				{
-					retObj.measure = i;
-					retObj.position = lngRet - gMeasure[i].y;
+					retObj.intMeasure = i;
+					retObj.lngPosition = lngRet - g_Measure[i].lngY;
 
-					if (retObj.position > gMeasure[i].len)
+					if (retObj.lngPosition > g_Measure[i].intLen)
 					{
-						retObj.position = gMeasure[i].len - 1;
+						retObj.lngPosition = g_Measure[i].intLen - 1;
 					}
 				}
 				else
@@ -1333,12 +1333,12 @@ namespace Bmse
 				}
 			}
 
-			switch (retObj.ch)
+			switch (retObj.intCh)
 			{
 				case 3:
 				case 8:
 				case 9:
-					retObj.value = 0;
+					retObj.sngValue = 0;
 					break;
 
 				case 4:
@@ -1353,20 +1353,20 @@ namespace Bmse
 			}
 		}
 
-		public void DrawStatusBar(ref Obj retObj)
+		public void DrawStatusBar(ref g_udtObj retObj)
 		{
 			string strRet;
 			int lngRet;
 			string[] array;
 
-			strRet = "Position:  " + retObj.measure + gStatusBar[22] + "  ";
+			strRet = "Position:  " + retObj.intMeasure + g_strStatusBar[22] + "  ";
 
 			int _cboData = DataSource.DsListDispGridMain[frmMain.cboDispGridMain.SelectedIndex].Value;
 			lngRet = _cboData;
 
 			if (lngRet != 0)
 			{
-				if (retObj.select > 1 && retObj.position != 0)
+				if (retObj.intSelect > 1 && retObj.lngPosition != 0)
 				{
 					// TODO: lngRet = GCD(retObj.position, gMeasure[retObj.measure].len);
 
@@ -1380,91 +1380,91 @@ namespace Bmse
 					}
 				}
 
-				strRet = strRet + retObj.position * lngRet / 192 + "/" + gMeasure[retObj.measure].len * lngRet / 192;
+				strRet = strRet + retObj.lngPosition * lngRet / 192 + "/" + g_Measure[retObj.intMeasure].intLen * lngRet / 192;
 			}
 			else
 			{
-				strRet = strRet + retObj.position + "/" + gMeasure[retObj.measure].len;
+				strRet = strRet + retObj.lngPosition + "/" + g_Measure[retObj.intMeasure].intLen;
 			}
 
 			strRet = strRet + "  ";
 
-			if (retObj.ch > 100)
+			if (retObj.intCh > 100)
 			{
-				strRet = strRet + gStatusBar[0] + " " + (retObj.ch - 100).ToString("00");
+				strRet = strRet + g_strStatusBar[0] + " " + (retObj.intCh - 100).ToString("00");
 			}
-			else if (retObj.ch < 10)
+			else if (retObj.intCh < 10)
 			{
-				strRet = strRet + gStatusBar[retObj.ch - 1];
+				strRet = strRet + g_strStatusBar[retObj.intCh - 1];
 			}
-			else if (11 <= retObj.ch && retObj.ch <= 15)
+			else if (11 <= retObj.intCh && retObj.intCh <= 15)
 			{
-				strRet = strRet + gStatusBar[10] + (retObj.ch - 10).ToString();
+				strRet = strRet + g_strStatusBar[10] + (retObj.intCh - 10).ToString();
 			}
-			else if (retObj.ch == 16)
+			else if (retObj.intCh == 16)
 			{
-				strRet = strRet + gStatusBar[12];
+				strRet = strRet + g_strStatusBar[12];
 			}
-			else if (retObj.ch == 18 || retObj.ch == 19)
+			else if (retObj.intCh == 18 || retObj.intCh == 19)
 			{
-				strRet = strRet + gStatusBar[10] + (retObj.ch - 12).ToString();
+				strRet = strRet + g_strStatusBar[10] + (retObj.intCh - 12).ToString();
 			}
-			else if (21 <= retObj.ch && retObj.ch <= 25)
+			else if (21 <= retObj.intCh && retObj.intCh <= 25)
 			{
-				strRet = strRet + gStatusBar[11].Length + (retObj.ch - 20).ToString();
+				strRet = strRet + g_strStatusBar[11].Length + (retObj.intCh - 20).ToString();
 			}
-			else if (retObj.ch == 26)
+			else if (retObj.intCh == 26)
 			{
-				strRet = strRet + gStatusBar[13];
+				strRet = strRet + g_strStatusBar[13];
 			}
-			else if (retObj.ch == 28 || retObj.ch == 29)
+			else if (retObj.intCh == 28 || retObj.intCh == 29)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 22).ToString();
+				strRet = strRet + g_strStatusBar[11] + (retObj.intCh - 22).ToString();
 			}
-			else if (51 <= retObj.ch && retObj.ch <= 55)
+			else if (51 <= retObj.intCh && retObj.intCh <= 55)
 			{
-				strRet = strRet + gStatusBar[10] + (retObj.ch - 50).ToString();
+				strRet = strRet + g_strStatusBar[10] + (retObj.intCh - 50).ToString();
 			}
-			else if (retObj.ch == 56)
+			else if (retObj.intCh == 56)
 			{
-				strRet = strRet + gStatusBar[12];
+				strRet = strRet + g_strStatusBar[12];
 			}
-			else if (retObj.ch == 58 || retObj.ch == 59)
+			else if (retObj.intCh == 58 || retObj.intCh == 59)
 			{
-				strRet = strRet + gStatusBar[10] + (retObj.ch - 52).ToString();
+				strRet = strRet + g_strStatusBar[10] + (retObj.intCh - 52).ToString();
 			}
-			else if (61 <= retObj.ch && retObj.ch <= 65)
+			else if (61 <= retObj.intCh && retObj.intCh <= 65)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 60).ToString();
+				strRet = strRet + g_strStatusBar[11] + (retObj.intCh - 60).ToString();
 			}
-			else if(retObj.ch == 66)
+			else if(retObj.intCh == 66)
 			{
-				strRet = strRet + gStatusBar[13];
+				strRet = strRet + g_strStatusBar[13];
 			}
-			else if(retObj.ch == 68 || retObj.ch == 69)
+			else if(retObj.intCh == 68 || retObj.intCh == 69)
 			{
-				strRet = strRet + gStatusBar[11] + (retObj.ch - 62).ToString();
+				strRet = strRet + g_strStatusBar[11] + (retObj.intCh - 62).ToString();
 			}
 
-			if (retObj.ch >= 11 && retObj.ch <= 29)
+			if (retObj.intCh >= 11 && retObj.intCh <= 29)
 			{
-				if (retObj.att == 1)
+				if (retObj.intAtt == 1)
 				{
-					strRet = strRet + " " + gStatusBar[14];
+					strRet = strRet + " " + g_strStatusBar[14];
 				}
-				else if (retObj.att == 2)
+				else if (retObj.intAtt == 2)
 				{
-					strRet = strRet + " " + gStatusBar[15];
+					strRet = strRet + " " + g_strStatusBar[15];
 				}
 			}
-			else if (retObj.ch >= 51 && retObj.ch <= 69)
+			else if (retObj.intCh >= 51 && retObj.intCh <= 69)
 			{
-				strRet = strRet + " " + gStatusBar[15];
+				strRet = strRet + " " + g_strStatusBar[15];
 			}
 
 			frmMain.staMainPosition.Text = strRet;
 
-			array = StringUtil.Mid(frmMain.lstMeasureLen.Items[retObj.measure].ToString(), 6).Split('/');
+			array = StringUtil.Mid(frmMain.lstMeasureLen.Items[retObj.intMeasure].ToString(), 6).Split('/');
 
 			frmMain.staMainMeasure.Text = StringUtil.Right(" " + array[0], 2) + "/" + StringUtil.Left(array[1] + " ", 2);
 		}
@@ -1474,26 +1474,26 @@ namespace Bmse
 			int lngRet;
 			RECT retRect;
 
-			retRect.top = (gSelectArea.y1 - gDisp.y) * (- (int)gDisp.height) + frmMain.picMain.Height;
-			retRect.left = (gSelectArea.x1 - gDisp.x) * (int)gDisp.width;
-			retRect.right = gMouse.x;
-			retRect.bottom = gMouse.y;
+			retRect.top = (g_SelectArea.y1 - g_disp.y) * (- (int)g_disp.height) + frmMain.picMain.Height;
+			retRect.left = (g_SelectArea.x1 - g_disp.x) * (int)g_disp.width;
+			retRect.right = g_Mouse.x;
+			retRect.bottom = g_Mouse.y;
 
 			using (Graphics gPicMain = frmMain.picMain.CreateGraphics())
 			{
-				using(Pen pen = new Pen(gPenColor[(int)PEN_NUM.EDIT_FRAME]))
+				using(Pen pen = new Pen(g_lngPenColor[(int)PEN_NUM.EDIT_FRAME]))
 				{
 					gPicMain.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);		// 座標修正済み
 				}
 			}
 
-			for (int i = 0; i < gObj.Length - 1; i++)
+			for (int i = 0; i < g_Obj.Length - 1; i++)
 			{
-				if (gObj[i].select == 4 || gObj[i].select == 5)
+				if (g_Obj[i].intSelect == 4 || g_Obj[i].intSelect == 5)
 				{
-					lngRet = gMeasure[gObj[i].measure].y + gObj[i].position;
+					lngRet = g_Measure[g_Obj[i].intMeasure].lngY + g_Obj[i].lngPosition;
 
-					if (gDisp.startPos <= lngRet && gDisp.endPos >= lngRet)
+					if (g_disp.lngStartPos <= lngRet && g_disp.lngEndPos >= lngRet)
 					{
 						DrawObjRect(i);
 					}
@@ -1503,13 +1503,13 @@ namespace Bmse
 
 		public int ChangeMaxMeasure(int measure)
 		{
-			if (measure + 16 > gDisp.maxMeasure)
+			if (measure + 16 > g_disp.intMaxMeasure)
 			{
-				gDisp.maxMeasure = measure + 16;
+				g_disp.intMaxMeasure = measure + 16;
 
-				if (gDisp.maxMeasure > 999)
+				if (g_disp.intMaxMeasure > 999)
 				{
-					gDisp.maxMeasure = 999;
+					g_disp.intMaxMeasure = 999;
 				}
 
 				return 1;
@@ -1524,51 +1524,51 @@ namespace Bmse
 			int retLng = 0;
 			double retDouble;
 
-			retInt = gDisp.resolution;
+			retInt = g_disp.intResolution;
 
-			for (int i = 0; i <= gDisp.maxMeasure; i++)
+			for (int i = 0; i <= g_disp.intMaxMeasure; i++)
 			{
-				retLng = retLng + gMeasure[i].len;
+				retLng = retLng + g_Measure[i].intLen;
 			}
 
 			retDouble = retLng / 32000;
 
 			if (retDouble > 48)
 			{
-				gDisp.resolution = 96;
+				g_disp.intResolution = 96;
 			}
 			else if (retDouble > 24)
 			{
-				gDisp.resolution = 48;
+				g_disp.intResolution = 48;
 			}
 			else if (retDouble > 12)
 			{
-				gDisp.resolution = 24;
+				g_disp.intResolution = 24;
 			}
 			else if (retDouble > 6)
 			{
-				gDisp.resolution = 12;
+				g_disp.intResolution = 12;
 			}
 			else if (retDouble > 3)
 			{
-				gDisp.resolution = 6;
+				g_disp.intResolution = 6;
 			}
 			else if (retDouble > 1)
 			{
-				gDisp.resolution = 3;
+				g_disp.intResolution = 3;
 			}
 			else
 			{
-				gDisp.resolution = 1;
+				g_disp.intResolution = 1;
 			}
 
-			if (retInt == gDisp.resolution)
+			if (retInt == g_disp.intResolution)
 			{
 				return;
 			}
 
 			// UNDONE: スクロールバー絡みの問題
-			frmMain.vsbMain.Value = (frmMain.vsbMain.Maximum - ((frmMain.vsbMain.Maximum - frmMain.vsbMain.Value) / gDisp.resolution) * retInt);
+			frmMain.vsbMain.Value = (frmMain.vsbMain.Maximum - ((frmMain.vsbMain.Maximum - frmMain.vsbMain.Value) / g_disp.intResolution) * retInt);
 
 			DataSource.DsListVScroll.Clear();
 			retInt = 0;
@@ -1577,9 +1577,9 @@ namespace Bmse
 			{
 				retLng = (int)Math.Pow(2, i + 1) * 3;
 
-				if (retLng >= gDisp.resolution)
+				if (retLng >= g_disp.intResolution)
 				{
-					DataSource.DsListVScroll.Insert(retInt, new Ds(retLng / gDisp.resolution, retLng.ToString()));
+					DataSource.DsListVScroll.Insert(retInt, new Ds(retLng / g_disp.intResolution, retLng.ToString()));
 
 					retInt++;
 				}
@@ -1590,31 +1590,31 @@ namespace Bmse
 			frmMain.cboVScroll.SelectedIndex = frmMain.cboVScroll.Items.Count - 2;
 		}
 
-		public void CopyObj(ref Obj destObj, ref Obj srcObj)
+		public void CopyObj(ref g_udtObj destObj, ref g_udtObj srcObj)
 		{
-			destObj.id = srcObj.id;
-			destObj.ch = srcObj.ch;
-			destObj.height = srcObj.height;
-			destObj.measure = srcObj.measure;
-			destObj.position = srcObj.position;
-			destObj.select = srcObj.select;
-			destObj.value = srcObj.value;
-			destObj.att = srcObj.att;
+			destObj.lngID = srcObj.lngID;
+			destObj.intCh = srcObj.intCh;
+			destObj.intHeight = srcObj.intHeight;
+			destObj.intMeasure = srcObj.intMeasure;
+			destObj.lngPosition = srcObj.lngPosition;
+			destObj.intSelect = srcObj.intSelect;
+			destObj.sngValue = srcObj.sngValue;
+			destObj.intAtt = srcObj.intAtt;
 		}
 
 		public void RemoveObj(int num)
 		{
 			try
 			{
-				gObjID[gObj[num].id] = -1;
-				gObj[num].id = 0;
-				gObj[num].ch = 0;
-				gObj[num].height = 0;
-				gObj[num].measure = 0;
-				gObj[num].position = 0;
-				gObj[num].select = 0;
-				gObj[num].value = 0;
-				gObj[num].att = 0;
+				g_lngObjID[g_Obj[num].lngID] = -1;
+				g_Obj[num].lngID = 0;
+				g_Obj[num].intCh = 0;
+				g_Obj[num].intHeight = 0;
+				g_Obj[num].intMeasure = 0;
+				g_Obj[num].lngPosition = 0;
+				g_Obj[num].intSelect = 0;
+				g_Obj[num].sngValue = 0;
+				g_Obj[num].intAtt = 0;
 			}
 			catch (Exception e)
 			{
@@ -1626,24 +1626,24 @@ namespace Bmse
 		{
 			int lngRet = 0;
 
-			for (int i = 0; i < gObj.Length - 1; i++)
+			for (int i = 0; i < g_Obj.Length - 1; i++)
 			{
-				if (gObj[i].ch != 0)
+				if (g_Obj[i].intCh != 0)
 				{
 					//SwapObj(lngRet, i);
 
-					if (i == gObj[gObj.Length - 1].height)
+					if (i == g_Obj[g_Obj.Length - 1].intHeight)
 					{
-						gObj[gObj.Length - 1].height = lngRet;
+						g_Obj[g_Obj.Length - 1].intHeight = lngRet;
 					}
 
 					lngRet++;
 				}
 			}
 
-			CopyObj(ref gObj[lngRet], ref gObj[gObj.Length - 1]);
+			CopyObj(ref g_Obj[lngRet], ref g_Obj[g_Obj.Length - 1]);
 
-			Array.Resize(ref gObj, lngRet + 1);
+			Array.Resize(ref g_Obj, lngRet + 1);
 		}
 
 		public void MoveSelectedObj()
@@ -1653,9 +1653,9 @@ namespace Bmse
 
 			try
 			{
-				for (int i = 0; i < gObj.Length - 1; i++)
+				for (int i = 0; i < g_Obj.Length - 1; i++)
 				{
-					if (gObj[i].select != 0)
+					if (g_Obj[i].intSelect != 0)
 					{
 						lngRet++;
 					}
@@ -1666,9 +1666,9 @@ namespace Bmse
 					return;
 				}
 
-				j = gObj.Length - 1;
+				j = g_Obj.Length - 1;
 
-				Array.Resize(ref gObj, j + lngRet + 1);
+				Array.Resize(ref g_Obj, j + lngRet + 1);
 
 				//TODO: SwapObj(gObj.Length - 1, j);
 
@@ -1676,13 +1676,13 @@ namespace Bmse
 
 				for (int i = 0; i < j; i++)
 				{
-					if (gObj[i].select != 0)
+					if (g_Obj[i].intSelect != 0)
 					{
 						//TODO: SwapObj(i, j + lngRet);
 
-						if (i == gObj[gObj.Length - 1].height)
+						if (i == g_Obj[g_Obj.Length - 1].intHeight)
 						{
-							gObj[gObj.Length - 1].height = j + lngRet;
+							g_Obj[g_Obj.Length - 1].intHeight = j + lngRet;
 						}
 
 						lngRet++;
@@ -1699,41 +1699,41 @@ namespace Bmse
 
 		public void ObjSelectCancel()
 		{
-			for (int i = 0; i < gObj.Length - 1; i++)
+			for (int i = 0; i < g_Obj.Length - 1; i++)
 			{
-				gObj[i].select = 0;
+				g_Obj[i].intSelect = 0;
 			}
 		}
 
 		public void InitPen()
 		{
 			// ペン生成
-			for (int i = 0; i < hPen.Length; i++)
+			for (int i = 0; i < m_hPen.Length; i++)
 			{
-				hPen[i] = new Pen(gPenColor[i], 1.0f);
+				m_hPen[i] = new Pen(g_lngPenColor[i], 1.0f);
 			}
 
 			// ブラシ生成
-			for (int i = 0; i < hBrush.Length - 1; i++)
+			for (int i = 0; i < m_hBrush.Length - 1; i++)
 			{
-				hBrush[i] = new SolidBrush(gBrushColor[i]);
+				m_hBrush[i] = new SolidBrush(g_lngBrushColor[i]);
 			}
 
-			hBrush[hBrush.Length - 1] = new SolidBrush(Color.FromArgb(0, Color.Black));
+			m_hBrush[m_hBrush.Length - 1] = new SolidBrush(Color.FromArgb(0, Color.Black));
 		}
 
 		public void DeletePen()
 		{
 			// ペン削除
-			for (int i = 0; i < hPen.Length; i++)
+			for (int i = 0; i < m_hPen.Length; i++)
 			{
-				hPen[i].Dispose();
+				m_hPen[i].Dispose();
 			}
 
 			// ブラシ削除
-			for (int i = 0; i < hBrush.Length; i++)
+			for (int i = 0; i < m_hBrush.Length; i++)
 			{
-				hBrush[i].Dispose();
+				m_hBrush[i].Dispose();
 			}
 		}
 	}
