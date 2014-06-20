@@ -444,6 +444,12 @@ namespace Bmse.Forms
 		private void tlbMenuOpen_Click(Object sender, EventArgs e)
 		{
 			mnuFileOpen.PerformClick();
+			MessageBox.Show("");
+		}
+
+		private void tlbMenuOpen_ButtonMenuClick(Object sender, ToolStripItemClickedEventArgs e)
+		{
+			mnuRecentFiles[tlbMenuOpen.DropDownItems.IndexOf(e.ClickedItem)].PerformClick();
 		}
 
 		private void tlbMenuReload_Click(Object sender, EventArgs e)

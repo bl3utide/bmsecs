@@ -805,7 +805,8 @@
 			this.tlbMenuOpen.Name = "tlbMenuOpen";
 			this.tlbMenuOpen.Size = new System.Drawing.Size(38, 25);
 			this.tlbMenuOpen.Text = "tlbMenuOpen";
-			this.tlbMenuOpen.Click += tlbMenuOpen_Click;
+			this.tlbMenuOpen.ButtonClick += tlbMenuOpen_Click;
+			this.tlbMenuOpen.DropDownItemClicked += tlbMenuOpen_ButtonMenuClick;
 			// 
 			// tlbMenuReload
 			// 
