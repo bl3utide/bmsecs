@@ -436,6 +436,9 @@ namespace Bmse.Forms
 			picMain.Refresh();
 		}
 
+
+
+
 		private void tlbMenuNew_Click(Object sender, EventArgs e)
 		{
 			mnuFileNew.PerformClick();
@@ -497,6 +500,9 @@ namespace Bmse.Forms
 			mnuToolsPlayStop.PerformClick();
 		}
 
+
+
+
 		private void mnuFileNew_Click(Object sender, EventArgs e)
 		{
 			if (App.module.SaveCheck() != 0)
@@ -513,6 +519,33 @@ namespace Bmse.Forms
 
 			App.module.LoadBMSStart();
 			App.module.LoadBMSEnd();
+		}
+
+		private void mnuEditMode0_Click(Object sender, EventArgs e)
+		{
+			tlbMenuEdit.Checked = true;
+			tlbMenuWrite.Checked = false;
+			tlbMenuDelete.Checked = false;
+
+			staMainMode.Text = Module.g_strStatusBar[19];
+		}
+
+		private void mnuEditMode1_Click(Object sender, EventArgs e)
+		{
+			tlbMenuEdit.Checked = false;
+			tlbMenuWrite.Checked = true;
+			tlbMenuDelete.Checked = false;
+
+			staMainMode.Text = Module.g_strStatusBar[20];
+		}
+
+		private void mnuEditMode2_Click(Object sender, EventArgs e)
+		{
+			tlbMenuEdit.Checked = false;
+			tlbMenuWrite.Checked = false;
+			tlbMenuDelete.Checked = true;
+
+			staMainMode.Text = Module.g_strStatusBar[21];
 		}
 
 		private void mnuViewToolBar_Click(Object sender, EventArgs e)

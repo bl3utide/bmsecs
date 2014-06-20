@@ -494,6 +494,7 @@
 			this.mnuEditMode0.ShortcutKeys = System.Windows.Forms.Keys.F2;
 			this.mnuEditMode0.Size = new System.Drawing.Size(220, 22);
 			this.mnuEditMode0.Text = "編集モード(&M)";
+			this.mnuEditMode0.Click += mnuEditMode0_Click;
 			// 
 			// mnuEditMode1
 			// 
@@ -501,6 +502,7 @@
 			this.mnuEditMode1.ShortcutKeys = System.Windows.Forms.Keys.F3;
 			this.mnuEditMode1.Size = new System.Drawing.Size(220, 22);
 			this.mnuEditMode1.Text = "書込モード(&M)";
+			this.mnuEditMode1.Click += mnuEditMode1_Click;
 			// 
 			// mnuEditMode2
 			// 
@@ -508,6 +510,7 @@
 			this.mnuEditMode2.ShortcutKeys = System.Windows.Forms.Keys.F4;
 			this.mnuEditMode2.Size = new System.Drawing.Size(220, 22);
 			this.mnuEditMode2.Text = "消去モード(&M)";
+			this.mnuEditMode2.Click += mnuEditMode2_Click;
 			// 
 			// mnuView
 			// 
