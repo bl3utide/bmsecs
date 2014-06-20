@@ -908,6 +908,193 @@ namespace Bmse.Forms
 			}
 		}
 
+		private void picMain_MouseUp(Object sender, MouseEventArgs e)
+		{
+			int lngRet;
+			string strRet;
+			int lngArg;
+			string[] array;
+
+			try
+			{
+				m_intScrollDir = 0;
+
+				if (Module.g_blnIgnoreInput)
+				{
+					Module.g_blnIgnoreInput = false;
+					return;
+				}
+
+				if (!m_blnMouseDown)
+				{
+					return;
+				}
+
+				m_blnMouseDown = false;
+
+				if (e.Button == System.Windows.Forms.MouseButtons.Left)
+				{
+					if (tlbMenuWrite.Checked)
+					{
+						if (Module.g_Obj[Module.g_Obj.Length - 1].intCh == 8)
+						{	// BPM
+							
+							Module.frmWindowInput.lblMainDisp.Text = Module.g_Message[(int)Message.INPUT_BPM];
+							Module.frmWindowInput.txtMain.Text = "";
+
+							Module.frmWindowInput.ShowDialog(Module.frmMain);
+
+							if (int.Parse(Module.frmWindowInput.txtMain.Text) == 0)
+							{
+								return;
+							}
+							else if (int.Parse(Module.frmWindowInput.txtMain.Text) > 65535)
+							{
+								MessageBox.Show(Module.g_Message[(int)Message.ERR_OVERFLOW_LARGE], Module.g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+								return;
+							}
+							else if (int.Parse(Module.frmWindowInput.txtMain.Text) < -65535)
+							{
+								MessageBox.Show(Module.g_Message[(int)Message.ERR_OVERFLOW_SMALL], Module.g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+								return;
+							}
+							else
+							{
+								Module.g_Obj[Module.g_Obj.Length - 1].sngValue = int.Parse(Module.frmWindowInput.txtMain.Text);
+								picMain.Focus();
+							}
+						}
+						else if (Module.g_Obj[Module.g_Obj.Length - 1].intCh == 9)
+						{	// STOP
+
+							Module.frmWindowInput.lblMainDisp.Text = Module.g_Message[(int)Message.INPUT_STOP];
+							Module.frmWindowInput.txtMain.Text = "";
+
+							Module.frmWindowInput.ShowDialog(Module.frmMain);
+
+							if (int.Parse(Module.frmWindowInput.txtMain.Text) <= 0)
+							{
+								return;
+							}
+							else if (int.Parse(Module.frmWindowInput.txtMain.Text) > 65535)
+							{
+								MessageBox.Show(Module.g_Message[(int)Message.ERR_OVERFLOW_LARGE], Module.g_strAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+								return;
+							}
+							else
+							{
+								Module.g_Obj[Module.g_Obj.Length - 1].sngValue = int.Parse(Module.frmWindowInput.txtMain.Text);
+								picMain.Focus();
+							}
+						}
+						else if (51 <= Module.g_Obj[Module.g_Obj.Length - 1].intCh
+								&& Module.g_Obj[Module.g_Obj.Length - 1].intCh <= 69)
+						{
+							Module.g_Obj[Module.g_Obj.Length - 1].intCh -= 40;
+							Module.g_Obj[Module.g_Obj.Length - 1].intAtt = 2;
+						}
+
+						if (Module.g_Obj[Module.g_Obj.Length - 1].sngValue == 0)
+						{
+							return;
+						}
+
+						// TODO: SaveChanges();
+
+						if (App.module.ChangeMaxMeasure(Module.g_Obj[Module.g_Obj.Length - 1].intMeasure) != 0)
+						{
+							App.module.ChangeResolution();
+						}
+
+						strRet = "";
+
+						for (int i = Module.g_Obj.Length - 2; i >= 0; i--)
+						{
+							if (Module.g_Obj[i].intMeasure == Module.g_Obj[Module.g_Obj.Length - 1].intMeasure
+								&& Module.g_Obj[i].lngPosition == Module.g_Obj[Module.g_Obj.Length - 1].lngPosition
+								&& Module.g_Obj[i].intCh == Module.g_Obj[Module.g_Obj.Length - 1].intCh)
+							{
+								if (Module.g_Obj[i].intAtt / 2 == Module.g_Obj[Module.g_Obj.Length - 1].intAtt / 2)
+								{	// Undo
+
+									strRet = strRet
+											+ App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
+											+ App.module.strNumConv(Module.g_Obj[i].lngID, 4)
+											+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[i].intCh), 2)
+											+ Module.g_Obj[i].intAtt
+											+ App.module.strNumConv(Module.g_Obj[i].intMeasure)
+											+ App.module.strNumConv(Module.g_Obj[i].lngPosition, 3)
+											+ Module.g_Obj[i].sngValue
+											+ ",";
+
+									App.module.RemoveObj(i);
+								}
+							}
+						}
+
+						// Undo
+						Module.g_Obj[Module.g_Obj.Length - 1].lngID = Module.g_lngIDNum;
+						strRet = strRet
+								+ App.module.strNumConv((int)CMD_LOG.OBJ_ADD)
+								+ App.module.strNumConv(Module.g_Obj[Module.g_Obj.Length - 1].lngID, 4)
+								+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[Module.g_Obj.Length - 1].intCh), 2)
+								+ Module.g_Obj[Module.g_Obj.Length - 1].intAtt
+								+ App.module.strNumConv(Module.g_Obj[Module.g_Obj.Length - 1].intMeasure)
+								+ App.module.strNumConv(Module.g_Obj[Module.g_Obj.Length - 1].lngPosition, 3)
+								+ Module.g_Obj[Module.g_Obj.Length - 1].sngValue
+								+ ",";
+						Module.g_InputLog.AddData(strRet);
+
+						Module.g_lngObjID[Module.g_lngIDNum] = Module.g_Obj.Length - 1;
+						Module.g_lngIDNum++;
+						Array.Resize(ref Module.g_lngObjID, Module.g_lngIDNum + 1);
+
+						Array.Resize(ref Module.g_Obj, Module.g_Obj.Length + 1);
+
+						App.module.ArrangeObj();
+
+						picMain.Refresh();
+					}
+					else if (tlbMenuEdit.Checked)
+					{
+						if (Module.g_SelectArea.blnFlag)
+						{
+							Module.g_SelectArea.blnFlag = false;
+
+							for (int i = 0; i < Module.g_Obj.Length - 1; i++)
+							{
+								if (Module.g_Obj[i].intSelect == 1
+								|| Module.g_Obj[i].intSelect == 4
+								|| Module.g_Obj[i].intSelect == 5)
+								{
+									Module.g_Obj[i].intSelect = 1;
+								}
+								else
+								{
+									Module.g_Obj[i].intSelect = 0;
+								}
+							}
+
+							App.module.MoveSelectedObj();
+						}
+						else
+						{	// 複数選択っぽい
+
+							// TODO: 6744行目から
+						}
+					}
+
+
+				}
+			}
+			catch (Exception exception)
+			{
+			}
+		}
+
 		private void picMain_MouseMove(Object sender, MouseEventArgs e)
 		{
 			int lngRet = 0;

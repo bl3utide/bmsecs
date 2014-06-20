@@ -1046,6 +1046,7 @@
 			this.picMain.TabStop = false;
 			this.picMain.MouseDown += picMain_MouseDown;
 			this.picMain.MouseMove += picMain_MouseMove;
+			this.picMain.MouseUp += picMain_MouseUp;
 			this.picMain.Paint += App.module.Redraw;
 			// 
 			// staMain

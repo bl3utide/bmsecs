@@ -91,8 +91,8 @@
 
 		#endregion
 
-		private System.Windows.Forms.Label lblMainDisp;
-		private System.Windows.Forms.TextBox txtMain;
+		public System.Windows.Forms.Label lblMainDisp;
+		public System.Windows.Forms.TextBox txtMain;
 		private System.Windows.Forms.Button cmdCancel;
 		private System.Windows.Forms.Button cmdDecide;
 	}
