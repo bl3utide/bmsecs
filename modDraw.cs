@@ -416,8 +416,6 @@ namespace Bmse
 		// RedrawメソッドをpicMainのPaintイベントメソッドに書き換え
 		public void Redraw(Object sender, PaintEventArgs e)
 		{
-			Console.WriteLine("Redraw");
-
 			try
 			{
 				int retInt = 0;
@@ -623,6 +621,11 @@ namespace Bmse
 				else
 				{
 					frmMain.hsbMain.Maximum = (g_disp.lngMaxX + FRAME_WIDTH) - (int)(frmMain.picMain.Width / g_disp.width);
+				}
+
+				if (g_SelectArea.blnFlag)
+				{
+					DrawSelectArea(e.Graphics);
 				}
 
 				if (g_disp.intEffect != 0)
@@ -1471,12 +1474,12 @@ namespace Bmse
 			frmMain.staMainMeasure.Text = StringUtil.Right(" " + array[0], 2) + "/" + StringUtil.Left(array[1] + " ", 2);
 		}
 
-		public void DrawSelectArea()
+		public void DrawSelectArea(Graphics g)
 		{
 			int lngRet;
 			RECT retRect;
 
-			frmMain.picMain.Refresh();
+			//frmMain.picMain.Refresh();
 
 			retRect.top = (g_SelectArea.y1 - g_disp.y) * (- (int)g_disp.height) + frmMain.picMain.Height;
 			retRect.left = (g_SelectArea.x1 - g_disp.x) * (int)g_disp.width;
@@ -1487,7 +1490,29 @@ namespace Bmse
 			{
 				using(Pen pen = new Pen(g_lngPenColor[(int)PEN_NUM.EDIT_FRAME]))
 				{
-					gPicMain.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);		// 座標修正済み
+					//gPicMain.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);		// 座標修正済み
+					if (retRect.left < retRect.right)
+					{
+						if (retRect.top < retRect.bottom)
+						{
+							g.DrawRectangle(pen, retRect.left, retRect.top, retRect.right - retRect.left, retRect.bottom - retRect.top);
+						}
+						else
+						{
+							g.DrawRectangle(pen, retRect.left, retRect.bottom, retRect.right - retRect.left, retRect.top - retRect.bottom);
+						}
+					}
+					else
+					{
+						if (retRect.top < retRect.bottom)
+						{
+							g.DrawRectangle(pen, retRect.right, retRect.top, retRect.left - retRect.right, retRect.bottom - retRect.top);
+						}
+						else
+						{
+							g.DrawRectangle(pen, retRect.right, retRect.bottom, retRect.left - retRect.right, retRect.top - retRect.bottom);
+						}
+					}
 				}
 			}
 

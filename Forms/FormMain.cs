@@ -783,7 +783,7 @@ namespace Bmse.Forms
 							Module.g_SelectArea.x2 = Module.g_SelectArea.x1;
 							Module.g_SelectArea.y2 = Module.g_SelectArea.y1;
 
-							App.module.DrawSelectArea();
+							//App.module.DrawSelectArea();
 						}
 
 						if (Module.g_disp.intEffect != 0)
@@ -1294,7 +1294,8 @@ namespace Bmse.Forms
 						}
 					}
 
-					App.module.DrawSelectArea();
+					//App.module.DrawSelectArea();
+					picMain.Refresh();
 
 					if (Module.g_disp.intEffect != 0)
 					{
