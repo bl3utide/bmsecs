@@ -416,6 +416,8 @@ namespace Bmse
 		// RedrawメソッドをpicMainのPaintイベントメソッドに書き換え
 		public void Redraw(Object sender, PaintEventArgs e)
 		{
+			Console.WriteLine("Redraw");
+
 			try
 			{
 				int retInt = 0;
@@ -1473,6 +1475,8 @@ namespace Bmse
 		{
 			int lngRet;
 			RECT retRect;
+
+			frmMain.picMain.Refresh();
 
 			retRect.top = (g_SelectArea.y1 - g_disp.y) * (- (int)g_disp.height) + frmMain.picMain.Height;
 			retRect.left = (g_SelectArea.x1 - g_disp.x) * (int)g_disp.width;
