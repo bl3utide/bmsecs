@@ -1373,7 +1373,7 @@ namespace Bmse
 			{
 				if (retObj.intSelect > 1 && retObj.lngPosition != 0)
 				{
-					// TODO: lngRet = GCD(retObj.position, gMeasure[retObj.measure].len);
+					lngRet = GCD(retObj.lngPosition, g_Measure[retObj.intMeasure].intLen);
 
 					if (lngRet > 192 / _cboData)
 					{
