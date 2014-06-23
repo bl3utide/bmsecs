@@ -1349,11 +1349,11 @@ namespace Bmse
 				case 4:
 				case 6:
 				case 7:
-					// TODO: retObj.value = frmMain.FromLong(frmMain.lstBMP.SelectedIndex + 1);
+					retObj.sngValue = frmMain.lngFromLong(frmMain.lstBMP.SelectedIndex + 1);
 					break;
 
 				default:
-					// TODO: retObj.value = frmMain.FromLong(frmMain.lstWAV.SelectedIndex + 1);
+					retObj.sngValue = frmMain.lngFromLong(frmMain.lstWAV.SelectedIndex + 1);
 					break;
 			}
 		}
@@ -1659,7 +1659,7 @@ namespace Bmse
 			{
 				if (g_Obj[i].intCh != 0)
 				{
-					//SwapObj(lngRet, i);
+					SwapObj(lngRet, i);
 
 					if (i == g_Obj[g_Obj.Length - 1].lngHeight)
 					{

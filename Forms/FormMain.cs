@@ -59,7 +59,6 @@ namespace Bmse.Forms
 
 			try
 			{
-
 				App.module.SetObjData(ref newObj, x, y);
 
 				newObj.intCh = Module.g_intVGridNum[newObj.intCh];
