@@ -910,9 +910,9 @@ namespace Bmse.Forms
 
 		private void picMain_MouseUp(Object sender, MouseEventArgs e)
 		{
-			int lngRet;
+			int lngRet = 0;
 			string strRet;
-			int lngArg;
+			int lngArg = 0;
 			string[] array;
 
 			try
@@ -1084,14 +1084,80 @@ namespace Bmse.Forms
 						{	// 複数選択っぽい
 
 							// TODO: 6744行目から
+							for (int i = 0; i < Module.g_Obj.Length - 1; i++)
+							{
+								if (Module.g_Obj[i].intSelect != 0)
+								{
+									if (Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].lngPosition + Module.g_Measure[Module.g_Obj[Module.g_Obj[Module.g_Obj.Length -
+ 1].lngHeight].intMeasure].lngY != m_retObj[m_retObj.Length - 1].lngPosition + Module.g_Measure[m_retObj[m_retObj.Length - 1].intMeasure].lngY
+										|| Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight].intCh != m_retObj[m_retObj.Length - 1].intCh)
+									{
+										lngRet = 1;
+									}
+
+									break;
+								}
+							}
+
+							if (lngRet != 0)
+							{
+								array = new string[1];
+
+								for (int i = 0; i < Module.g_Obj.Length - 1; i++)
+								{
+									if (Module.g_Obj[i].intCh <= 0
+										|| Module.g_Obj[i].intCh > 1000
+										|| (Module.g_Obj[i].intMeasure == 0 && Module.g_Obj[i].lngPosition < 0)
+										|| (Module.g_Obj[i].intMeasure == 999 && Module.g_Obj[i].lngPosition > Module.g_Measure[999].intLen))
+									{
+										array[array.Length - 1] = App.module.strNumConv((int)CMD_LOG.OBJ_DEL)
+											+ App.module.strNumConv(m_retObj[Module.g_Obj[i].lngHeight].lngID, 4)
+											+ StringUtil.Right("0" + string.Format("{0:X}", m_retObj[Module.g_Obj[i].lngHeight].intCh), 2)
+											+ m_retObj[Module.g_Obj[i].lngHeight].intAtt
+											+ App.module.strNumConv(m_retObj[Module.g_Obj[i].lngHeight].intMeasure)
+											+ App.module.strNumConv(m_retObj[Module.g_Obj[i].lngHeight].lngPosition, 3)
+											+ m_retObj[Module.g_Obj[i].lngHeight].sngValue;
+										Array.Resize(ref array, array.Length + 1);
+
+										App.module.RemoveObj(i);
+									}
+									else if (Module.g_Obj[i].intSelect != 0)
+									{
+										array[array.Length - 1] = App.module.strNumConv((int)CMD_LOG.OBJ_MOVE)
+											+ App.module.strNumConv(Module.g_Obj[i].lngID, 4)
+											+ StringUtil.Right("0" + string.Format("{0:X}", m_retObj[Module.g_Obj[i].lngHeight].intCh), 2)
+											+ App.module.strNumConv(m_retObj[Module.g_Obj[i].lngHeight].intMeasure)
+											+ App.module.strNumConv(m_retObj[Module.g_Obj[i].lngHeight].lngPosition, 3)
+											+ StringUtil.Right("0" + string.Format("{0:X}", Module.g_Obj[i].intCh), 2)
+											+ App.module.strNumConv(Module.g_Obj[i].intMeasure)
+											+ App.module.strNumConv(Module.g_Obj[i].lngPosition, 3);
+										Array.Resize(ref array, array.Length + 1);
+									}
+
+									if (App.module.ChangeMaxMeasure(Module.g_Obj[i].intMeasure) != 0)
+									{
+										lngArg = 1;
+									}
+								}
+
+								if (lngArg != 0)
+								{
+									App.module.ChangeResolution();
+								}
+
+								Module.g_InputLog.AddData(string.Join(",", array) + ",");
+							}
+
+							App.module.ArrangeObj();
 						}
+
+						picMain.Refresh();
 					}
-
-
 				}
 			}
 			catch (Exception exception)
 			{
+				App.module.CleanUp(exception.Message, "picMain_MouseUp");
 			}
 		}
 
