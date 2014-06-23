@@ -1300,45 +1300,46 @@ namespace Bmse.Forms
 					{
 						// TODO: DrawEffect();
 					}
+				}
 
-					Module.g_Mouse.x = e.X;
-					if (YAxisFixed)
-					{
-						Module.g_Mouse.y = e.Y;
-					}
+				Module.g_Mouse.x = e.X;
+				if (YAxisFixed)
+				{
+					Module.g_Mouse.y = e.Y;
+				}
 
-					m_intScrollDir = 0;
+				m_intScrollDir = 0;
 
-					if (e.X < 0)
-					{
-						m_intScrollDir = 20;
-					}
-					else if (e.X > picMain.Width)
-					{
-						m_intScrollDir = 10;
-					}
+				if (e.X < 0)
+				{
+					m_intScrollDir = 20;
+				}
+				else if (e.X > picMain.Width)
+				{
+					m_intScrollDir = 10;
+				}
 
-					if (!YAxisFixed)
+				if (!YAxisFixed)
+				{
+					if (e.Y < 0)
 					{
-						if (e.Y < 0)
-						{
-							m_intScrollDir += 1;
-						}
-						else if (e.Y > picMain.Height)
-						{
-							m_intScrollDir += 2;
-						}
+						m_intScrollDir += 1;
 					}
-
-					if (m_intScrollDir != 0)
+					else if (e.Y > picMain.Height)
 					{
-						tmrMain.Enabled = true;
-					}
-					else
-					{
-						tmrMain.Enabled = false;
+						m_intScrollDir += 2;
 					}
 				}
+
+				if (m_intScrollDir != 0)
+				{
+					tmrMain.Enabled = true;
+				}
+				else
+				{
+					tmrMain.Enabled = false;
+				}
+
 			}
 			catch (Exception exception)
 			{
