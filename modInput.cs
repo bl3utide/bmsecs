@@ -603,6 +603,40 @@ namespace Bmse
 			}
 		}
 
+		public void SwapObj(int Obj1Num, int Obj2Num)
+		{
+			g_udtObj dummyObj;
+
+			dummyObj.lngID = g_Obj[Obj1Num].lngID;
+			dummyObj.intCh = g_Obj[Obj1Num].intCh;
+			dummyObj.sngValue = g_Obj[Obj1Num].sngValue;
+			dummyObj.intMeasure = g_Obj[Obj1Num].intMeasure;
+			dummyObj.lngPosition = g_Obj[Obj1Num].lngPosition;
+			dummyObj.lngHeight = g_Obj[Obj1Num].lngHeight;
+			dummyObj.intSelect = g_Obj[Obj1Num].intSelect;
+			dummyObj.intAtt = g_Obj[Obj1Num].intAtt;
+
+			g_lngObjID[g_Obj[Obj1Num].lngID]	= Obj2Num;
+			g_Obj[Obj1Num].lngID				= g_Obj[Obj2Num].lngID;
+			g_Obj[Obj1Num].intCh				= g_Obj[Obj2Num].intCh;
+			g_Obj[Obj1Num].sngValue				= g_Obj[Obj2Num].sngValue;
+			g_Obj[Obj1Num].intMeasure			= g_Obj[Obj2Num].intMeasure;
+			g_Obj[Obj1Num].lngPosition			= g_Obj[Obj2Num].lngPosition;
+			g_Obj[Obj1Num].lngHeight			= g_Obj[Obj2Num].lngHeight;
+			g_Obj[Obj1Num].intSelect			= g_Obj[Obj2Num].intSelect;
+			g_Obj[Obj1Num].intAtt				= g_Obj[Obj2Num].intAtt;
+
+			g_lngObjID[g_Obj[Obj2Num].lngID] = Obj1Num;
+			g_Obj[Obj2Num].lngID = dummyObj.lngID;
+			g_Obj[Obj2Num].intCh = dummyObj.intCh;
+			g_Obj[Obj2Num].sngValue = dummyObj.sngValue;
+			g_Obj[Obj2Num].intMeasure = dummyObj.intMeasure;
+			g_Obj[Obj2Num].lngPosition = dummyObj.lngPosition;
+			g_Obj[Obj2Num].lngHeight = dummyObj.lngHeight;
+			g_Obj[Obj2Num].intSelect = dummyObj.intSelect;
+			g_Obj[Obj2Num].intAtt = dummyObj.intAtt;
+		}
+
 		public int lngNumConv(string strNum)
 		{
 			int lngRet = 0;

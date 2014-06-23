@@ -269,6 +269,27 @@ namespace Bmse.Forms
 			}
 		}
 
+		public void SaveChanges()
+		{
+			Module.g_BMS.blnSaveFlag = false;
+
+			this.Text = Module.g_strAppTitle;
+
+			if (Module.g_BMS.strDir.Length != 0)
+			{
+				if (mnuOptionsFileNameOnly.Checked)
+				{
+					this.Text = this.Text + " - " + Module.g_BMS.strFileName;
+				}
+				else
+				{
+					this.Text = this.Text + " - " + Module.g_BMS.strDir + Module.g_BMS.strFileName;
+				}
+			}
+
+			this.Text = this.Text + " *";
+		}
+
 		public FormMain()
 		{
 			InitializeComponent();
@@ -1002,7 +1023,7 @@ namespace Bmse.Forms
 							return;
 						}
 
-						// TODO: SaveChanges();
+						SaveChanges();
 
 						if (App.module.ChangeMaxMeasure(Module.g_Obj[Module.g_Obj.Length - 1].intMeasure) != 0)
 						{

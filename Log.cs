@@ -38,7 +38,7 @@ namespace Bmse
 				Array.Resize<string>(ref array, array.Length * 2);
 			}
 
-			//TODO: Module.frmMain.SaveChanges();
+			Module.frmMain.SaveChanges();
 		}
 
 		/// <summary>

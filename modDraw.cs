@@ -1699,7 +1699,7 @@ namespace Bmse
 
 				Array.Resize(ref g_Obj, j + lngRet + 1);
 
-				//TODO: SwapObj(gObj.Length - 1, j);
+				SwapObj(g_Obj.Length - 1, j);
 
 				lngRet = 0;
 
@@ -1707,7 +1707,7 @@ namespace Bmse
 				{
 					if (g_Obj[i].intSelect != 0)
 					{
-						//TODO: SwapObj(i, j + lngRet);
+						SwapObj(i, j + lngRet);
 
 						if (i == g_Obj[g_Obj.Length - 1].lngHeight)
 						{
