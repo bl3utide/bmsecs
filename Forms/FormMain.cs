@@ -275,7 +275,7 @@ namespace Bmse.Forms
 
 			this.Text = Module.g_strAppTitle;
 
-			if (Module.g_BMS.strDir.Length != 0)
+			if (Module.g_BMS.strDir != null && Module.g_BMS.strDir.Length != 0)
 			{
 				if (mnuOptionsFileNameOnly.Checked)
 				{
