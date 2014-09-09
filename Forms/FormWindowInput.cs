@@ -26,12 +26,12 @@ namespace Bmse.Forms
 
 		private void cmdCancel_Click(Object sender, EventArgs e)
 		{
-			Form_Unload(null, null);
+			Close();
 		}
 
 		private void cmdDecide_Click(Object sender, EventArgs e)
 		{
-			Module.frmWindowInput.Hide();
+			Module.frmWindowInput.Visible = false;
 
 			Module.frmMain.picMain.Focus();
 		}
@@ -52,13 +52,16 @@ namespace Bmse.Forms
 			txtMain.Focus();
 		}
 
-		private void Form_Unload(Object sender, EventArgs e)
+		private void Form_Unload(Object sender, FormClosingEventArgs e)
 		{
-			txtMain.Text = "";
+			if (e.CloseReason == CloseReason.UserClosing)
+			{
+				txtMain.Text = "";
 
-			Module.frmWindowInput.Hide();
+				Module.frmWindowInput.Hide();
 
-			Module.frmMain.picMain.Focus();
+				Module.frmMain.picMain.Focus();
+			}
 		}
 	}
 }
