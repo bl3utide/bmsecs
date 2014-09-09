@@ -439,6 +439,11 @@ namespace Bmse.Forms
 		// イベントハンドラ
 		//////////////////////////////////////////////////////////////////////////////
 
+		private void Form_Load(Object sender, EventArgs e)
+		{
+			m_blnPreview = true;
+		}
+
 		private void Form_Activeted(Object sender, EventArgs e)
 		{
 			Form_Resize(null, null);
@@ -964,7 +969,7 @@ namespace Bmse.Forms
 
 							Module.frmWindowInput.ShowDialog(Module.frmMain);
 
-							if (int.Parse(Module.frmWindowInput.txtMain.Text) == 0)
+							if ("".Equals(Module.frmWindowInput.txtMain.Text) || int.Parse(Module.frmWindowInput.txtMain.Text) == 0)
 							{
 								return;
 							}
@@ -994,7 +999,7 @@ namespace Bmse.Forms
 
 							Module.frmWindowInput.ShowDialog(Module.frmMain);
 
-							if (int.Parse(Module.frmWindowInput.txtMain.Text) <= 0)
+							if ("".Equals(Module.frmWindowInput.txtMain.Text) || int.Parse(Module.frmWindowInput.txtMain.Text) <= 0)
 							{
 								return;
 							}

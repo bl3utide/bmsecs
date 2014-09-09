@@ -60,6 +60,7 @@
 			this.cmdCancel.TabIndex = 2;
 			this.cmdCancel.Text = "Cancel";
 			this.cmdCancel.UseVisualStyleBackColor = true;
+			this.cmdCancel.Click += cmdCancel_Click;
 			// 
 			// cmdDecide
 			// 
@@ -70,6 +71,7 @@
 			this.cmdDecide.TabIndex = 2;
 			this.cmdDecide.Text = "OK";
 			this.cmdDecide.UseVisualStyleBackColor = true;
+			this.cmdDecide.Click += cmdDecide_Click;
 			// 
 			// FormWindowInput
 			// 
@@ -84,6 +86,8 @@
 			this.Name = "FormWindowInput";
 			this.ShowInTaskbar = false;
 			this.Text = "入力フォーム";
+			this.Activated += Form_Activated;
+			this.FormClosing += Form_Unload;
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
