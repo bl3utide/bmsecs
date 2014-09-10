@@ -260,6 +260,8 @@ namespace Bmse.Forms
 					}
 
 					App.module.DrawStatusBar(ref Module.g_Obj[Module.g_Obj[Module.g_Obj.Length - 1].lngHeight]);
+
+					picMain.Refresh();
 				}
 			}
 			catch (Exception e)
