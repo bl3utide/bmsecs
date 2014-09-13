@@ -719,7 +719,8 @@ namespace Bmse
 
 						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
-							g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							//g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
 							// Print Line
 						}
 					}
@@ -736,7 +737,8 @@ namespace Bmse
 
 						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
-							g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - RIGHT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - RIGHT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
 							// PrintLine
 						}
 					}
@@ -770,13 +772,15 @@ namespace Bmse
 			{
 				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 				{
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY);
+					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY);
+					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[i].lngY);
 					// PrintLine
 				}
 
 				if (g_disp.intEndMeasure == 999)
 				{
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY);
+					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY);
+					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[999].lngY);
 					// PrintLine
 				}
 			}
