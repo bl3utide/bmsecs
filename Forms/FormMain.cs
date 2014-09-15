@@ -1374,5 +1374,17 @@ namespace Bmse.Forms
 				App.module.CleanUp(exception.Message, "picMain_MouseMove");
 			}
 		}
+
+		private void hsbMain_Change(Object sender, EventArgs e)
+		{
+			Module.g_disp.x = hsbMain.Value;
+
+			picMain.Refresh();
+		}
+
+		private void hsbMain_Scroll(Object sender, ScrollEventArgs e)
+		{
+			hsbMain_Change(null, null);
+		}
 	}
 }

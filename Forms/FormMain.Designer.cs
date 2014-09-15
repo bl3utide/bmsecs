@@ -1936,6 +1936,8 @@
 			this.hsbMain.Name = "hsbMain";
 			this.hsbMain.Size = new System.Drawing.Size(687, 17);
 			this.hsbMain.TabIndex = 7;
+			this.hsbMain.ValueChanged += hsbMain_Change;
+			this.hsbMain.Scroll += hsbMain_Scroll;
 			// 
 			// cmdDirectInput
 			// 

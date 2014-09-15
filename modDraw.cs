@@ -696,8 +696,9 @@ namespace Bmse
 					{
 						if (g_VGrid[i].intCh != 0)
 						{
-							g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, frmMain.picMain.Height);
-							// PrintLine
+							//g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y + frmMain.picMain.Height);
+							//g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y + frmMain.picMain.Height);
+							PrintLine(g, pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, 0, frmMain.picMain.Height);
 						}
 					}
 				}
@@ -720,12 +721,14 @@ namespace Bmse
 						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
 							//g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j));
-							g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
-							// Print Line
+							//g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							//g.DrawLine(pen, LEFT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j), LEFT_SPACE + (g_disp.lngMaxX - RIGHT_SPACE), frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							PrintLine(g, pen, LEFT_SPACE, g_Measure[i].lngY + j, g_disp.lngMaxX - RIGHT_SPACE, 0);
 						}
 					}
 				}
 			}
+
 			using (Pen pen = new Pen(g_lngSystemColor[(int)COLOR_NUM.GRID_SUB], 1.0f))
 			{
 				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
@@ -738,8 +741,8 @@ namespace Bmse
 						for (int j = 0; j <= g_Measure[i].intLen; j += retInt)
 						{
 							//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX - RIGHT_SPACE, frmMain.picMain.Height - (g_Measure[i].lngY + j));
-							g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
-							// PrintLine
+							//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - (g_Measure[i].lngY + j), g_disp.lngMaxX, frmMain.picMain.Height - (g_Measure[i].lngY + j));
+							PrintLine(g, pen, FRAME_WIDTH, g_Measure[i].lngY + j, g_disp.lngMaxX - FRAME_WIDTH, 0);
 						}
 					}
 				}
@@ -756,10 +759,10 @@ namespace Bmse
 					{
 						if (g_VGrid[i].intCh == 0)
 						{
-							g.DrawLine(pen, g_VGrid[i].lngLeft, g_disp.y, g_VGrid[i].lngLeft, frmMain.picMain.Height);
-							// PrintLine
-							g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, frmMain.picMain.Height);
-							// PrintLine
+							//g.DrawLine(pen, g_VGrid[i].lngLeft, g_disp.y, g_VGrid[i].lngLeft, g_disp.y + frmMain.picMain.Height);
+							PrintLine(g, pen, g_VGrid[i].lngLeft, g_disp.y, 0, frmMain.picMain.Height);
+							//g.DrawLine(pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y + frmMain.picMain.Height);
+							PrintLine(g, pen, g_VGrid[i].lngLeft + g_VGrid[i].intWidth, g_disp.y, 0, frmMain.picMain.Height);
 						}
 					}
 				}
@@ -773,15 +776,15 @@ namespace Bmse
 				for (int i = g_disp.intStartMeasure; i <= g_disp.intEndMeasure; i++)
 				{
 					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY);
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[i].lngY);
-					// PrintLine
+					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[i].lngY, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[i].lngY);
+					PrintLine(g, pen, FRAME_WIDTH, g_Measure[i].lngY, g_disp.lngMaxX - FRAME_WIDTH, 0);
 				}
 
 				if (g_disp.intEndMeasure == 999)
 				{
 					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX - FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY);
-					g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[999].lngY);
-					// PrintLine
+					//g.DrawLine(pen, FRAME_WIDTH, frmMain.picMain.Height - g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX, frmMain.picMain.Height - g_Measure[999].lngY);
+					PrintLine(g, pen, FRAME_WIDTH, g_Measure[999].lngY + g_Measure[999].intLen, g_disp.lngMaxX - FRAME_WIDTH, 0);
 				}
 			}
 		}
@@ -844,7 +847,8 @@ namespace Bmse
 			}
 		}
 
-		private void PrintLine(int x, int y, int w, int h)
+		// 
+		private void PrintLine(Graphics e, Pen pen, int x, int y, int w, int h)
 		{
 			w = w * (int)g_disp.width;
 
@@ -876,8 +880,8 @@ namespace Bmse
 				y = (y - g_disp.y) * (int)g_disp.height;
 			}
 
-			// 1145行目
-			// 線の描画だけど、めんどくせえからPrintLine使わない方向でいこうぜ
+			// やっぱり使います
+			e.DrawLine(pen, x, frmMain.picMain.Height - 1 - y, x + w, frmMain.picMain.Height - 1 - y - h);
 		}
 
 		//private static Font ObjFont = new Font(System.Windows.Forms.Control.DefaultFont.Name, 8.0f, FontStyle.Regular);
