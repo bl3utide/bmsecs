@@ -505,7 +505,7 @@ namespace Bmse
 							g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + g_VGrid[i].intWidth - GRID_WIDTH;
 						}
 						else if ((12 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 18)
-							|| 22 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 28)
+							|| (22 <= g_VGrid[i].intCh && g_VGrid[i].intCh <= 28))
 						{
 							g_VGrid[i].lngObjLeft = g_VGrid[i].lngLeft + (g_VGrid[i].intWidth - GRID_WIDTH) / 2;
 						}
