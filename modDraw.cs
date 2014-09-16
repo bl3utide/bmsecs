@@ -278,7 +278,7 @@ namespace Bmse
 					case 1:
 					case 2:	// 1P/2P/DP
 						g_VGrid[(int)GRID.NUM_FOOTPEDAL].blnVisible = false;
-						g_VGrid[(int)GRID.NUM_2P_SC_L].blnVisible = true;
+						g_VGrid[(int)GRID.NUM_2P_SC_L - 1].blnVisible = true;
 
 						if (frmMain.cboDispKey.SelectedIndex == 0)
 						{
