@@ -1920,6 +1920,7 @@
 			// 
 			this.vsbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.vsbMain.LargeChange = 8;
 			this.vsbMain.Location = new System.Drawing.Point(687, 54);
 			this.vsbMain.Maximum = 64;
 			this.vsbMain.Minimum = 0;
@@ -1934,9 +1935,11 @@
 			// 
 			this.hsbMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.hsbMain.LargeChange = 128;
 			this.hsbMain.Location = new System.Drawing.Point(0, 488);
 			this.hsbMain.Name = "hsbMain";
 			this.hsbMain.Size = new System.Drawing.Size(687, 17);
+			this.hsbMain.SmallChange = 32;
 			this.hsbMain.TabIndex = 7;
 			this.hsbMain.ValueChanged += hsbMain_Change;
 			this.hsbMain.Scroll += hsbMain_Scroll;
