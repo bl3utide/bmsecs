@@ -1386,5 +1386,17 @@ namespace Bmse.Forms
 		{
 			hsbMain_Change(null, null);
 		}
+
+		private void vsbMain_Change(Object sender, EventArgs e)
+		{
+			Module.g_disp.y = vsbMain.Value * Module.g_disp.intResolution;
+
+			picMain.Refresh();
+		}
+
+		private void vsbMain_Scroll(Object sender, ScrollEventArgs e)
+		{
+			vsbMain_Change(null, null);
+		}
 	}
 }

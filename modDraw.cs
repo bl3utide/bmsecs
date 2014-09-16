@@ -425,12 +425,12 @@ namespace Bmse
 					return;
 				}
 
-				for(int i = 0; i < g_disp.intMaxMeasure; i++)
+				for(int i = 0; i <= g_disp.intMaxMeasure; i++)
 				{
 					retInt = retInt + g_Measure[i].intLen;
 				}
 
-				frmMain.vsbMain.Minimum = retInt / g_disp.intResolution;
+				frmMain.vsbMain.Maximum = retInt / g_disp.intResolution;
 
 				g_disp.width = DataSource.ItemData(frmMain.cboDispWidth, frmMain.cboDispWidth.SelectedIndex) / 100.0;
 				g_disp.height = DataSource.ItemData(frmMain.cboDispHeight, frmMain.cboDispHeight.SelectedIndex) / 100.0;
@@ -535,7 +535,7 @@ namespace Bmse
 
 				retInt = 0;
 
-				for (int i = 0; i < 1000; i++)
+				for (int i = 0; i <= 999; i++)
 				{
 					retInt += g_Measure[i].intLen;
 
@@ -546,7 +546,7 @@ namespace Bmse
 					}
 				}
 
-				for (int i = g_disp.intStartMeasure + 1; i < 1000; i++)
+				for (int i = g_disp.intStartMeasure + 1; i <= 999; i++)
 				{
 					retInt += g_Measure[i].intLen;
 
@@ -1605,7 +1605,8 @@ namespace Bmse
 			}
 
 			// UNDONE: スクロールバー絡みの問題
-			frmMain.vsbMain.Value = (frmMain.vsbMain.Maximum - ((frmMain.vsbMain.Maximum - frmMain.vsbMain.Value) / g_disp.intResolution) * retInt);
+			//frmMain.vsbMain.Value = (frmMain.vsbMain.Maximum - ((frmMain.vsbMain.Maximum - frmMain.vsbMain.Value) / g_disp.intResolution) * retInt);
+			frmMain.vsbMain.Value = (frmMain.vsbMain.Value / g_disp.intResolution) * retInt;
 
 			DataSource.DsListVScroll.Clear();
 			retInt = 0;

@@ -1927,6 +1927,8 @@
 			this.vsbMain.Size = new System.Drawing.Size(17, 434);
 			this.vsbMain.Value = this.vsbMain.Maximum;
 			this.vsbMain.TabIndex = 6;
+			this.vsbMain.ValueChanged += vsbMain_Change;
+			this.vsbMain.Scroll += vsbMain_Scroll;
 			// 
 			// hsbMain
 			// 
